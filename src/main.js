@@ -72,9 +72,3 @@ btnLogIn.addEventListener("click", () => logIn());
 btnSignIn.addEventListener("click", () => signIn());
 btnLogOut.addEventListener("click", () => logOut());
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.slider');
-  var instances = M.Slider.init(elems);
-
-  instances.start();
-});
