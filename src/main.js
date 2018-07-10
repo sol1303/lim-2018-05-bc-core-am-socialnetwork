@@ -6,7 +6,18 @@ let passwordSignIn = document.getElementById("user-password-signin");
 let btnSignIn = document.getElementById("btn-sign-in");
 let btnLogOut = document.getElementById("btn-log-out");
 let sectionSignUp = document.getElementById("sign-in");
-let sectionLogOut = document.getElementById("log-out")
+let sectionLogOut = document.getElementById("log-out");
+let sectionResponse = document.getElementById("response");
+
+let user = {
+  name: '',
+  bornbirthdate: '',
+  sex: '',
+  city: '',
+  district: '',
+  email: '',
+  password: ''
+}
 
 let config = {
   apiKey: "AIzaSyDW8PIGL6vbFaMhRy0PpXtNv_e59eZYmfs",
@@ -26,28 +37,34 @@ const logOut = () => {
 
 const logIn = () => {
   const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(emailLogin.value, passwordLogin.value);
+  user.email = emailLogin.value;
+  user.password = passwordLogin.value;
+  const promise = auth.signInWithEmailAndPassword(user.email, user.password);
   promise.catch(e => console.log(e.message));
   validateLogIn();
 }
 
 const validateLogIn = () => {
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-      console.log(firebaseUser);
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      console.log(user);
       sectionLogOut.hidden = false;
+      sectionResponse.hidden = false;
     } else {
       console.log("no entraste");
-      btnLogOut.hidden = true;
+      sectionLogOut.hidden = true;
+      sectionResponse.hidden = true;
     }
   });
 }
 
 const signIn = () => {
   const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(emailSignIn.value, passwordSignIn.value);
+  user.email = emailSignIn.value;
+  user.password = passwordSignIn.value;
+  const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
   promise.catch(e => console.log(e.message));
-  console.log("CREASTE TU USUARIO EN FIREBASE");
+  document.write("CREASTE TU USUARIO EN FIREBASE");
 }
 
 
