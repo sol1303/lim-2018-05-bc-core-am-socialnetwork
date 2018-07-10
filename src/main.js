@@ -46,6 +46,8 @@ const logOut = () => {
   console.log("saliste");
 }
 
+
+
 const logIn = () => {
   const auth = firebase.auth();
   user.email = emailLogin.value;
@@ -69,12 +71,22 @@ const validateLogIn = () => {
   });
 }
 
+const verificate = () => {
+  var user = firebase.auth().currentUser;
+  user.sendEmailVerification().then(function () {
+    console.log("enviando");
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
 const signIn = () => {
   const auth = firebase.auth();
   user.email = emailLogin.value;
   user.password = passwordLogin.value;
   const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
   promise.catch(e => console.log(e.message));
+  // verificate();
   main.hidden = true;
   sectionLogOut.hidden = false;
   sectionResponseSign.hidden = false;
