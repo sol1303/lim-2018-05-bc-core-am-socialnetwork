@@ -19,7 +19,8 @@
     <p>Hola, bienvenid@ a </p>
     <h1>Salutem</h1>
   </header>
-  <section class="center-align s12">
+  <section id="main" class="center-align s12">
+    <!-- INPUTS -->
     <div class="row">
       <div class="input-field col s12">
         <input id="user-mail-login" type="email" class="validate">
@@ -30,21 +31,36 @@
           <input id="user-password-login" type="password" class="validate">
           <label for="user-password-login">Contraseña</label>
         </div>
-        <a id="btn-log-in" class="waves-effect waves-light btn-large">Iniciar Sesión</a>
-        <p>¿No tienes una cuenta?,
-          <a href="">Creala aquí</a>
-        </p>
+        <!-- BOTON LOGIN -->
+        <div id="section-btn-log-in">
+          <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
+          <p>¿No tienes una cuenta?,
+            <a id="go-to-sign-in">Creala aquí</a>
+          </p>
+        </div>
+        <!-- BOTON SIGNUP -->
+        <div id="section-btn-sign-up" hidden>
+          <a id="btn-sign-in" class="waves-effect waves-light btn-large btn-initial">Registrate</a>
+          <p>Si tienes cuenta,
+            <a id="go-to-log-in">Inicia sesion</a>
+          </p>
+        </div>
   </section>
 
-  <section id="log-out" hidden>
-    <button id="btn-log-out">SALIR</button>
+  <section id="response-log-in" class="center-align" hidden>
+    <h4 for="">ENTRASTE</h4>
   </section>
 
-  <section id="response" hidden>
-    <label for="">ENTRASTE</label>
+  <section id="response-sign-up" class="center-align" hidden>
+    <h4 for="">BIENVENIDO</h4>
   </section>
 
-  <section class="center-align s12">
+  <section id="log-out" class="center-align" hidden>
+    <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
+  </section>
+
+  <!-- botones de registro para google, Facebook -->
+  <section class="center-align s12" hidden>
     <a class="waves-effect waves-light btn">
       <i class="material-icons left">email</i>Correo Electrónico</a>
     <a class="waves-effect waves-light btn indigo darken-3">

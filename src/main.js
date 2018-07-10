@@ -5,9 +5,14 @@ let emailSignIn = document.getElementById("user-mail-signin");
 let passwordSignIn = document.getElementById("user-password-signin");
 let btnSignIn = document.getElementById("btn-sign-in");
 let btnLogOut = document.getElementById("btn-log-out");
-let sectionSignUp = document.getElementById("sign-in");
 let sectionLogOut = document.getElementById("log-out");
-let sectionResponse = document.getElementById("response");
+let sectionResponseLog = document.getElementById("response-log-in");
+let sectionResponseSign = document.getElementById("response-sign-up");
+let goToSignIn = document.getElementById("go-to-sign-in");
+let goToLogIn = document.getElementById("go-to-log-in");
+let sectionSignUp = document.getElementById("section-btn-sign-up");
+let sectionLogIn = document.getElementById("section-btn-log-in");
+let main = document.getElementById("main");
 
 let user = {
   name: '',
@@ -32,6 +37,12 @@ firebase.initializeApp(config);
 
 const logOut = () => {
   firebase.auth().signOut();
+  main.hidden = false;
+  btnLogOut.hidden = true;
+  sectionResponseLog.hidden = true;
+  sectionResponseSign.hidden = true;
+  passwordLogin.value = "";
+  emailLogin.value = "";
   console.log("saliste");
 }
 
@@ -47,28 +58,44 @@ const logIn = () => {
 const validateLogIn = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      console.log(user);
+      main.hidden = true;
       sectionLogOut.hidden = false;
-      sectionResponse.hidden = false;
+      sectionResponseLog.hidden = false;
     } else {
       console.log("no entraste");
       sectionLogOut.hidden = true;
-      sectionResponse.hidden = true;
+      sectionResponseLog.hidden = true;
     }
   });
 }
 
 const signIn = () => {
   const auth = firebase.auth();
-  user.email = emailSignIn.value;
-  user.password = passwordSignIn.value;
+  user.email = emailLogin.value;
+  user.password = passwordLogin.value;
   const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
   promise.catch(e => console.log(e.message));
-  document.write("CREASTE TU USUARIO EN FIREBASE");
+  main.hidden = true;
+  sectionLogOut.hidden = false;
+  sectionResponseSign.hidden = false;
 }
 
+const showSignUp = () => {
+  passwordLogin.value = "";
+  emailLogin.value = "";
+  sectionLogIn.hidden = true;
+  sectionSignUp.hidden = false;
+}
+
+const showLogIn = () => {
+  passwordLogin.value = "";
+  emailLogin.value = "";
+  sectionLogIn.hidden = false;
+  sectionSignUp.hidden = true;
+}
 
 btnLogIn.addEventListener("click", () => logIn());
+goToSignIn.addEventListener("click", () => showSignUp());
+goToLogIn.addEventListener("click", () => showLogIn());
 btnSignIn.addEventListener("click", () => signIn());
 btnLogOut.addEventListener("click", () => logOut());
-
