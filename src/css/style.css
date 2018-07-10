@@ -1,8 +1,27 @@
 body {
+<<<<<<< HEAD
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
+=======
+  background: #FCFADA;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+>>>>>>> d2aea85378fee00cb552a3a9beafa6ba58a64110
 }
+
 header {
-	background: #1DB4BF;
-	color: #ffffff;
+  background: #1DB4BF;
+  color: #ffffff;
+}
+
+header p {
+  margin: 0;
+}
+
+.row {
+  margin-top: 80px !important;
+}
+
+.btn-initial {
+  background: #1DB4BF !important;
 }
