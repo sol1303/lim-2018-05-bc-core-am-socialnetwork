@@ -91,9 +91,6 @@ const signUp = () => {
   sectionSignUp.hidden = true;
   sectionResponseSignUp.hidden = false;
   sectionLogOut.hidden = false;
-  // mainLogIn.hidden = true;
-  // sectionLogOut.hidden = false;
-  // sectionResponseSign.hidden = false;
 }
 
 const showSignUp = () => {
