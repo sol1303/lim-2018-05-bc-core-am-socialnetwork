@@ -27,19 +27,13 @@ let user = {
   password: ''
 }
 
-let config = {
-    apiKey: "AIzaSyAg2UUqinoNyO67EuPPSy_gIz19VlKytBU",
-    authDomain: "project-3-303ea.firebaseapp.com",
-    databaseURL: "https://project-3-303ea.firebaseio.com",
-    projectId: "project-3-303ea",
-    storageBucket: "",
-    messagingSenderId: "666473399872"
-  // apiKey: "AIzaSyDW8PIGL6vbFaMhRy0PpXtNv_e59eZYmfs",
-  // authDomain: "auth-social-network.firebaseapp.com",
-  // databaseURL: "https://auth-social-network.firebaseio.com",
-  // projectId: "auth-social-network",
-  // storageBucket: "auth-social-network.appspot.com",
-  // messagingSenderId: "1041115691430"
+var config = {
+  apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
+  authDomain: "salutem-a2461.firebaseapp.com",
+  databaseURL: "https://salutem-a2461.firebaseio.com",
+  projectId: "salutem-a2461",
+  storageBucket: "salutem-a2461.appspot.com",
+  messagingSenderId: "953244358481"
 };
 
 firebase.initializeApp(config);
