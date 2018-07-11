@@ -16,6 +16,7 @@ let txtPasswordLogIn = document.getElementById("txt-user-password-login");
 let txtNameSignUp = document.getElementById("txt-user-name-signup");
 let txtEmailSignUp = document.getElementById("txt-user-mail-signup");
 let txtPasswordSignUp = document.getElementById("txt-user-password-signup");
+let txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 
 // enlaces
 let goToSignUp = document.getElementById("go-to-sign-up");
@@ -45,6 +46,7 @@ const logOut = () => {
     txtNameSignUp.value = "";
     txtEmailSignUp.value = "";
     txtPasswordSignUp.value = "";
+    txtConfirmPasswordSignUp.value = "";
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
     sectionResponseSignUp.hidden = true;
@@ -94,11 +96,15 @@ const signUp = () => {
   user.name = txtNameSignUp.value;
   user.email = txtEmailSignUp.value;
   user.password = txtPasswordSignUp.value;
-  if (user.email !== "" && user.password !== "") {
+  if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value === user.password) {
     const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
       verificate();
     });
     promise.catch(e => console.log(e.message));
+  }
+  else {
+    M.toast({html: "No escribiste un correo válido o las contraseñas no coinciden"})
+    // console.log("No escribiste un correo válido o las contraseñas no coinciden");
   }
 }
 
