@@ -68,8 +68,25 @@ const logIn = () => {
   const auth = firebase.auth();
   user.email = txtEmailLogIn.value;
   user.password = txtPasswordLogIn.value;
-  const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-  promise.catch(e => console.log(e.message));
+  if (user.email !== "" && user.password !== "") {
+    const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
+    promise.catch(e => console.log(e.message));
+  }
+}
+
+const verificate = () => {
+  let x = firebase.auth().currentUser;
+  if (x) {
+    x.sendEmailVerification().then(() => {
+      console.log("enviando");
+      document.getElementById("user-name-sign-up").innerHTML = user.name;
+      sectionSignUp.hidden = true;
+      sectionResponseSignUp.hidden = false;
+      sectionLogOut.hidden = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 }
 
 const signUp = () => {
@@ -77,20 +94,12 @@ const signUp = () => {
   user.name = txtNameSignUp.value;
   user.email = txtEmailSignUp.value;
   user.password = txtPasswordSignUp.value;
-  const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
-  promise.catch(e => console.log(e.message));
-  let x = auth.currentUser;
-  if (x) {
-    x.sendEmailVerification().then(() => {
-      console.log("enviando");
-    }).catch(function (error) {
-      console.log(error);
+  if (user.email !== "" && user.password !== "") {
+    const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+      verificate();
     });
+    promise.catch(e => console.log(e.message));
   }
-  document.getElementById("user-name-sign-up").innerHTML = user.name;
-  sectionSignUp.hidden = true;
-  sectionResponseSignUp.hidden = false;
-  sectionLogOut.hidden = false;
 }
 
 const showSignUp = () => {
