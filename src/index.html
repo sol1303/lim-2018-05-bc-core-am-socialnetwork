@@ -15,44 +15,65 @@
 </head>
 
 <body>
+
   <header class="center-align">
     <p>Hola, bienvenid@ a </p>
     <h1>Salutem</h1>
   </header>
-  <section id="main" class="center-align s12">
+
+  <section id="main-log-in" class="center-align s12">
     <!-- INPUTS -->
     <div class="row">
       <div class="input-field col s12">
-        <input id="user-mail-login" type="email" class="validate">
-        <label for="user-mail-login">Correo Electrónico</label>
+        <input id="txt-user-mail-login" type="email" class="validate">
+        <label for="txt-user-mail-login">Correo Electrónico</label>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="user-password-login" type="password" class="validate">
-          <label for="user-password-login">Contraseña</label>
-        </div>
-        <!-- BOTON LOGIN -->
-        <div id="section-btn-log-in">
-          <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
-          <p>¿No tienes una cuenta?,
-            <a id="go-to-sign-in">Creala aquí</a>
-          </p>
-        </div>
-        <!-- BOTON SIGNUP -->
-        <div id="section-btn-sign-up" hidden>
-          <a id="btn-sign-in" class="waves-effect waves-light btn-large btn-initial">Registrate</a>
-          <p>Si tienes cuenta,
-            <a id="go-to-log-in">Inicia sesion</a>
-          </p>
-        </div>
+      <div class="input-field col s12">
+        <input id="txt-user-password-login" type="password" class="validate">
+        <label for="txt-user-password-login">Contraseña</label>
+      </div>
+      <!-- BOTON LOGIN -->
+      <div id="section-btn-log-in">
+        <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
+        <p>¿No tienes una cuenta?,
+          <a id="go-to-sign-up">Creala aquí</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="main-sign-up" class="center-align s12" hidden>
+    <!-- INPUTS -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="txt-user-name-signup" type="text" class="validate">
+        <label for="txt-user-name-signup">Nombre</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="txt-user-mail-signup" type="email" class="validate">
+        <label for="txt-user-mail-signup">Correo Electrónico</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="txt-user-password-signup" type="password" class="validate">
+        <label for="txt-user-password-signup">Contraseña</label>
+      </div>
+      <!-- BOTON SIGNUP -->
+      <div id="section-btn-sign-up">
+        <a id="btn-sign-up" class="waves-effect waves-light btn-large btn-initial">Regístrate</a>
+        <p>Si tienes cuenta,
+          <a id="go-to-log-in">Inicia sesión</a>
+        </p>
+      </div>
+    </div>
   </section>
 
   <section id="response-log-in" class="center-align" hidden>
-    <h4 for="">ENTRASTE</h4>
+    <h4 for="">Entraste a SALUTEM</h4>
   </section>
 
   <section id="response-sign-up" class="center-align" hidden>
-    <h4 for="">BIENVENIDO</h4>
+    <h4 for="">Bienvenido a SALUTEM</h4>
+    <h3 id="user-name-sign-up"></h3>
   </section>
 
   <section id="log-out" class="center-align" hidden>
@@ -68,31 +89,6 @@
     <a class="waves-effect waves-light btn red darken-3">
       <i class="material-icons left fa fa-google"></i>Google</a>
   </section>
-
-
-  <!-- <section id="log-in">
-    <label for="">Escribe tu correo</label>
-    <input type="email" id="user-mail-login">
-    <label for="">Escribe tu contraseña</label>
-    <input type="text" id="user-password-login">
-    <button id="btn-log-in">INICIA SESION</button>
-  </section>
-
-  <section id="sign-in">
-    <label for="">Escribe tu correo</label>
-    <input type="email" id="user-mail-signin">
-    <label for="">Escribe tu contraseña</label>
-    <input type="text" id="user-password-signin">
-    <button id="btn-sign-in">REGISTRATE</button>
-  </section>
-
-  <section id="log-out" hidden>
-    <button id="btn-log-out">SALIR</button>
-  </section>
-
-  <section id="response" hidden>
-    <label for="">ENTRASTE</label>
-  </section> -->
 
   <script src="js/materialize.min.js"></script>
   <script src="main.js"></script>
