@@ -16,17 +16,20 @@
 
 <body>
   <header class="center-align">
-    <img src="img/logoPrincipal.png" alt="Logo">
+    <img src="img/logo.png" alt="Logo">
   </header>
 
+  <!-- LOG IN -->
   <section id="main-log-in" class="center-align s12">
     <!-- INPUTS -->
-    <div class="row">
+    <div class="row spaces">
       <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-login" type="email" class="validate">
         <label for="txt-user-mail-login">Correo Electrónico</label>
       </div>
       <div class="input-field col s12">
+        <i class="material-icons prefix">https</i>
         <input id="txt-user-password-login" type="password" class="validate">
         <label for="txt-user-password-login">Contraseña</label>
       </div>
@@ -34,8 +37,12 @@
       <div id="section-btn-log-in">
         <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
         <div class="btn-log-in-social">
-        <a class="waves-effect waves-light social-icon btn facebook indigo darken-3"><i class="fa fa-facebook"></i></a>
-        <a class="waves-effect waves-light social-icon btn google red darken-3"><i class="fa fa-google"></i></a>
+          <a class="waves-effect waves-light social-icon btn facebook indigo darken-3">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a class="waves-effect waves-light social-icon btn google red darken-3">
+            <i class="fa fa-google"></i>
+          </a>
         </div>
         <p>¿No tienes una cuenta?,
           <a id="go-to-sign-up">Creala aquí</a>
@@ -44,20 +51,41 @@
     </div>
   </section>
 
+  <!-- SELECCION DE USUARIO -->
+  <section id="select-user" hidden>
+    <div id="sign-up-doctors" class="row center-align">
+      <img src="img/doctors.png" class="selection-image" alt="doctors">
+      <h5>Soy Doctor</h5>
+    </div>
+    <div id="sign-up-users" class="row center-align">
+      <img src="img/users.png" class="selection-image" alt="users">
+      <h5>Soy Paciente</h5>
+    </div>
+  </section>
+
+  <!-- SIGN UP DE USERS -->
   <section id="main-sign-up" class="center-align s12" hidden>
     <!-- INPUTS -->
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">account_circle</i>
         <input id="txt-user-name-signup" type="text" class="validate">
         <label for="txt-user-name-signup">Nombre</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-signup" type="email" class="validate">
         <label for="txt-user-mail-signup">Correo Electrónico</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">https</i>
         <input id="txt-user-password-signup" type="password" class="validate">
-        <label for="txt-user-password-signup">Contraseña</label>
+        <label for="txt-user-password-signup">Nueva Contraseña</label>
+      </div>
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">https</i>
+        <input id="txt-user-confirm-password-signup" type="password" class="validate">
+        <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
       </div>
       <!-- BOTON SIGNUP -->
       <div id="section-btn-sign-up">
@@ -69,10 +97,15 @@
     </div>
   </section>
 
+  <!-- SIGN UP DE DOCTOR -->
+  <section></section>
+
+  <!-- RESPUESTA DE INICIO DE SESION SATISFACTORIO -->
   <section id="response-log-in" class="center-align" hidden>
     <h4 for="">Entraste a SALUTEM</h4>
   </section>
 
+  <!-- RESPUESTA DE CREACION DE CUENTA -->
   <section id="response-sign-up" class="center-align" hidden>
     <h4 for="">Bienvenido a SALUTEM</h4>
     <h3 id="user-name-sign-up"></h3>

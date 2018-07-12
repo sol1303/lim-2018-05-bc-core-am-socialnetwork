@@ -29,10 +29,26 @@ body section {
   display: block;
 }
 
-.row {
-  margin-top: 80px !important;
+.spaces {
+  margin-top: 15% !important;
 }
 
 .btn-initial {
   background: #1DB4BF !important;
+}
+
+.input-sign-up {
+  margin-top: 0rem !important;
+}
+
+.selection-image {
+  width: 40%;
+}
+
+#main-sign-up {
+  margin-top: 10% !important;
+}
+
+#select-user{
+  margin-top: 5% !important;
 }
