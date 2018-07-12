@@ -96,30 +96,45 @@ const signUp = () => {
   user.name = txtNameSignUp.value;
   user.email = txtEmailSignUp.value;
   user.password = txtPasswordSignUp.value;
-  if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value === user.password) {
-    const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
-      verificate();
+  if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value !== "") {
+    if (txtConfirmPasswordSignUp.value === user.password) {
+      const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+        verificate();
+      });
+      promise.catch(e => console.log(e.message));
+    } else {
+      M.toast({
+        html: "Las contraseñas no coinciden"
+      });
+    }
+  } else {
+    M.toast({
+      html: "Correo inválido o no completaste los campos"
     });
-    promise.catch(e => console.log(e.message));
-  }
-  else {
-    M.toast({html: "No escribiste un correo válido o las contraseñas no coinciden"})
-    // console.log("No escribiste un correo válido o las contraseñas no coinciden");
   }
 }
 
 const showSignUp = () => {
+  if (txtEmailSignUp !== "" && txtPasswordSignUp !== "") {
+    txtEmailLogIn.value = "";
+    txtPasswordLogIn.value = "";
+    txtConfirmPasswordSignUp.value = "";
+  }
   sectionLogIn.hidden = true;
   sectionSignUp.hidden = false;
 }
 
 const showLogIn = () => {
+  if (txtEmailLogIn !== "" && txtPasswordLogIn !== "") {
+    txtEmailLogIn.value = "";
+    txtPasswordLogIn.value = "";
+  }
   sectionSignUp.hidden = true;
   sectionLogIn.hidden = false;
 }
 
-btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToLogIn.addEventListener("click", () => showLogIn());
+btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnLogOut.addEventListener("click", () => logOut());
