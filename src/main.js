@@ -1,5 +1,6 @@
 // sections
 let sectionLogIn = document.getElementById("main-log-in");
+let sectionSelectionUsers = document.getElementById("select-user");
 let sectionSignUp = document.getElementById("main-sign-up");
 let sectionResponseLogIn = document.getElementById("response-log-in");
 let sectionResponseSignUp = document.getElementById("response-sign-up");
@@ -21,6 +22,8 @@ let txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-passwor
 // enlaces
 let goToSignUp = document.getElementById("go-to-sign-up");
 let goToLogIn = document.getElementById("go-to-log-in");
+let goToSignUpUsers = document.getElementById("sign-up-users");
+let goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
 let user = {
   name: '',
@@ -49,6 +52,7 @@ const logOut = () => {
     txtConfirmPasswordSignUp.value = "";
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
+    sectionSelectionUsers.hidden = true;
     sectionResponseSignUp.hidden = true;
     sectionSignUp.hidden = true;
     sectionLogIn.hidden = false;
@@ -74,6 +78,11 @@ const logIn = () => {
     const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
     promise.catch(e => console.log(e.message));
   }
+}
+
+const signUpUsers = () => {
+  sectionSignUp.hidden = false;
+  sectionSelectionUsers.hidden = true;
 }
 
 const verificate = () => {
@@ -121,7 +130,7 @@ const showSignUp = () => {
     txtConfirmPasswordSignUp.value = "";
   }
   sectionLogIn.hidden = true;
-  sectionSignUp.hidden = false;
+  sectionSelectionUsers.hidden = false;
 }
 
 const showLogIn = () => {
@@ -134,6 +143,8 @@ const showLogIn = () => {
 }
 
 goToSignUp.addEventListener("click", () => showSignUp());
+goToSignUpUsers.addEventListener("click", () => signUpUsers());
+goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
 btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());

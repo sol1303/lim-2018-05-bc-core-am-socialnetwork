@@ -24,3 +24,7 @@ header p {
 .input-sign-up {
   margin-top: 0rem !important;
 }
+
+#select-user {
+  box-sizing: border-box;
+}
