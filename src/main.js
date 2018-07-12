@@ -9,6 +9,7 @@ let sectionLogOut = document.getElementById("log-out");
 let btnLogIn = document.getElementById("btn-log-in");
 let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
+let btnGoogleLogIn = document.getElementById("btn-google-log-in");
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -112,8 +113,32 @@ const showLogIn = () => {
   sectionLogIn.hidden = false;
 }
 
+const googleAccount = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then( () => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    let result = result.credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log(user);
+    // ...
+  }).catch(function(error) {
+    console.log(error);
+  });
+  
+  if (user) {
+    sectionLogIn.hidden = true;
+    sectionResponseLogIn.hidden = false;
+    sectionLogOut.hidden = false;
+
+  };
+ }
+
+
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToLogIn.addEventListener("click", () => showLogIn());
 btnSignUp.addEventListener("click", () => signUp());
+btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnLogOut.addEventListener("click", () => logOut());
