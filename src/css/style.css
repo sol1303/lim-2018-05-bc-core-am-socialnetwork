@@ -6,11 +6,27 @@ body {
 
 header {
   background: #1DB4BF;
-  color: #ffffff;
+  color: #FCFADA;
+  font-size: 100%;
+}
+
+header img {
+  margin-left: -10%;
+  width: 40%;
 }
 
 header p {
   margin: 0;
+}
+
+body section {
+  margin-left: 5%;
+  margin-right: 10%;
+}
+
+.btn-log-in-social {
+  margin: 5%;
+  display: block;
 }
 
 .row {
