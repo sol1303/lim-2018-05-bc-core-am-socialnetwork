@@ -114,27 +114,25 @@ const showLogIn = () => {
 }
 
 const googleAccount = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
+  var provider = new firebase.auth.GoogleAuthProvider();
 
-  firebase.auth().signInWithPopup(provider).then( () => {
+  firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    let result = result.credential.accessToken;
+    var token = result.credential.accessToken;
     // The signed-in user info.
-    const user = result.user;
-    console.log(user);
+    var user = result.user;
     // ...
   }).catch(function(error) {
-    console.log(error);
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
   });
-  
-  if (user) {
-    sectionLogIn.hidden = true;
-    sectionResponseLogIn.hidden = false;
-    sectionLogOut.hidden = false;
-
-  };
- }
-
+}
 
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
