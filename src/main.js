@@ -10,6 +10,7 @@ let btnLogIn = document.getElementById("btn-log-in");
 let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
 let btnGoogleLogIn = document.getElementById("btn-google-log-in");
+btnFacebookLogIn = document.getElementById("btn-fb-log-in")
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -135,9 +136,32 @@ const googleAccount = () => {
   });
 }
 
+const facebookAccount = () => {
+  var provider = new firebase.auth.FacebookAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user.displayName);
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+}
+
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToLogIn.addEventListener("click", () => showLogIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
+btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
