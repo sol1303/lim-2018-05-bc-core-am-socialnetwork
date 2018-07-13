@@ -5,6 +5,8 @@ let sectionSignUp = document.getElementById("main-sign-up");
 let sectionResponseLogIn = document.getElementById("response-log-in");
 let sectionResponseSignUp = document.getElementById("response-sign-up");
 let sectionLogOut = document.getElementById("log-out");
+let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName("close")[0];
 
 // botones
 let btnLogIn = document.getElementById("btn-log-in");
@@ -29,6 +31,7 @@ let goToSignUp = document.getElementById("go-to-sign-up");
 let goToLogIn = document.getElementById("go-to-log-in");
 let goToSignUpUsers = document.getElementById("sign-up-users");
 let goToSignUpDoctors = document.getElementById("sign-up-doctors");
+
 
 let user = {
   name: '',
@@ -191,6 +194,20 @@ const facebookAccount = () => {
   });
 }
 
+let openModal = () => {
+  modal.style.display = "block";
+};
+
+let closeModel = () => {
+  modal.style.display = "none";
+};
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToSignUpUsers.addEventListener("click", () => openModal());
@@ -204,32 +221,4 @@ btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
-
-
-// Modal Register ////////////////////////////////////////////////////
-
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-let openModal = () => {
-    modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-let closeModel = () => {
-    modal.style.display = "none";
-};
-
 span.addEventListener("click", () => closeModel());
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-///////////////////////////////////////////////////////

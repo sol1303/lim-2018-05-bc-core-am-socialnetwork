@@ -78,6 +78,12 @@ body section {
   width: 80%;
 }
 
+.btn-social {
+  display: block;
+  width: 90%;
+  margin: 5%;
+}
+
 /* The Close Button */
 .close {
   color: #aaaaaa;
