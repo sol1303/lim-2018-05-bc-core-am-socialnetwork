@@ -87,7 +87,9 @@ const logIn = () => {
   user.password = txtPasswordLogIn.value;
   if (user.email !== "" && user.password !== "") {
     const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-    promise.catch(e => console.log(e.message));
+    promise.catch(e => {
+      alert(e.message)
+    });
   }
 }
 
@@ -201,7 +203,6 @@ goToSignUp.addEventListener("click", () => showSignUp());
 goToSignUpUsers.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
-btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
