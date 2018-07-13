@@ -122,7 +122,6 @@ const googleAccount = () => {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    console.log(user.displayName);
     // ...
   }).catch(function(error) {
     // Handle Errors here.
@@ -134,6 +133,11 @@ const googleAccount = () => {
     var credential = error.credential;
     // ...
   });
+  if (user) {
+    console.log(user);
+  } else {
+    console.log("no hay usuario logueado")
+  }
 }
 
 const facebookAccount = () => {
@@ -156,6 +160,11 @@ const facebookAccount = () => {
     var credential = error.credential;
     // ...
   });
+  if (user) {
+    console.log(user);
+  } else {
+    console.log("no hay usuario logueado")
+  }
 }
 
 btnLogIn.addEventListener("click", () => logIn());
