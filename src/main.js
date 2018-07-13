@@ -163,11 +163,6 @@ const googleAccount = () => {
     var credential = error.credential;
     // ...
   });
-  if (user) {
-    console.log(user);
-  } else {
-    console.log("no hay usuario logueado")
-  }
 }
 
 const facebookAccount = () => {
@@ -190,11 +185,6 @@ const facebookAccount = () => {
     var credential = error.credential;
     // ...
   });
-  if (user) {
-    console.log(user);
-  } else {
-    console.log("no hay usuario logueado")
-  }
 }
 
 btnLogIn.addEventListener("click", () => logIn());
