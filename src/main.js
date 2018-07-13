@@ -62,6 +62,15 @@ const logOut = () => {
   });
 }
 
+const ableBtnLogIn = () => {
+  let patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patron.test(txtEmailLogIn.value)) {
+    btnLogIn.disabled = false;
+  } else {
+    btnLogIn.disabled = true;
+  }
+}
+
 const validateLogIn = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -197,3 +206,4 @@ btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
+txtEmailLogIn.addEventListener("keyup", () => ableBtnLogIn());
