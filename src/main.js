@@ -10,6 +10,8 @@ let sectionLogOut = document.getElementById("log-out");
 let btnLogIn = document.getElementById("btn-log-in");
 let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
+let btnGoogleLogIn = document.getElementById("btn-google-log-in");
+let btnFacebookLogIn = document.getElementById("btn-fb-log-in");
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -142,10 +144,66 @@ const showLogIn = () => {
   sectionLogIn.hidden = false;
 }
 
+const googleAccount = () => {
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then(function (result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  if (user) {
+    console.log(user);
+  } else {
+    console.log("no hay usuario logueado")
+  }
+}
+
+const facebookAccount = () => {
+  var provider = new firebase.auth.FacebookAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then(function (result) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user.displayName);
+    // ...
+  }).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  if (user) {
+    console.log(user);
+  } else {
+    console.log("no hay usuario logueado")
+  }
+}
+
+btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToSignUpUsers.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
 btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());
+btnGoogleLogIn.addEventListener("click", () => googleAccount());
+btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
