@@ -12,6 +12,9 @@ let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
 let btnGoogleLogIn = document.getElementById("btn-google-log-in");
 let btnFacebookLogIn = document.getElementById("btn-fb-log-in");
+let btnEmailUserResgister = document.getElementById("userRegister");
+let btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
+let btnGoogleSignUp = document.getElementById("btn-google-sign-up")
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -85,6 +88,7 @@ const logIn = () => {
 const signUpUsers = () => {
   sectionSignUp.hidden = false;
   sectionSelectionUsers.hidden = true;
+  closeModel();
 }
 
 const verificate = () => {
@@ -189,7 +193,8 @@ const facebookAccount = () => {
 
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
-goToSignUpUsers.addEventListener("click", () => signUpUsers());
+goToSignUpUsers.addEventListener("click", () => openModal());
+userRegister.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
 btnLogIn.addEventListener("click", () => logIn());
@@ -197,3 +202,34 @@ btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
+btnFacebookSignUp.addEventListener("click", () => facebookAccount());
+btnGoogleSignUp.addEventListener("click", () => googleAccount());
+
+
+// Modal Register ////////////////////////////////////////////////////
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+let openModal = () => {
+    modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+let closeModel = () => {
+    modal.style.display = "none";
+};
+
+span.addEventListener("click", () => closeModel());
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+///////////////////////////////////////////////////////
