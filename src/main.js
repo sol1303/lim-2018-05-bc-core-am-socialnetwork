@@ -70,15 +70,11 @@ const logOut = () => {
 }
 
 window.onload = () => {
-  firebase.auth().onAuthStateChanged(function (user) {
+  firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          sectionLogIn.hidden = true;
-          sectionResponseLogIn.hidden = false;
-          sectionLogOut.hidden = false;
-        }
-      });
+      sectionLogIn.hidden = true;
+      sectionResponseLogIn.hidden = false;
+      sectionLogOut.hidden = false;
       console.log("usuario logueado")
       // User is signed in.
       // var displayName = user.displayName;
@@ -89,17 +85,14 @@ window.onload = () => {
       // var uid = user.uid;
       // var providerData = user.providerData;
       // ...
-    } else {
-      // User is signed out.
-      // ...
-    }
+    } else console.log("no estas logueado");
   });
+
 }
 
 const ableBtnLogIn = () => {
-  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patronEmail.test(txtEmailLogIn.value) || txtEmailLogIn.value == "") {
+  if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     document.getElementById("incorrect-email").hidden = true;
-    //si la etiqueta de password no es correcta
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
       document.getElementById("incorrect-password").hidden = true;
       user.email = txtEmailLogIn.value;
@@ -111,7 +104,6 @@ const ableBtnLogIn = () => {
       document.getElementById("incorrect-password").hidden = false;
     }
   } else {
-    // aqui se esta ejecutando cuando la contraseña no es valida
     document.getElementById("incorrect-email").hidden = false;
   }
 }
@@ -130,7 +122,7 @@ const logIn = () => {
   const auth = firebase.auth();
   const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
   promise.catch(e => {
-    alert(e.message)
+    document.getElementById("incorrect-password").hidden = false;
   });
 }
 
