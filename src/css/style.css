@@ -56,6 +56,11 @@ body section {
 .helper-text {
   text-align: right !important;
 }
+
+.helper-text-wrong {
+  color: #F44336;
+}
+
 /* Modal Register */
 .modal-signup {
   display: none; /* Hidden by default */

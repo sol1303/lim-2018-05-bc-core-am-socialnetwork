@@ -97,10 +97,12 @@ window.onload = () => {
 
 const ableBtnLogIn = () => {
   let patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patron.test(txtEmailLogIn.value)) {
+  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patron.test(txtEmailLogIn.value) || txtEmailLogIn.value == "") {
     btnLogIn.disabled = false;
+    document.getElementById("incorrect-email").hidden = true;
   } else {
     btnLogIn.disabled = true;
+    document.getElementById("incorrect-email").hidden = false;
   }
 }
 
@@ -196,8 +198,8 @@ const googleAccount = () => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     // var token = result.credential.accessToken;
     // The signed-in user info.
-    // var user = result.user;
-    console.log("Sesion con google");
+    var user = result.user;
+    console.log(user.displayName);
   }).catch(function (error) {
     // Handle Errors here.
     console.log(error.code);
