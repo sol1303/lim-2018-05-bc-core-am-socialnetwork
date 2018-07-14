@@ -5,6 +5,8 @@ let sectionSignUp = document.getElementById("main-sign-up");
 let sectionResponseLogIn = document.getElementById("response-log-in");
 let sectionResponseSignUp = document.getElementById("response-sign-up");
 let sectionLogOut = document.getElementById("log-out");
+let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName("close")[0];
 
 // botones
 let btnLogIn = document.getElementById("btn-log-in");
@@ -12,6 +14,9 @@ let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
 let btnGoogleLogIn = document.getElementById("btn-google-log-in");
 let btnFacebookLogIn = document.getElementById("btn-fb-log-in");
+let btnEmailUserResgister = document.getElementById("userRegister");
+let btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
+let btnGoogleSignUp = document.getElementById("btn-google-sign-up")
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -26,6 +31,7 @@ let goToSignUp = document.getElementById("go-to-sign-up");
 let goToLogIn = document.getElementById("go-to-log-in");
 let goToSignUpUsers = document.getElementById("sign-up-users");
 let goToSignUpDoctors = document.getElementById("sign-up-doctors");
+
 
 let user = {
   name: '',
@@ -123,6 +129,7 @@ const logIn = () => {
 const signUpUsers = () => {
   sectionSignUp.hidden = false;
   sectionSelectionUsers.hidden = true;
+  closeModel();
 }
 
 const verificate = () => {
@@ -225,13 +232,31 @@ const facebookAccount = () => {
   });
 }
 
+let openModal = () => {
+  modal.style.display = "block";
+};
+
+let closeModel = () => {
+  modal.style.display = "none";
+};
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
-goToSignUpUsers.addEventListener("click", () => signUpUsers());
+goToSignUpUsers.addEventListener("click", () => openModal());
+userRegister.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
+btnFacebookSignUp.addEventListener("click", () => facebookAccount());
+btnGoogleSignUp.addEventListener("click", () => googleAccount());
+span.addEventListener("click", () => closeModel());
 txtEmailLogIn.addEventListener("keyup", () => ableBtnLogIn());
