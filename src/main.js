@@ -1,46 +1,46 @@
 // sections
-let sectionLogIn = document.getElementById("main-log-in");
-let sectionSelectionUsers = document.getElementById("select-user");
-let sectionSignUp = document.getElementById("main-sign-up");
-let sectionResponseLogIn = document.getElementById("response-log-in");
-let sectionResponseSignUp = document.getElementById("response-sign-up");
-let sectionLogOut = document.getElementById("log-out");
-let modal = document.getElementById('myModal');
-let span = document.getElementsByClassName("close")[0];
+const sectionLogIn = document.getElementById("main-log-in");
+const sectionSelectionUsers = document.getElementById("select-user");
+const sectionSignUp = document.getElementById("main-sign-up");
+const sectionResponseLogIn = document.getElementById("response-log-in");
+const sectionResponseSignUp = document.getElementById("response-sign-up");
+const sectionLogOut = document.getElementById("log-out");
+const modal = document.getElementById('myModal');
+const closeModal = document.getElementsByClassName("close")[0];
 
 // botones
-let btnLogIn = document.getElementById("btn-log-in");
-let btnSignUp = document.getElementById("btn-sign-up");
-let btnLogOut = document.getElementById("btn-log-out");
-let btnGoogleLogIn = document.getElementById("btn-google-log-in");
-let btnFacebookLogIn = document.getElementById("btn-fb-log-in");
-let btnEmailUserResgister = document.getElementById("userRegister");
-let btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
-let btnGoogleSignUp = document.getElementById("btn-google-sign-up")
+const btnLogIn = document.getElementById("btn-log-in");
+const btnSignUp = document.getElementById("btn-sign-up");
+const btnLogOut = document.getElementById("btn-log-out");
+const btnGoogleLogIn = document.getElementById("btn-google-log-in");
+const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
+const btnEmailUserResgister = document.getElementById("userRegister");
+const btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
+const btnGoogleSignUp = document.getElementById("btn-google-sign-up")
 
 // inputs
-let txtEmailLogIn = document.getElementById("txt-user-mail-login");
-let txtPasswordLogIn = document.getElementById("txt-user-password-login");
-let txtNameSignUp = document.getElementById("txt-user-name-signup");
-let txtEmailSignUp = document.getElementById("txt-user-mail-signup");
-let txtPasswordSignUp = document.getElementById("txt-user-password-signup");
-let txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
+const txtEmailLogIn = document.getElementById("txt-user-mail-login");
+const txtPasswordLogIn = document.getElementById("txt-user-password-login");
+const txtNameSignUp = document.getElementById("txt-user-name-signup");
+const txtEmailSignUp = document.getElementById("txt-user-mail-signup");
+const txtPasswordSignUp = document.getElementById("txt-user-password-signup");
+const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 
 // enlaces
-let goToSignUp = document.getElementById("go-to-sign-up");
-let goToLogIn = document.getElementById("go-to-log-in");
-let goToSignUpUsers = document.getElementById("sign-up-users");
-let goToSignUpDoctors = document.getElementById("sign-up-doctors");
+const goToSignUp = document.getElementById("go-to-sign-up");
+const goToLogIn = document.getElementById("go-to-log-in");
+const goToSignUpUsers = document.getElementById("sign-up-users");
+const goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-let user = {
+const user = {
   name: '',
   email: '',
   password: ''
 }
 
-var config = {
+const config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
   authDomain: "salutem-a2461.firebaseapp.com",
   databaseURL: "https://salutem-a2461.firebaseio.com",
@@ -50,6 +50,25 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+window.onload = () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      sectionLogIn.hidden = true;
+      sectionResponseLogIn.hidden = false;
+      sectionLogOut.hidden = false;
+      console.log("usuario logueado")
+      // User is signed in.
+      // const displayName = user.displayName;
+      // const email = user.email;
+      // const emailVerified = user.emailVerified;
+      // const photoURL = user.photoURL;
+      // const isAnonymous = user.isAnonymous;
+      // const uid = user.uid;
+      // const providerData = user.providerData;
+    } else console.log("no estas logueado");
+  });
+}
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
@@ -67,27 +86,6 @@ const logOut = () => {
     sectionLogIn.hidden = false;
     console.log("saliste");
   });
-}
-
-window.onload = () => {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      sectionLogIn.hidden = true;
-      sectionResponseLogIn.hidden = false;
-      sectionLogOut.hidden = false;
-      console.log("usuario logueado")
-      // User is signed in.
-      // var displayName = user.displayName;
-      // var email = user.email;
-      // var emailVerified = user.emailVerified;
-      // var photoURL = user.photoURL;
-      // var isAnonymous = user.isAnonymous;
-      // var uid = user.uid;
-      // var providerData = user.providerData;
-      // ...
-    } else console.log("no estas logueado");
-  });
-
 }
 
 const ableBtnLogIn = () => {
@@ -111,6 +109,7 @@ const ableBtnLogIn = () => {
 const validateLogIn = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      document.getElementById("user-name-log-in").innerHTML = user.displayName;
       sectionLogIn.hidden = true;
       sectionResponseLogIn.hidden = false;
       sectionLogOut.hidden = false;
@@ -133,10 +132,10 @@ const signUpUsers = () => {
 }
 
 const verificate = () => {
-  let x = firebase.auth().currentUser;
+  const x = firebase.auth().currentUser;
   if (x) {
     x.sendEmailVerification().then(() => {
-      console.log("enviando");
+      console.log("se envió correo de verificación de cuenta al correo");
       document.getElementById("user-name-sign-up").innerHTML = user.name;
       sectionSignUp.hidden = true;
       sectionResponseSignUp.hidden = false;
@@ -190,45 +189,30 @@ const showLogIn = () => {
 }
 
 const googleAccount = () => {
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    // var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    console.log(user.displayName);
+    const person = result.user;
+    console.log(person.displayName);
   }).catch(function (error) {
-    // Handle Errors here.
     console.log(error.code);
     console.log(error.message);
-    // The email of the user's account used.
     console.log(error.email);
-    // The firebase.auth.AuthCredential type that was used.
     console.log(error.credential);
-    // ...
   });
 }
 
 const facebookAccount = () => {
-  var provider = new firebase.auth.FacebookAuthProvider();
+  const provider = new firebase.auth.FacebookAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    console.log(user.displayName);
-    // ...
+    const person = result.user;
+    console.log(person.displayName);
   }).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
+    console.log(error.code);
+    console.log(error.message);
+    console.log(error.email);
+    console.log(error.credential);
   });
 }
 
@@ -240,11 +224,11 @@ let closeModel = () => {
   modal.style.display = "none";
 };
 
-window.onclick = (event) => {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+// window.onclick = (event) => {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 
 btnLogIn.addEventListener("click", () => ableBtnLogIn());
 goToSignUp.addEventListener("click", () => showSignUp());
@@ -258,4 +242,4 @@ btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
-span.addEventListener("click", () => closeModel());
+closeModal.addEventListener("click", () => closeModel());
