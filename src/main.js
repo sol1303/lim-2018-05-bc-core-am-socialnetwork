@@ -68,6 +68,42 @@ const logOut = () => {
   });
 }
 
+window.onload = () => {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          sectionLogIn.hidden = true;
+          sectionResponseLogIn.hidden = false;
+          sectionLogOut.hidden = false;
+        }
+      });
+      console.log("usuario logueado")
+      // User is signed in.
+      // var displayName = user.displayName;
+      // var email = user.email;
+      // var emailVerified = user.emailVerified;
+      // var photoURL = user.photoURL;
+      // var isAnonymous = user.isAnonymous;
+      // var uid = user.uid;
+      // var providerData = user.providerData;
+      // ...
+    } else {
+      // User is signed out.
+      // ...
+    }
+  });
+}
+
+const ableBtnLogIn = () => {
+  let patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patron.test(txtEmailLogIn.value)) {
+    btnLogIn.disabled = false;
+  } else {
+    btnLogIn.disabled = true;
+  }
+}
+
 const validateLogIn = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -84,7 +120,9 @@ const logIn = () => {
   user.password = txtPasswordLogIn.value;
   if (user.email !== "" && user.password !== "") {
     const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-    promise.catch(e => console.log(e.message));
+    promise.catch(e => {
+      alert(e.message)
+    });
   }
 }
 
@@ -156,18 +194,18 @@ const googleAccount = () => {
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
+    // var token = result.credential.accessToken;
     // The signed-in user info.
-    var user = result.user;
-    // ...
+    // var user = result.user;
+    console.log("Sesion con google");
   }).catch(function (error) {
     // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
+    console.log(error.code);
+    console.log(error.message);
     // The email of the user's account used.
-    var email = error.email;
+    console.log(error.email);
     // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
+    console.log(error.credential);
     // ...
   });
 }
@@ -214,7 +252,6 @@ goToSignUpUsers.addEventListener("click", () => openModal());
 userRegister.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
-btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
@@ -222,3 +259,4 @@ btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
 span.addEventListener("click", () => closeModel());
+txtEmailLogIn.addEventListener("keyup", () => ableBtnLogIn());
