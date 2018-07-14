@@ -53,6 +53,9 @@ body section {
   margin-top: 5% !important;
 }
 
+.helper-text {
+  text-align: right !important;
+}
 /* Modal Register */
 .modal-signup {
   display: none; /* Hidden by default */

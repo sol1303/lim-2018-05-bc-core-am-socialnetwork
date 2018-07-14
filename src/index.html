@@ -23,32 +23,35 @@
   <section id="main-log-in" class="center-align s12">
     <!-- INPUTS -->
     <div class="row spaces">
-      <div class="input-field col s12">
+      <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-login" type="email" class="validate">
         <label for="txt-user-mail-login">Correo Electrónico</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-user-password-login" type="password" class="validate">
-        <label for="txt-user-password-login">Contraseña</label>
-      </div>
-      <!-- BOTON LOGIN -->
-      <div id="section-btn-log-in">
-        <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
-        <div class="btn-log-in-social">
 
-          <a id="btn-fb-log-in" class="waves-effect waves-light social-icon btn facebook indigo darken-3">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a id="btn-google-log-in" class="waves-effect waves-light social-icon btn google red darken-3">
-            <i class="fa fa-google"></i>
-          </a>
-        </div>
-        <p>¿No tienes una cuenta?,
-          <a id="go-to-sign-up">Creala aquí</a>
-        </p>
+    <div class="input-field col s12 input-sign-up">
+      <i class="material-icons prefix">https</i>
+      <input id="txt-user-password-login" type="password" class="validate">
+      <label for="txt-user-password-login">Contraseña</label>
+      <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+    </div>
+    <!-- BOTON LOGIN -->
+    <div id="section-btn-log-in">
+      <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
+      <div class="btn-log-in-social">
+
+        <a id="btn-fb-log-in" class="waves-effect waves-light social-icon btn facebook indigo darken-3">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a id="btn-google-log-in" class="waves-effect waves-light social-icon btn google red darken-3">
+          <i class="fa fa-google"></i>
+        </a>
       </div>
+      <p>¿No tienes una cuenta?,
+        <a id="go-to-sign-up">Creala aquí</a>
+      </p>
+    </div>
     </div>
   </section>
 
@@ -72,21 +75,25 @@
         <i class="material-icons prefix">account_circle</i>
         <input id="txt-user-name-signup" type="text" class="validate">
         <label for="txt-user-name-signup">Nombre</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-signup" type="email" class="validate">
         <label for="txt-user-mail-signup">Correo Electrónico</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
         <input id="txt-user-password-signup" type="password" class="validate">
         <label for="txt-user-password-signup">Nueva Contraseña</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
         <input id="txt-user-confirm-password-signup" type="password" class="validate">
         <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
       <!-- BOTON SIGNUP -->
       <div id="section-btn-sign-up">
@@ -122,9 +129,9 @@
       <span class="close">&times;</span>
       <div class="center-align">
         <h5>Elige con que deseas registrarte:</h5>
-        <a class="waves-effect waves-light btn btn-social" id="userRegister" >
+        <a class="waves-effect waves-light btn btn-social" id="userRegister">
           <i class="material-icons left">email</i>Correo Electrónico</a>
-        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-sign-up" >
+        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-sign-up">
           <i class="material-icons left fa fa-facebook"></i>Facebook</a>
         <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-google-sign-up">
           <i class="material-icons left fa fa-google"></i>Google</a>
