@@ -32,6 +32,7 @@ let goToLogIn = document.getElementById("go-to-log-in");
 let goToSignUpUsers = document.getElementById("sign-up-users");
 let goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
+const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
 let user = {
   name: '',
@@ -96,12 +97,21 @@ window.onload = () => {
 }
 
 const ableBtnLogIn = () => {
-  let patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patron.test(txtEmailLogIn.value) || txtEmailLogIn.value == "") {
-    btnLogIn.disabled = false;
+  if (txtEmailLogIn.value == null || txtEmailLogIn.value.length == 0 || patronEmail.test(txtEmailLogIn.value) || txtEmailLogIn.value == "") {
     document.getElementById("incorrect-email").hidden = true;
+    //si la etiqueta de password no es correcta
+    if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
+      document.getElementById("incorrect-password").hidden = true;
+      user.email = txtEmailLogIn.value;
+      user.password = txtPasswordLogIn.value;
+      if (user.email !== "" && user.password !== "") {
+        logIn();
+      }
+    } else {
+      document.getElementById("incorrect-password").hidden = false;
+    }
   } else {
-    btnLogIn.disabled = true;
+    // aqui se esta ejecutando cuando la contraseña no es valida
     document.getElementById("incorrect-email").hidden = false;
   }
 }
@@ -118,14 +128,10 @@ const validateLogIn = () => {
 
 const logIn = () => {
   const auth = firebase.auth();
-  user.email = txtEmailLogIn.value;
-  user.password = txtPasswordLogIn.value;
-  if (user.email !== "" && user.password !== "") {
-    const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-    promise.catch(e => {
-      alert(e.message)
-    });
-  }
+  const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
+  promise.catch(e => {
+    alert(e.message)
+  });
 }
 
 const signUpUsers = () => {
@@ -248,7 +254,7 @@ window.onclick = (event) => {
   }
 }
 
-btnLogIn.addEventListener("click", () => logIn());
+btnLogIn.addEventListener("click", () => ableBtnLogIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToSignUpUsers.addEventListener("click", () => openModal());
 userRegister.addEventListener("click", () => signUpUsers());
@@ -261,4 +267,3 @@ btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
 span.addEventListener("click", () => closeModel());
-txtEmailLogIn.addEventListener("keyup", () => ableBtnLogIn());
