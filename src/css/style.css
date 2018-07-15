@@ -54,6 +54,16 @@ body section {
   margin-top: 5% !important;
 }
 
+<<<<<<< HEAD
+=======
+.helper-text {
+  text-align: right !important;
+}
+
+.helper-text-wrong {
+  color: #F44336;
+}
+>>>>>>> 234cdd07ff2d478271363f8988ff730a71b3c271
 
 /* Modal Register */
 .modal-signup {
