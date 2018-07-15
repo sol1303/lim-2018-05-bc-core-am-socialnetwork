@@ -1,12 +1,11 @@
 // sections
 const sectionLogIn = document.getElementById("main-log-in");
 const sectionSelectionUsers = document.getElementById("select-user");
-const sectionSignUp = document.getElementById("main-sign-up");
+const sectionSignUpUsers = document.getElementById("main-sign-up-users");
+const sectionSignUpDoctors = document.getElementById("main-sign-up-doctors");
 const sectionResponseLogIn = document.getElementById("response-log-in");
 const sectionResponseSignUp = document.getElementById("response-sign-up");
 const sectionLogOut = document.getElementById("log-out");
-const modal = document.getElementById('myModal');
-const closeModal = document.getElementsByClassName("close")[0];
 
 // botones
 const btnLogIn = document.getElementById("btn-log-in");
@@ -14,23 +13,34 @@ const btnSignUp = document.getElementById("btn-sign-up");
 const btnLogOut = document.getElementById("btn-log-out");
 const btnGoogleLogIn = document.getElementById("btn-google-log-in");
 const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
-const btnEmailUserResgister = document.getElementById("userRegister");
-const btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
-const btnGoogleSignUp = document.getElementById("btn-google-sign-up")
 
 // inputs
 const txtEmailLogIn = document.getElementById("txt-user-mail-login");
 const txtPasswordLogIn = document.getElementById("txt-user-password-login");
-const txtNameSignUp = document.getElementById("txt-user-name-signup");
-const txtEmailSignUp = document.getElementById("txt-user-mail-signup");
-const txtPasswordSignUp = document.getElementById("txt-user-password-signup");
+const txtUserNameSignUp = document.getElementById("txt-user-name-signup");
+const txtUserEmailSignUp = document.getElementById("txt-user-mail-signup");
+const txtUserPasswordSignUp = document.getElementById("txt-user-password-signup");
 const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 
 // enlaces
 const goToSignUp = document.getElementById("go-to-sign-up");
 const goToLogIn = document.getElementById("go-to-log-in");
-const goToSignUpUsers = document.getElementById("sign-up-users");
-const goToSignUpDoctors = document.getElementById("sign-up-doctors");
+const goToSignUpUsers = document.getElementById("sign-up-selection-users");
+const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
+
+// modals
+const modalDoctors = document.getElementById('modal-doctors');
+const modalUsers = document.getElementById("modal-users");
+const closeModalDoctors = document.getElementsByClassName("close")[0];
+const closeModalUsers = document.getElementsByClassName("close")[1];
+
+// modals buttons
+const btnModalSignUpUsers = document.getElementById("btn-email-modal-sign-up-users");
+const btnModalFbSignUpUsers = document.getElementById("btn-fb-modal-sign-up-users");
+const btnModalGgSignUpUsers = document.getElementById("btn-gg-modal-sign-up-users");
+const btnModalSignUpDoctors = document.getElementById("btn-email-modal-sign-up-doctors");
+const btnModalFbSignUpDoctors = document.getElementById("btn-fb-modal-sign-up-doctors");
+const btnModalGgSignUpDoctors = document.getElementById("btn-gg-modal-sign-up-doctors");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
@@ -63,9 +73,7 @@ window.onload = () => {
       // const email = user.email;
       // const emailVerified = user.emailVerified;
       // const photoURL = user.photoURL;
-      // const isAnonymous = user.isAnonymous;
       // const uid = user.uid;
-      // const providerData = user.providerData;
     } else console.log("no estas logueado");
   });
 }
@@ -74,21 +82,29 @@ const logOut = () => {
   firebase.auth().signOut().then(() => {
     txtEmailLogIn.value = "";
     txtPasswordLogIn.value = "";
-    txtNameSignUp.value = "";
-    txtEmailSignUp.value = "";
-    txtPasswordSignUp.value = "";
+    txtUserNameSignUp.value = "";
+    txtUserEmailSignUp.value = "";
+    txtUserPasswordSignUp.value = "";
     txtConfirmPasswordSignUp.value = "";
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
     sectionSelectionUsers.hidden = true;
     sectionResponseSignUp.hidden = true;
-    sectionSignUp.hidden = true;
+    sectionSignUpUsers.hidden = true;
     sectionLogIn.hidden = false;
     console.log("saliste");
   });
 }
 
-const ableBtnLogIn = () => {
+const logIn = () => {
+  const auth = firebase.auth();
+  const promise = auth.signInWithEmailAndPassword(user.email, user.password);
+  promise.catch(e => {
+    document.getElementById("incorrect-password").hidden = false;
+  });
+}
+
+const validateLogIn = () => {
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     document.getElementById("incorrect-email").hidden = true;
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
@@ -106,29 +122,18 @@ const ableBtnLogIn = () => {
   }
 }
 
-const validateLogIn = () => {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      document.getElementById("user-name-log-in").innerHTML = user.displayName;
-      sectionLogIn.hidden = true;
-      sectionResponseLogIn.hidden = false;
-      sectionLogOut.hidden = false;
-    }
-  });
-}
-
-const logIn = () => {
-  const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-  promise.catch(e => {
-    document.getElementById("incorrect-password").hidden = false;
-  });
-}
-
-const signUpUsers = () => {
-  sectionSignUp.hidden = false;
-  sectionSelectionUsers.hidden = true;
-  closeModel();
+const signUpUsers = (e) => {
+  if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
+    sectionSignUpUsers.hidden = false;
+    sectionSelectionUsers.hidden = true;
+    modalUsers.style.display = "none";
+  } else {
+    console.log(e.currentTarget.id);
+    // aqui se deberia mostrar el signup para los doctores
+    sectionSignUpDoctors.hidden = false;
+    sectionSelectionUsers.hidden = true;
+    modalDoctors.style.display = "none";
+  }
 }
 
 const verificate = () => {
@@ -137,7 +142,7 @@ const verificate = () => {
     x.sendEmailVerification().then(() => {
       console.log("se envió correo de verificación de cuenta al correo");
       document.getElementById("user-name-sign-up").innerHTML = user.name;
-      sectionSignUp.hidden = true;
+      sectionSignUpUsers.hidden = true;
       sectionResponseSignUp.hidden = false;
       sectionLogOut.hidden = false;
     }).catch(function (error) {
@@ -148,9 +153,9 @@ const verificate = () => {
 
 const signUp = () => {
   const auth = firebase.auth();
-  user.name = txtNameSignUp.value;
-  user.email = txtEmailSignUp.value;
-  user.password = txtPasswordSignUp.value;
+  user.name = txtUserNameSignUp.value;
+  user.email = txtUserEmailSignUp.value;
+  user.password = txtUserPasswordSignUp.value;
   if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value !== "") {
     if (txtConfirmPasswordSignUp.value === user.password) {
       const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
@@ -170,7 +175,7 @@ const signUp = () => {
 }
 
 const showSignUp = () => {
-  if (txtEmailSignUp !== "" && txtPasswordSignUp !== "") {
+  if (txtUserEmailSignUp !== "" && txtUserPasswordSignUp !== "") {
     txtEmailLogIn.value = "";
     txtPasswordLogIn.value = "";
     txtConfirmPasswordSignUp.value = "";
@@ -184,7 +189,7 @@ const showLogIn = () => {
     txtEmailLogIn.value = "";
     txtPasswordLogIn.value = "";
   }
-  sectionSignUp.hidden = true;
+  sectionSignUpUsers.hidden = true;
   sectionLogIn.hidden = false;
 }
 
@@ -193,7 +198,7 @@ const googleAccount = () => {
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
     const person = result.user;
-    console.log(person.displayName);
+    document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${person.displayName}`;
   }).catch(function (error) {
     console.log(error.code);
     console.log(error.message);
@@ -207,7 +212,7 @@ const facebookAccount = () => {
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
     const person = result.user;
-    console.log(person.displayName);
+    document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${person.displayName}`;
   }).catch(function (error) {
     console.log(error.code);
     console.log(error.message);
@@ -216,30 +221,39 @@ const facebookAccount = () => {
   });
 }
 
-let openModal = () => {
-  modal.style.display = "block";
+let openModal = (e) => {
+  if (e.currentTarget.id === "sign-up-selection-users") {
+    modalUsers.style.display = "block";
+  } else {
+    modalDoctors.style.display = "block";
+  }
 };
 
-let closeModel = () => {
-  modal.style.display = "none";
+let closeModel = (e) => {
+  if (e.currentTarget.offsetParent.id === "modal-users") {
+    modalUsers.style.display = "none";
+  } else {
+    modalDoctors.style.display = "none";
+  }
 };
 
-// window.onclick = (event) => {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-btnLogIn.addEventListener("click", () => ableBtnLogIn());
+btnLogIn.addEventListener("click", () => validateLogIn());
 goToSignUp.addEventListener("click", () => showSignUp());
-goToSignUpUsers.addEventListener("click", () => openModal());
-userRegister.addEventListener("click", () => signUpUsers());
-goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
+goToSignUpUsers.addEventListener("click", (e) => openModal(e));
+goToSignUpDoctors.addEventListener("click", (e) => openModal(e));
+closeModalUsers.addEventListener("click", (e) => closeModel(e));
+closeModalDoctors.addEventListener("click", (e) => closeModel(e));
+btnModalSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
+btnModalSignUpDoctors.addEventListener("click", (e) => signUpUsers(e));
 goToLogIn.addEventListener("click", () => showLogIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
-btnFacebookSignUp.addEventListener("click", () => facebookAccount());
-btnGoogleSignUp.addEventListener("click", () => googleAccount());
-closeModal.addEventListener("click", () => closeModel());
+btnModalFbSignUpUsers.addEventListener("click", () => facebookAccount());
+btnModalGgSignUpUsers.addEventListener("click", () => googleAccount());
+btnModalFbSignUpDoctors.addEventListener("click", () => facebookAccount());
+btnModalGgSignUpDoctors.addEventListener("click", () => googleAccount());
+
+// TODO:
+// al seleccionar el tipo de usuario aparece un modal que muestra botones, en gg y fb hace el registro pero no desaparece la vista de selccion y aparece el muro

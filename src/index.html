@@ -57,18 +57,62 @@
 
   <!-- SELECCION DE USUARIO -->
   <section id="select-user" hidden>
-    <div id="sign-up-doctors" class="row center-align">
+    <div id="sign-up-selection-doctors" class="row center-align">
       <img src="img/doctors.png" class="selection-image" alt="doctors">
       <h5>Soy Doctor</h5>
     </div>
-    <div id="sign-up-users" class="row center-align">
+    <div id="sign-up-selection-users" class="row center-align">
       <img src="img/users.png" class="selection-image" alt="users">
       <h5>Soy Paciente</h5>
     </div>
   </section>
 
+  <!-- SIGN UP DE DOCTOR -->
+  <section id="main-sign-up-doctors" class="center-align s12" hidden>
+    <!-- INPUTS -->
+    <div class="row">
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="txt-doctor-name-signup" type="text" class="validate">
+        <label for="txt-doctor-name-signup">Nombre</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+      </div>
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="txt-doctor-last-signup" type="text" class="validate">
+        <label for="txt-doctor-last-signup">Apellido</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+      </div>
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">email</i>
+        <input id="txt-doctor-mail-signup" type="email" class="validate">
+        <label for="txt-doctor-mail-signup">Correo Electrónico</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+      </div>
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">https</i>
+        <input id="txt-doctor-password-signup" type="password" class="validate">
+        <label for="txt-doctor-password-signup">Nueva Contraseña</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+      </div>
+      <div class="input-field col s12 input-sign-up">
+        <i class="material-icons prefix">https</i>
+        <input id="txt-doctor-confirm-password-signup" type="password" class="validate">
+        <label for="txt-doctor-confirm-password-signup">Confirma Contraseña</label>
+        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+      </div>
+      <!-- BOTON SIGNUP -->
+      <div id="section-btn-sign-up">
+        <button id="btn-sign-up" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
+        <p>Si tienes cuenta,
+          <a id="go-to-log-in">Inicia sesión</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- SIGN UP DE USERS -->
-  <section id="main-sign-up" class="center-align s12" hidden>
+  <section id="main-sign-up-users" class="center-align s12" hidden>
     <!-- INPUTS -->
     <div class="row">
       <div class="input-field col s12 input-sign-up">
@@ -105,9 +149,6 @@
     </div>
   </section>
 
-  <!-- SIGN UP DE DOCTOR -->
-  <section></section>
-
   <!-- RESPUESTA DE INICIO DE SESION SATISFACTORIO -->
   <section id="response-log-in" class="center-align" hidden>
     <h4 id="user-name-log-in">Entraste a SALUTEM</h4>
@@ -123,17 +164,51 @@
     <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
   </section>
 
-  <!-- botones de registro para google, Facebook -->
-  <section id="myModal" class="modal-signup">
+  <!-- modal para doctores -->
+  <section id="modal-doctors" class="modal-signup">
     <div class="modal-content-signup">
       <span class="close">&times;</span>
       <div class="center-align">
+        <h4>Doctor</h4>
+        <div class="row spaces">
+          <div class="input-field col s12 input-sign-up">
+            <!-- <i class="material-icons prefix">email</i> -->
+            <input id="doctor" type="email" class="validate">
+            <label for="doctor">Especialidad</label>
+            <span class="helper-text-wrong" id="incorrect-email" hidden>el correo no es válido</span>
+            <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
+          </div>
+          <div class="input-field col s12 input-sign-up">
+            <!-- <i class="material-icons prefix">https</i> -->
+            <input id="user" type="password">
+            <label for="user">Numero de colegiatura</label>
+            <span class="helper-text-wrong" id="incorrect-password" hidden>la contraseña es incorrecta</span>
+            <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
+          </div>
+        </div>
         <h5>Elige con que deseas registrarte:</h5>
-        <a class="waves-effect waves-light btn btn-social" id="userRegister">
+        <a class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-doctors">
           <i class="material-icons left">email</i>Correo Electrónico</a>
-        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-sign-up">
+        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-doctors">
           <i class="material-icons left fa fa-facebook"></i>Facebook</a>
-        <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-google-sign-up">
+        <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-doctors">
+          <i class="material-icons left fa fa-google"></i>Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- modal para pacientes -->
+  <section id="modal-users" class="modal-signup">
+    <div class="modal-content-signup">
+      <span class="close">&times;</span>
+      <div class="center-align">
+        <h4>Paciente</h4>
+        <h5>Elige con que deseas registrarte:</h5>
+        <a class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-users">
+          <i class="material-icons left">email</i>Correo Electrónico</a>
+        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-users">
+          <i class="material-icons left fa fa-facebook"></i>Facebook</a>
+        <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-users">
           <i class="material-icons left fa fa-google"></i>Google</a>
       </div>
     </div>
