@@ -21,7 +21,7 @@ const txtPasswordLogIn = document.getElementById("txt-user-password-login");
 const txtUserNameSignUp = document.getElementById("txt-user-name-signup");
 const txtUserEmailSignUp = document.getElementById("txt-user-mail-signup");
 const txtUserPasswordSignUp = document.getElementById("txt-user-password-signup");
-const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
+const txtUserConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 
 // enlaces
 const goToSignUp = document.getElementById("go-to-sign-up");
@@ -43,6 +43,14 @@ const btnModalGgSignUpUsers = document.getElementById("btn-gg-modal-sign-up-user
 const btnModalSignUpDoctors = document.getElementById("btn-email-modal-sign-up-doctors");
 const btnModalFbSignUpDoctors = document.getElementById("btn-fb-modal-sign-up-doctors");
 const btnModalGgSignUpDoctors = document.getElementById("btn-gg-modal-sign-up-doctors");
+
+// labels helpers
+const helperEmailLogIn = document.getElementById("incorrect-email");
+const helperPasswordLogIn = document.getElementById("incorrect-password");
+const helperNameUserSignUp = document.getElementById("incorrect-name-sign-up-users");
+const helperEmailUserSignUp = document.getElementById("incorrect-email-sign-up-users");
+const helperPasswordUserSignUp = document.getElementById("incorrect-password-sign-up-users");
+const helperConfirmPasswordUserSignUp = document.getElementById("incorrect-confirm-password-sign-up-users");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
@@ -90,7 +98,7 @@ const logOut = () => {
     txtUserNameSignUp.value = "";
     txtUserEmailSignUp.value = "";
     txtUserPasswordSignUp.value = "";
-    txtConfirmPasswordSignUp.value = "";
+    txtUserConfirmPasswordSignUp.value = "";
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
     sectionUserSelection.hidden = true;
@@ -106,25 +114,25 @@ const logIn = () => {
   const auth = firebase.auth();
   const promise = auth.signInWithEmailAndPassword(user.email, user.password);
   promise.catch(e => {
-    document.getElementById("incorrect-password").hidden = false;
+    helperPasswordLogIn.hidden = false;
   });
 }
 
 const validateLogIn = () => {
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
-    document.getElementById("incorrect-email").hidden = true;
+    helperEmailLogIn.hidden = true;
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
-      document.getElementById("incorrect-password").hidden = true;
+      helperPasswordLogIn.hidden = true;
       user.email = txtEmailLogIn.value;
       user.password = txtPasswordLogIn.value;
       if (user.email !== "" && user.password !== "") {
         logIn();
       }
     } else {
-      document.getElementById("incorrect-password").hidden = false;
+      helperPasswordLogIn.hidden = false;
     }
   } else {
-    document.getElementById("incorrect-email").hidden = false;
+    helperEmailLogIn.hidden = false;
   }
 }
 
@@ -142,50 +150,78 @@ const signUpUsers = (e) => {
   }
 }
 
-const verificate = () => {
-  const x = firebase.auth().currentUser;
-  if (x) {
-    x.sendEmailVerification().then(() => {
-      console.log("se envió correo de verificación de cuenta al correo");
-      document.getElementById("user-name-sign-up").innerHTML = user.name;
-      sectionSignUpUsers.hidden = true;
-      sectionResponseSignUp.hidden = false;
-      sectionLogOut.hidden = false;
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
+const showMuro = () => {
+  document.getElementById("user-name-sign-up").innerHTML = user.name;
+  sectionSignUpUsers.hidden = true;
+  sectionResponseSignUp.hidden = false;
+  sectionLogOut.hidden = false;
+
 }
 
-const signUp = () => {
+const signUpByUsers = () => {
   const auth = firebase.auth();
-  user.name = txtUserNameSignUp.value;
-  user.email = txtUserEmailSignUp.value;
-  user.password = txtUserPasswordSignUp.value;
-  if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value !== "") {
-    if (txtConfirmPasswordSignUp.value === user.password) {
-      const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
-        verificate();
-      });
-      promise.catch(e => console.log(e.message));
-    } else {
-      M.toast({
-        html: "Las contraseñas no coinciden"
+  const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+    const x = firebase.auth().currentUser;
+    if (x) {
+      x.sendEmailVerification().then(() => {
+        console.log("se envió correo de verificación de cuenta al correo");
+        showMuro();
+      }).catch(function (error) {
+        console.log(error);
       });
     }
-  } else {
-    M.toast({
-      html: "Correo inválido o no completaste los campos"
-    });
+  });
+  promise.catch(e => console.log(e.message));
+}
+
+//validaciones de signup divisiones para users
+const ableSignUpByUsers = () => {
+  let name, email, password, confirmPassword;
+  //nombre
+  if (txtUserNameSignUp.value.length > 0) {
+    helperNameUserSignUp.hidden = true;
+    name = true;
+  } else if (!txtUserNameSignUp.value.length > 0) {
+    helperNameUserSignUp.hidden = false;
+    name = false;
+  }
+  //email
+  if (txtUserEmailSignUp.value.length > 0 && patronEmail.test(txtUserEmailSignUp.value)) {
+    helperEmailUserSignUp.hidden = true;
+    email = true;
+  } else if (txtUserEmailSignUp.value.length === 0 || !patronEmail.test(txtUserEmailSignUp.value)) {
+    helperEmailUserSignUp.hidden = false;
+    email = false;
+  }
+  //new password
+  if (txtUserPasswordSignUp.value.length >= 6) {
+    helperPasswordUserSignUp.hidden = true;
+    password = true;
+  } else if (txtUserPasswordSignUp.value.length < 6) {
+    helperPasswordUserSignUp.hidden = false;
+    password = false;
+  }
+  //confirm password
+  if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
+    helperConfirmPasswordUserSignUp.hidden = true;
+    confirmPassword = true;
+  } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
+    helperConfirmPasswordUserSignUp.hidden = false;
+    confirmPassword = false;
+  }
+  // si todas las etiquetas estan ocultas hará el registro
+  if (name && email && password && confirmPassword) {
+    console.log("todo ok");
+    user.name = txtUserNameSignUp.value;
+    user.email = txtUserEmailSignUp.value;
+    user.password = txtUserPasswordSignUp.value;
+    signUpByUsers();
   }
 }
 
 const showSignUp = () => {
-  if (txtUserEmailSignUp !== "" && txtUserPasswordSignUp !== "") {
-    txtEmailLogIn.value = "";
-    txtPasswordLogIn.value = "";
-    txtConfirmPasswordSignUp.value = "";
-  }
+  txtEmailLogIn.value = "";
+  txtPasswordLogIn.value = "";
   sectionLogIn.hidden = true;
   sectionUserSelection.hidden = false;
 }
@@ -254,8 +290,8 @@ btnModalSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
 btnModalSignUpDoctors.addEventListener("click", (e) => signUpUsers(e));
 goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
-btnSignUpDoctors.addEventListener("click", () => signUp());
-btnSignUpUsers.addEventListener("click", () => signUp());
+// btnSignUpDoctors.addEventListener("click", () => signUp());
+btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers()); //signUpByUsers
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());

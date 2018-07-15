@@ -23,19 +23,17 @@
   <section id="main-log-in" class="center-align s12">
     <!-- INPUTS -->
     <div class="row spaces">
-      <div class="input-field col s12 input-sign-up">
+      <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-login" type="email">
         <label for="txt-user-mail-login">Correo Electrónico</label>
         <span class="helper-text-wrong" id="incorrect-email" hidden>el correo no es válido</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
-      <div class="input-field col s12 input-sign-up">
+      <div class="input-field col s12">
         <i class="material-icons prefix">https</i>
         <input id="txt-user-password-login" type="password">
         <label for="txt-user-password-login">Contraseña</label>
         <span class="helper-text-wrong" id="incorrect-password" hidden>la contraseña es incorrecta</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
       <!-- BOTON LOGIN -->
       <div id="section-btn-log-in">
@@ -114,30 +112,30 @@
   <!-- SIGN UP DE USERS -->
   <section id="main-sign-up-users" class="center-align s12" hidden>
     <!-- INPUTS -->
-    <div class="row spaces">
+    <div class="row spaces-signup">
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">account_circle</i>
-        <input id="txt-user-name-signup" type="text" class="validate">
+        <input id="txt-user-name-signup" type="text">
         <label for="txt-user-name-signup">Nombre</label>
-        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+        <span class="helper-text-wrong" id="incorrect-name-sign-up-users" hidden>no hay nombre</span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
-        <input id="txt-user-mail-signup" type="email" class="validate">
+        <input id="txt-user-mail-signup" type="email">
         <label for="txt-user-mail-signup">Correo Electrónico</label>
-        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+        <span class="helper-text-wrong" id="incorrect-email-sign-up-users" hidden>el correo no es válido</span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
-        <input id="txt-user-password-signup" type="password" class="validate">
+        <input id="txt-user-password-signup" type="password">
         <label for="txt-user-password-signup">Nueva Contraseña</label>
-        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+        <span class="helper-text-wrong" id="incorrect-password-sign-up-users" hidden>debe contener más de 6 caracteres</span>
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
-        <input id="txt-user-confirm-password-signup" type="password" class="validate">
+        <input id="txt-user-confirm-password-signup" type="password">
         <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
-        <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
+        <span class="helper-text-wrong" id="incorrect-confirm-password-sign-up-users" hidden>no coinciden</span>
       </div>
       <!-- BOTON SIGNUP -->
       <div id="section-btn-sign-up">
