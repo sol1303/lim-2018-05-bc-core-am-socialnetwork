@@ -1,6 +1,6 @@
 // sections
 const sectionLogIn = document.getElementById("main-log-in");
-const sectionSelectionUsers = document.getElementById("select-user");
+const sectionUserSelection = document.getElementById("select-user");
 const sectionSignUpUsers = document.getElementById("main-sign-up-users");
 const sectionSignUpDoctors = document.getElementById("main-sign-up-doctors");
 const sectionResponseLogIn = document.getElementById("response-log-in");
@@ -9,7 +9,8 @@ const sectionLogOut = document.getElementById("log-out");
 
 // botones
 const btnLogIn = document.getElementById("btn-log-in");
-const btnSignUp = document.getElementById("btn-sign-up");
+const btnSignUpDoctors = document.getElementById("btn-sign-up-doctors");
+const btnSignUpUsers = document.getElementById("btn-sign-up-users");
 const btnLogOut = document.getElementById("btn-log-out");
 const btnGoogleLogIn = document.getElementById("btn-google-log-in");
 const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
@@ -24,7 +25,8 @@ const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-passw
 
 // enlaces
 const goToSignUp = document.getElementById("go-to-sign-up");
-const goToLogIn = document.getElementById("go-to-log-in");
+const goToLogInFromDoctors = document.getElementById("go-to-log-in-doctors");
+const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
 
@@ -74,7 +76,10 @@ window.onload = () => {
       // const emailVerified = user.emailVerified;
       // const photoURL = user.photoURL;
       // const uid = user.uid;
-    } else console.log("no estas logueado");
+    } else {
+      console.log("no estas logueado");
+      M.updateTextFields();
+    }
   });
 }
 
@@ -88,9 +93,10 @@ const logOut = () => {
     txtConfirmPasswordSignUp.value = "";
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
-    sectionSelectionUsers.hidden = true;
+    sectionUserSelection.hidden = true;
     sectionResponseSignUp.hidden = true;
     sectionSignUpUsers.hidden = true;
+    sectionSignUpDoctors.hidden = true;
     sectionLogIn.hidden = false;
     console.log("saliste");
   });
@@ -125,13 +131,13 @@ const validateLogIn = () => {
 const signUpUsers = (e) => {
   if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
     sectionSignUpUsers.hidden = false;
-    sectionSelectionUsers.hidden = true;
+    sectionUserSelection.hidden = true;
     modalUsers.style.display = "none";
   } else {
     console.log(e.currentTarget.id);
     // aqui se deberia mostrar el signup para los doctores
     sectionSignUpDoctors.hidden = false;
-    sectionSelectionUsers.hidden = true;
+    sectionUserSelection.hidden = true;
     modalDoctors.style.display = "none";
   }
 }
@@ -181,7 +187,7 @@ const showSignUp = () => {
     txtConfirmPasswordSignUp.value = "";
   }
   sectionLogIn.hidden = true;
-  sectionSelectionUsers.hidden = false;
+  sectionUserSelection.hidden = false;
 }
 
 const showLogIn = () => {
@@ -190,6 +196,7 @@ const showLogIn = () => {
     txtPasswordLogIn.value = "";
   }
   sectionSignUpUsers.hidden = true;
+  sectionSignUpDoctors.hidden = true;
   sectionLogIn.hidden = false;
 }
 
@@ -245,8 +252,10 @@ closeModalUsers.addEventListener("click", (e) => closeModel(e));
 closeModalDoctors.addEventListener("click", (e) => closeModel(e));
 btnModalSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
 btnModalSignUpDoctors.addEventListener("click", (e) => signUpUsers(e));
-goToLogIn.addEventListener("click", () => showLogIn());
-btnSignUp.addEventListener("click", () => signUp());
+goToLogInFromDoctors.addEventListener("click", () => showLogIn());
+goToLogInFromUsers.addEventListener("click", () => showLogIn());
+btnSignUpDoctors.addEventListener("click", () => signUp());
+btnSignUpUsers.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
