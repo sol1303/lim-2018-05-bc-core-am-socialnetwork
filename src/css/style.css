@@ -39,6 +39,7 @@ body section {
 
 .input-sign-up {
   margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
 }
 
 .selection-image {
@@ -53,9 +54,7 @@ body section {
   margin-top: 5% !important;
 }
 
-.helper-text {
-  text-align: right !important;
-}
+
 /* Modal Register */
 .modal-signup {
   display: none; /* Hidden by default */
