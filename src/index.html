@@ -21,14 +21,10 @@
       <a href="#" data-target="slide-out" class="sidenav-trigger menu-initial">
         <i class="material-icons ">menu</i>
       </a>
-
       <img class="right" src="img/logo.png" alt="Logo">
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li>
-          <a href="">Muro</a>
-        </li>
-        <li>
-          <a href="">Notificaciones</a>
+          <a>Muro</a>
         </li>
         <li>
           <div class="center row">
@@ -43,10 +39,14 @@
           </div>
         </li>
         <li>
-          <a id="menu-log-in" class="right">Ingresa / Registrate</a>
+          <a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+        </li>
+        <li>
+          <a id="nav-modal-sign-up" class="right">Regístrate</a>
         </li>
       </ul>
     </nav>
+    <!-- menu chiquito -->
     <ul id="slide-out" class="sidenav">
       <li>
         <div class="user-view">
@@ -84,127 +84,187 @@
     </ul>
   </header>
 
-  <!-- LOG IN -->
-  <section id="main-log-in" class="center-align s12">
-    <!-- INPUTS -->
-    <div class="row spaces">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">email</i>
-        <input id="txt-user-mail-login" type="email">
-        <label for="txt-user-mail-login">Correo Electrónico</label>
-        <span class="helper-text-wrong" id="incorrect-email" hidden>el correo no es válido</span>
+  <main>
+    <!-- modal de login -->
+    <section id="modal-log-in" class="modal-signup">
+      <div class="modal-content-signup">
+        <span class="close">&times;</span>
+        <!-- LOG IN -->
+        <section id="main-log-in" class="center-align s12">
+          <!-- INPUTS -->
+          <div class="row spaces">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input id="txt-user-mail-login" type="email">
+              <label for="txt-user-mail-login">Correo Electrónico</label>
+              <span class="helper-text-wrong" id="incorrect-email" hidden>el correo no es válido</span>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">https</i>
+              <input id="txt-user-password-login" type="password">
+              <label for="txt-user-password-login">Contraseña</label>
+              <span class="helper-text-wrong" id="incorrect-password" hidden>la contraseña es incorrecta</span>
+            </div>
+            <!-- BOTON LOGIN -->
+            <div id="section-btn-log-in">
+              <button id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</button>
+              <div class="btn-log-in-social">
+                <a id="btn-fb-log-in" class="waves-effect waves-light social-icon btn facebook indigo darken-3">
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a id="btn-google-log-in" class="waves-effect waves-light social-icon btn google red darken-3">
+                  <i class="fa fa-google"></i>
+                </a>
+              </div>
+              <p>¿No tienes una cuenta?,
+                <a id="go-to-sign-up">Creala aquí</a>
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-user-password-login" type="password">
-        <label for="txt-user-password-login">Contraseña</label>
-        <span class="helper-text-wrong" id="incorrect-password" hidden>la contraseña es incorrecta</span>
-      </div>
-      <!-- BOTON LOGIN -->
-      <div id="section-btn-log-in">
-        <button id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</button>
-        <div class="btn-log-in-social">
-          <a id="btn-fb-log-in" class="waves-effect waves-light social-icon btn facebook indigo darken-3">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a id="btn-google-log-in" class="waves-effect waves-light social-icon btn google red darken-3">
-            <i class="fa fa-google"></i>
-          </a>
-        </div>
-        <p>¿No tienes una cuenta?,
-          <a id="go-to-sign-up">Creala aquí</a>
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SELECCION DE USUARIO -->
-  <section id="select-user" hidden>
-    <div id="sign-up-selection-doctors" class="row center-align">
-      <img src="img/doctors.png" class="selection-image" alt="doctors">
-      <h5>Soy Doctor</h5>
-    </div>
-    <div id="sign-up-selection-users" class="row center-align">
-      <img src="img/users.png" class="selection-image" alt="users">
-      <h5>Soy Paciente</h5>
-    </div>
-  </section>
+    <!-- modal de signup -->
+    <section id="modal-sign-up" class="modal-signup">
+      <div class="modal-content-signup">
+        <span class="close">&times;</span>
 
-  <!-- SIGN UP DE DOCTOR -->
-  <section id="main-sign-up-doctors" class="center-align s12" hidden>
-    <!-- INPUTS -->
-    <div class="row spaces">
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="txt-doctor-name-signup" type="text">
-        <label for="txt-doctor-name-signup">Nombre Doct</label>
-        <span class="helper-text-wrong" id="incorrect-doctor-name-sign-up" hidden>nombre incompleto</span>
-      </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">email</i>
-        <input id="txt-doctor-mail-signup" type="email">
-        <label for="txt-doctor-mail-signup">Correo Electrónico</label>
-        <span class="helper-text-wrong" id="incorrect-doctor-mail-sign-up" hidden>correo no válido</span>
-      </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-doctor-password-signup" type="password">
-        <label for="txt-doctor-password-signup">Nueva Contraseña</label>
-        <span class="helper-text-wrong" id="incorrect-doctor-password-sign-up" hidden>debe tener al menos 6 caracteres</span>
-      </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-doctor-confirm-password-signup" type="password">
-        <label for="txt-doctor-confirm-password-signup">Confirma Contraseña</label>
-        <span class="helper-text-wrong" id="incorrect-doctor-confirm-password-sign-up" hidden>no coinciden</span>
-      </div>
-      <!-- BOTON SIGNUP -->
-      <div>
-        <button id="btn-sign-up-doctors" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
-        <p>Si tienes cuenta,
-          <a id="go-to-log-in-doctors">Inicia sesión</a>
-        </p>
-      </div>
-    </div>
-  </section>
+        <!-- SELECCION DE USUARIO -->
+        <section id="select-user">
+          <h3>Elige el tipo de usuario</h3>
+          <div id="sign-up-selection-doctors" class="row center-align">
+            <img src="img/doctors.png" class="selection-image" alt="doctors">
+            <h5>Soy Doctor</h5>
+          </div>
+          <div id="sign-up-selection-users" class="row center-align">
+            <img src="img/users.png" class="selection-image" alt="users">
+            <h5>Soy Paciente</h5>
+          </div>
+        </section>
 
-  <!-- SIGN UP DE USERS -->
-  <section id="main-sign-up-users" class="center-align s12" hidden>
-    <!-- INPUTS -->
-    <div class="row spaces-signup">
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="txt-user-name-signup" type="text">
-        <label for="txt-user-name-signup">Nombre</label>
-        <span class="helper-text-wrong" id="incorrect-user-name-sign-up" hidden>no hay nombre</span>
+        <!-- opciones para doctores -->
+        <section id="options-doctors" style="display: none">
+          <div class="center-align">
+            <h4>Registro de Doctor</h4>
+            <div class="row spaces">
+              <div class="input-field col s12 input-sign-up-doctors">
+                <i class="material-icons prefix">assignment_ind</i>
+                <input id="specialty" type="text">
+                <label for="specialty">Especialidad</label>
+                <span class="helper-text-wrong" id="incorrect-specialty" hidden>campo vacío</span>
+              </div>
+              <div class="input-field col s12 input-sign-up-doctors">
+                <i class="material-icons prefix">dialpad</i>
+                <input id="colegiatura" type="number">
+                <label for="colegiatura">Número de Colegiatura</label>
+                <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>campo vacío</span>
+              </div>
+            </div>
+            <h5>Elige con que deseas registrarte:</h5>
+            <button class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-doctors">
+              <i class="material-icons left">email</i>Correo Electrónico</button>
+            <button class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-doctors">
+              <i class="material-icons left fa fa-facebook"></i>Facebook</button>
+            <button class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-doctors">
+              <i class="material-icons left fa fa-google"></i>Google</button>
+          </div>
+        </section>
+
+        <!-- opciones para pacientes -->
+        <section id="options-users" style="display: none">
+          <div class="center-align">
+            <h4>Paciente</h4>
+            <h5>Elige con que deseas registrarte:</h5>
+            <a class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-users">
+              <i class="material-icons left">email</i>Correo Electrónico</a>
+            <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-users">
+              <i class="material-icons left fa fa-facebook"></i>Facebook</a>
+            <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-users">
+              <i class="material-icons left fa fa-google"></i>Google</a>
+          </div>
+        </section>
+
+        <!-- SIGN UP DE DOCTOR -->
+        <section id="main-sign-up-doctors" class="center-align s12" hidden>
+          <!-- INPUTS -->
+          <div class="row spaces">
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="txt-doctor-name-signup" type="text">
+              <label for="txt-doctor-name-signup">Nombre Doct</label>
+              <span class="helper-text-wrong" id="incorrect-doctor-name-sign-up" hidden>nombre incompleto</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">email</i>
+              <input id="txt-doctor-mail-signup" type="email">
+              <label for="txt-doctor-mail-signup">Correo Electrónico</label>
+              <span class="helper-text-wrong" id="incorrect-doctor-mail-sign-up" hidden>correo no válido</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">https</i>
+              <input id="txt-doctor-password-signup" type="password">
+              <label for="txt-doctor-password-signup">Nueva Contraseña</label>
+              <span class="helper-text-wrong" id="incorrect-doctor-password-sign-up" hidden>debe tener al menos 6 caracteres</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">https</i>
+              <input id="txt-doctor-confirm-password-signup" type="password">
+              <label for="txt-doctor-confirm-password-signup">Confirma Contraseña</label>
+              <span class="helper-text-wrong" id="incorrect-doctor-confirm-password-sign-up" hidden>no coinciden</span>
+            </div>
+            <!-- BOTON SIGNUP -->
+            <div>
+              <button id="btn-sign-up-doctors" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
+              <p>Si tienes cuenta,
+                <a id="go-to-log-in-doctors">Inicia sesión</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SIGN UP DE USERS -->
+        <section id="main-sign-up-users" class="center-align s12" hidden>
+          <!-- INPUTS -->
+          <div class="row spaces-signup">
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="txt-user-name-signup" type="text">
+              <label for="txt-user-name-signup">Nombre</label>
+              <span class="helper-text-wrong" id="incorrect-user-name-sign-up" hidden>no hay nombre</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">email</i>
+              <input id="txt-user-mail-signup" type="email">
+              <label for="txt-user-mail-signup">Correo Electrónico</label>
+              <span class="helper-text-wrong" id="incorrect-user-email-sign-up" hidden>el correo no es válido</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">https</i>
+              <input id="txt-user-password-signup" type="password">
+              <label for="txt-user-password-signup">Nueva Contraseña</label>
+              <span class="helper-text-wrong" id="incorrect-user-password-sign-up" hidden>debe contener más de 6 caracteres</span>
+            </div>
+            <div class="input-field col s12 input-sign-up">
+              <i class="material-icons prefix">https</i>
+              <input id="txt-user-confirm-password-signup" type="password">
+              <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
+              <span class="helper-text-wrong" id="incorrect-user-confirm-password-sign-up" hidden>no coinciden</span>
+            </div>
+            <!-- BOTON SIGNUP -->
+            <div>
+              <button id="btn-sign-up-users" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
+              <p>Si tienes cuenta,
+                <a id="go-to-log-in-users">Inicia sesión</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">email</i>
-        <input id="txt-user-mail-signup" type="email">
-        <label for="txt-user-mail-signup">Correo Electrónico</label>
-        <span class="helper-text-wrong" id="incorrect-user-email-sign-up" hidden>el correo no es válido</span>
-      </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-user-password-signup" type="password">
-        <label for="txt-user-password-signup">Nueva Contraseña</label>
-        <span class="helper-text-wrong" id="incorrect-user-password-sign-up" hidden>debe contener más de 6 caracteres</span>
-      </div>
-      <div class="input-field col s12 input-sign-up">
-        <i class="material-icons prefix">https</i>
-        <input id="txt-user-confirm-password-signup" type="password">
-        <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
-        <span class="helper-text-wrong" id="incorrect-user-confirm-password-sign-up" hidden>no coinciden</span>
-      </div>
-      <!-- BOTON SIGNUP -->
-      <div>
-        <button id="btn-sign-up-users" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
-        <p>Si tienes cuenta,
-          <a id="go-to-log-in-users">Inicia sesión</a>
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- RESPUESTA DE INICIO DE SESION SATISFACTORIO -->
   <section id="response-log-in" class="center-align" hidden>
@@ -219,54 +279,6 @@
 
   <section id="log-out" class="center-align" hidden>
     <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
-  </section>
-
-  <!-- modal para doctores -->
-  <section id="modal-doctors" class="modal-signup">
-    <div class="modal-content-signup">
-      <span class="close">&times;</span>
-      <div class="center-align">
-        <h4>Doctor</h4>
-        <div class="row spaces">
-          <div class="input-field col s12 input-sign-up-doctors">
-            <i class="material-icons prefix">assignment_ind</i>
-            <input id="specialty" type="text">
-            <label for="specialty">Especialidad</label>
-            <span class="helper-text-wrong" id="incorrect-specialty" hidden>campo vacío</span>
-          </div>
-          <div class="input-field col s12 input-sign-up-doctors">
-            <i class="material-icons prefix">dialpad</i>
-            <input id="colegiatura" type="number">
-            <label for="colegiatura">Número de Colegiatura</label>
-            <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>campo vacío</span>
-          </div>
-        </div>
-        <h5>Elige con que deseas registrarte:</h5>
-        <button class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-doctors">
-          <i class="material-icons left">email</i>Correo Electrónico</button>
-        <button class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-doctors">
-          <i class="material-icons left fa fa-facebook"></i>Facebook</button>
-        <button class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-doctors">
-          <i class="material-icons left fa fa-google"></i>Google</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- modal para pacientes -->
-  <section id="modal-users" class="modal-signup">
-    <div class="modal-content-signup">
-      <span class="close">&times;</span>
-      <div class="center-align">
-        <h4>Paciente</h4>
-        <h5>Elige con que deseas registrarte:</h5>
-        <a class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-users">
-          <i class="material-icons left">email</i>Correo Electrónico</a>
-        <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-users">
-          <i class="material-icons left fa fa-facebook"></i>Facebook</a>
-        <a class="waves-effect waves-light btn red darken-3 btn-social" id="btn-gg-modal-sign-up-users">
-          <i class="material-icons left fa fa-google"></i>Google</a>
-      </div>
-    </div>
   </section>
 
   <script src="js/materialize.min.js"></script>
