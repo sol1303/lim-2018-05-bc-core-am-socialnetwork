@@ -36,11 +36,18 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
 const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 
+// botones de NAV
+const navBtnLogIn = document.getElementById("nav-modal-log-in");
+const navBtnSignUp = document.getElementById("nav-modal-sign-up");
+
 // modals
-const modalDoctors = document.getElementById('modal-doctors');
-const modalUsers = document.getElementById("modal-users");
-const closeModalDoctors = document.getElementsByClassName("close")[0];
-const closeModalUsers = document.getElementsByClassName("close")[1];
+const modalLogIn = document.getElementById("modal-log-in");
+const modalSignUp = document.getElementById("modal-sign-up");
+
+const optionsDoctors = document.getElementById('options-doctors');
+const optionsUsers = document.getElementById("options-users");
+const closeModalLogIn = document.getElementsByClassName("close")[0];
+const closeModalSignUp = document.getElementsByClassName("close")[1];
 
 // modals buttons
 const btnModalSignUpDoctors = document.getElementById("btn-email-modal-sign-up-doctors");
@@ -91,8 +98,8 @@ window.onload = () => {
       sectionResponseLogIn.hidden = false;
       sectionLogOut.hidden = false;
       sectionUserSelection.hidden = true;
-      modalUsers.style.display = "none";
-      modalDoctors.style.display = "none";
+      optionsUsers.style.display = "none";
+      optionsDoctors.style.display = "none";
       // User is signed in.
       // const displayName = user.displayName;
       // const email = user.email;
@@ -224,14 +231,14 @@ const signUpUsers = (e) => {
   if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
     sectionSignUpUsers.hidden = false;
     sectionUserSelection.hidden = true;
-    modalUsers.style.display = "none";
+    optionsUsers.style.display = "none";
   } else {
     txtEspecialidad.value = "";
     txtColegiatura.value = "";
     // aqui se deberia mostrar el signup para los doctores
     sectionSignUpDoctors.hidden = false;
     sectionUserSelection.hidden = true;
-    modalDoctors.style.display = "none";
+    optionsDoctors.style.display = "none";
   }
 }
 
@@ -328,40 +335,70 @@ const facebookAccount = () => {
   });
 }
 
-let openModal = (e) => {
+let showOptionsUserSelect = (e) => {
   M.updateTextFields();
   if (e.currentTarget.id === "sign-up-selection-users") {
-    modalUsers.style.display = "block";
+    sectionUserSelection.style.display = "none";
+    optionsUsers.style.display = "block";
   } else {
-    modalDoctors.style.display = "block";
+    sectionUserSelection.style.display = "none";
+    optionsDoctors.style.display = "block";
   }
 };
 
-let closeModel = (e) => {
-  if (e.currentTarget.offsetParent.id === "modal-users") {
-    modalUsers.style.display = "none";
-  } else {
-    modalDoctors.style.display = "none";
-    txtEspecialidad.value = "";
-    txtColegiatura.value = "";
-  }
-};
+// let closeModel = (e) => {
+//   if (e.currentTarget.offsetParent.id === "modal-users") {
+//     optionsUsers.style.display = "none";
+//   } else {
+//     optionsDoctors.style.display = "none";
+//     txtEspecialidad.value = "";
+//     txtColegiatura.value = "";
+//   }
+// };
+
+let openNavModalLogIn = () => {
+  modalLogIn.style.display = "block";
+  console.log("open login")
+}
+
+let closeNavModalLogIn = () => {
+  modalLogIn.style.display = "none";
+  console.log("close login")
+}
+
+let openNavModalSignUp = () => {
+  modalSignUp.style.display = "block";
+  console.log("open login")
+}
+
+let closeNavModalSignUp = () => {
+  modalSignUp.style.display = "none";
+  console.log("close login")
+}
+
+// botones de NAV al apretarse saldran modals
+navBtnLogIn.addEventListener("click", () => {
+  openNavModalLogIn();
+});
+navBtnSignUp.addEventListener("click", () => {
+  openNavModalSignUp();
+});
 
 btnLogIn.addEventListener("click", () => validateLogIn());
 goToSignUp.addEventListener("click", () => showSignUp());
-goToSignUpDoctors.addEventListener("click", (e) => openModal(e));
-goToSignUpUsers.addEventListener("click", (e) => openModal(e));
-closeModalDoctors.addEventListener("click", (e) => closeModel(e));
-closeModalUsers.addEventListener("click", (e) => closeModel(e));
+goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
+goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
+closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
+closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
 goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
 btnSignUpDoctors.addEventListener("click", () => ableSignUpByDoctors());
-btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers()); //signUpByUsers
+btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
 
-//button modal
+//button opciones
 btnModalSignUpDoctors.addEventListener("click", (e) => {
   if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
     helperColegiatura.hidden = true;
@@ -456,4 +493,10 @@ txtUserConfirmPasswordSignUp.addEventListener("keyup", () => {
   } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
     helperConfirmPasswordUserSignUp.hidden = false;
   }
+});
+
+// FUNCIÓN PARA EL MENÚ DESPLEGABLE
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
 });
