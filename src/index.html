@@ -16,7 +16,72 @@
 
 <body>
   <header class="center-align">
-    <img src="img/logo.png" alt="Logo">
+    <!-- navbar -->
+    <nav>
+      <a href="#" data-target="slide-out" class="sidenav-trigger menu-initial">
+        <i class="material-icons ">menu</i>
+      </a>
+
+      <img class="right" src="img/logo.png" alt="Logo">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li>
+          <a href="">Muro</a>
+        </li>
+        <li>
+          <a href="">Notificaciones</a>
+        </li>
+        <li>
+          <div class="center row">
+            <div class="col s12 ">
+              <div class="row" id="topbarsearch">
+                <div class="input-field col s6 s12">
+                  <i class="material-icons prefix">search</i>
+                  <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a id="menu-log-in" class="right">Ingresa / Registrate</a>
+        </li>
+      </ul>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <!-- <img src="images/office.jpg"> -->
+          </div>
+          <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+          <a href="#name">
+            <span class="black-text name">John Doe</span>
+          </a>
+          <a href="#email">
+            <span class="black-text email">jdandturk@gmail.com</span>
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="#!">
+          <i class="material-icons">cloud</i>First Link With Icon</a>
+      </li>
+      <li>
+        <a href="#!">Second Link</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="subheader">Subheader</a>
+      </li>
+      <li>
+        <a class="waves-effect" href="#!">Third Link With Waves</a>
+      </li>
+      <li>
+        <a class="waves-effect" id="side-log-in">Ingresa/Registrate</a>
+      </li>
+    </ul>
   </header>
 
   <!-- LOG IN -->
@@ -74,28 +139,24 @@
         <input id="txt-doctor-name-signup" type="text">
         <label for="txt-doctor-name-signup">Nombre Doct</label>
         <span class="helper-text-wrong" id="incorrect-doctor-name-sign-up" hidden>nombre incompleto</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
         <input id="txt-doctor-mail-signup" type="email">
         <label for="txt-doctor-mail-signup">Correo Electrónico</label>
         <span class="helper-text-wrong" id="incorrect-doctor-mail-sign-up" hidden>correo no válido</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
         <input id="txt-doctor-password-signup" type="password">
         <label for="txt-doctor-password-signup">Nueva Contraseña</label>
         <span class="helper-text-wrong" id="incorrect-doctor-password-sign-up" hidden>debe tener al menos 6 caracteres</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">https</i>
         <input id="txt-doctor-confirm-password-signup" type="password">
         <label for="txt-doctor-confirm-password-signup">Confirma Contraseña</label>
         <span class="helper-text-wrong" id="incorrect-doctor-confirm-password-sign-up" hidden>no coinciden</span>
-        <!-- <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span> -->
       </div>
       <!-- BOTON SIGNUP -->
       <div>

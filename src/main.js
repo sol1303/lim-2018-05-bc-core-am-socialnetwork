@@ -457,3 +457,9 @@ txtUserConfirmPasswordSignUp.addEventListener("keyup", () => {
     helperConfirmPasswordUserSignUp.hidden = false;
   }
 });
+
+// FUNCIÓN PARA EL MENÚ DESPLEGABLE
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
+});
