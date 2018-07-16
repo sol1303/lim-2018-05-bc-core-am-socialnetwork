@@ -1,0 +1,103 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Salutem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-wall.css">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+</head>
+
+<body>
+    <header class="center-align">
+        <!-- navbar -->
+        <nav>
+            <img class="center" src="../img/logo.png" alt="Logo">
+            <a href="#" data-target="slide-out" class="sidenav-trigger menu-initial right">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                <li id="search-menu">
+                    <div>
+                        <div>
+                            <div id="topbarsearch">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">search</i>
+                                    <input type="text" placeholder="Busca en Salutem" id="autocomplete-input" class="autocomplete red-text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+                </li>
+                <li>
+                    <a id="nav-modal-sign-up" class="right">Regístrate</a>
+                </li>
+            </ul>
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'London')">Generales</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Buscador</button>
+            </div>
+        </nav>
+        <!-- menu chiquito -->
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <!-- <img src="images/office.jpg"> -->
+                    </div>
+                    <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+                    <a href="#name">
+                        <span class="black-text name">John Doe</span>
+                    </a>
+                    <a href="#email">
+                        <span class="black-text email">jdandturk@gmail.com</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a>
+                    <i class="material-icons">cloud</i>First Link With Icon</a>
+            </li>
+            <li>
+                <a>Second Link</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a class="subheader">Subheader</a>
+            </li>
+            <li>
+                <a class="waves-effect" href="#!">Third Link With Waves</a>
+            </li>
+            <li>
+                <a class="waves-effect" id="side-log-in">Ingresa/Registrate</a>
+            </li>
+        </ul>
+    </header>
+    <div id="London" class="tabcontent">
+            <h3>London</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            <h3>Paris</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+</body>
+<script src="../js/materialize.min.js"></script>
+<script src="../js/main.js"></script>
