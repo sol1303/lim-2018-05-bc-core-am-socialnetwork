@@ -57,7 +57,7 @@ body section {
   margin-top: 10% !important;
 }
 
-#select-user{
+#select-user {
   margin-top: 5% !important;
 }
 
@@ -70,22 +70,33 @@ body section {
 }
 
 /* Modal Register */
+
 .modal-signup {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
   margin: 0%;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content */
+
 .modal-content-signup {
   background-color: #fefefe;
   margin: auto;
@@ -101,6 +112,7 @@ body section {
 }
 
 /* The Close Button */
+
 .close {
   color: #aaaaaa;
   float: right;
@@ -115,63 +127,21 @@ body section {
   cursor: pointer;
 }
 
-
-.post {
-  background-color: #ffffff !important;
-}
-
 nav {
   background-color: #1DB4BF !important;
   height: 70px !important;
   margin-bottom: 5%;
 }
 
-/* nav a {
-  color: #ffffff !important;
-} */
-
-/* nav li div {
+nav a {
   color: #fcfada !important;
-} */
+}
+
+nav li div {
+  color: #fcfada !important;
+}
 
 #slide-out {
-  /* background-color: #fcfada !important; */
+  background-color: #fcfada !important;
   color: #000000 !important;
-}
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
 }

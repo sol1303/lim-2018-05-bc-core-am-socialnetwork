@@ -36,6 +36,18 @@ let goToLogIn = document.getElementById("go-to-log-in");
 let goToSignUpUsers = document.getElementById("sign-up-users");
 let goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
+// botones de NAV
+const navBtnLogIn = document.getElementById("nav-modal-log-in");
+const navBtnSignUp = document.getElementById("nav-modal-sign-up");
+
+// modals
+const modalLogIn = document.getElementById("modal-log-in");
+const modalSignUp = document.getElementById("modal-sign-up");
+
+const optionsDoctors = document.getElementById('options-doctors');
+const optionsUsers = document.getElementById("options-users");
+const closeModalLogIn = document.getElementsByClassName("close")[0];
+const closeModalSignUp = document.getElementsByClassName("close")[1];
 
 let user = {
   name: '',
@@ -53,6 +65,27 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+window.onload = () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      sectionLogIn.hidden = true;
+      sectionResponseLogIn.hidden = false;
+      sectionLogOut.hidden = false;
+      sectionUserSelection.hidden = true;
+      optionsUsers.style.display = "none";
+      optionsDoctors.style.display = "none";
+      // User is signed in.
+      // const displayName = user.displayName;
+      // const email = user.email;
+      // const emailVerified = user.emailVerified;
+      // const photoURL = user.photoURL;
+      // const uid = user.uid;
+    } else {
+      M.updateTextFields();
+    }
+  });
+}
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
@@ -92,24 +125,24 @@ const logIn = () => {
   }
 }
 
-const signUpUsers = () => {
-  sectionSignUp.hidden = false;
-  sectionSelectionUsers.hidden = true;
-  close();
-}
+// const signUpUsers = () => {
+//   sectionSignUp.hidden = false;
+//   sectionSelectionUsers.hidden = true;
+//   close();
+// }
 
-const verificate = () => {
-  let x = firebase.auth().currentUser;
-  if (x) {
-    x.sendEmailVerification().then(() => {
-      console.log("enviando");
-      document.getElementById("user-name-sign-up").innerHTML = user.name;
-      sectionSignUp.hidden = true;
-      sectionResponseSignUp.hidden = false;
-      sectionLogOut.hidden = false;
-    }).catch(function (error) {
-      console.log(error);
-    });
+const signUpUsers = (e) => {
+  if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
+    sectionSignUpUsers.hidden = false;
+    sectionUserSelection.hidden = true;
+    optionsUsers.style.display = "none";
+  } else {
+    txtEspecialidad.value = "";
+    txtColegiatura.value = "";
+    // aqui se deberia mostrar el signup para los doctores
+    sectionSignUpDoctors.hidden = false;
+    sectionUserSelection.hidden = true;
+    optionsDoctors.style.display = "none";
   }
 }
 
@@ -200,22 +233,54 @@ const facebookAccount = () => {
   });
 }
 
-let openModal = () => {
-  modal.style.display = "block";
+let showOptionsUserSelect = (e) => {
+  M.updateTextFields();
+  if (e.currentTarget.id === "sign-up-selection-users") {
+    sectionUserSelection.style.display = "none";
+    optionsUsers.style.display = "block";
+  } else {
+    sectionUserSelection.style.display = "none";
+    optionsDoctors.style.display = "block";
+  }
 };
 
-let openLogInNav = () => {
-  sectionLogIn.style.display = "block";
-};
+// let closeModel = (e) => {
+//   if (e.currentTarget.offsetParent.id === "modal-users") {
+//     optionsUsers.style.display = "none";
+//   } else {
+//     optionsDoctors.style.display = "none";
+//     txtEspecialidad.value = "";
+//     txtColegiatura.value = "";
+//   }
+// };
 
-//FUNCION PARA EL INGRESO EN MODAL
-window.onload = function() {
-  sectionLogIn.style.display = "block";
+let openNavModalLogIn = () => {
+  modalLogIn.style.display = "block";
+  console.log("open login")
 }
 
-let close = () => {
-  modal.style.display = "none";
-};
+let closeNavModalLogIn = () => {
+  modalLogIn.style.display = "none";
+  console.log("close login")
+}
+
+let openNavModalSignUp = () => {
+  modalSignUp.style.display = "block";
+  console.log("open login")
+}
+
+let closeNavModalSignUp = () => {
+  modalSignUp.style.display = "none";
+  console.log("close login")
+}
+
+// botones de NAV al apretarse saldran modals
+navBtnLogIn.addEventListener("click", () => {
+  openNavModalLogIn();
+});
+navBtnSignUp.addEventListener("click", () => {
+  openNavModalSignUp();
+});
 
 let closeModel = () => {
   sectionLogIn.style.display = "none";
@@ -229,28 +294,45 @@ window.onclick = (event) => {
 
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
-goToSignUpUsers.addEventListener("click", () => openModal());
-userRegister.addEventListener("click", () => signUpUsers());
-goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
-goToLogIn.addEventListener("click", () => showLogIn());
-btnLogIn.addEventListener("click", () => logIn());
-btnSignUp.addEventListener("click", () => signUp());
+goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
+goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
+closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
+closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
+goToLogInFromDoctors.addEventListener("click", () => showLogIn());
+goToLogInFromUsers.addEventListener("click", () => showLogIn());
+btnSignUpDoctors.addEventListener("click", () => ableSignUpByDoctors());
+btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
-btnFacebookSignUp.addEventListener("click", () => facebookAccount());
-btnGoogleSignUp.addEventListener("click", () => googleAccount());
-span.addEventListener("click", () => close());
-spanLogIn.addEventListener("click", () => closeModel());
-navMenuLogIn.addEventListener("click", () => openLogInNav());
-sideMenuLogIn.addEventListener("click", () => openLogInNav());
+
+//button opciones
+btnModalSignUpDoctors.addEventListener("click", (e) => {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
+    helperColegiatura.hidden = true;
+    helperEspecialidad.hidden = true;
+    signUpUsers(e)
+  } else {
+    helperColegiatura.hidden = false;
+    helperEspecialidad.hidden = false;
+  }
+});
+btnModalFbSignUpDoctors.addEventListener("click", () => {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
+    helperColegiatura.hidden = true;
+    helperEspecialidad.hidden = true;
+    facebookAccount();
+  } else {
+    helperColegiatura.hidden = false;
+    helperEspecialidad.hidden = false;
+  }
+});
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  M.Sidenav.init(elems);
 });
-
 
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -262,6 +344,18 @@ function openCity(evt, cityName) {
   for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+};
+txtUserPasswordSignUp.addEventListener("keyup", () => {
+  if (txtUserPasswordSignUp.value.length >= 6) {
+    helperPasswordUserSignUp.hidden = true;
+  } else if (txtUserPasswordSignUp.value.length < 6) {
+    helperPasswordUserSignUp.hidden = false;
+  }
+});
+txtUserConfirmPasswordSignUp.addEventListener("keyup", () => {
+  if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
+    helperConfirmPasswordUserSignUp.hidden = true;
+  } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
+    helperConfirmPasswordUserSignUp.hidden = false;
+  }
+});
