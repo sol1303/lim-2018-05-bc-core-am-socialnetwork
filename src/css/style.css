@@ -33,6 +33,10 @@ body section {
   margin-top: 15% !important;
 }
 
+.spaces-signup {
+  margin-top: 7% !important;
+}
+
 .btn-initial {
   background: #1DB4BF !important;
 }
@@ -40,6 +44,10 @@ body section {
 .input-sign-up {
   margin-top: 0rem !important;
   margin-bottom: 0rem !important;
+}
+
+.input-sign-up-doctors {
+  margin-top: -0.5rem !important;
 }
 
 .selection-image {
