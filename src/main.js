@@ -1,23 +1,50 @@
-// sections
-const sectionLogIn = document.getElementById("main-log-in");
-const sectionUserSelection = document.getElementById("select-user");
-const sectionSignUpDoctors = document.getElementById("main-sign-up-doctors");
-const sectionSignUpUsers = document.getElementById("main-sign-up-users");
+// sections que están generales
 const sectionResponseLogIn = document.getElementById("response-log-in");
 const sectionResponseSignUp = document.getElementById("response-sign-up");
 const sectionLogOut = document.getElementById("log-out");
+const sectionUserSelection = document.getElementById("select-user");
+
+// botones de NAV
+const navBtnLogIn = document.getElementById("nav-modal-log-in");
+const navBtnSignUp = document.getElementById("nav-modal-sign-up");
+
+// modals dentro de MAIN
+const modalLogIn = document.getElementById("modal-log-in");
+const modalSignUp = document.getElementById("modal-sign-up");
+
+// dentro de modalLogIn
+const closeModalLogIn = document.getElementById("close-log-in");
+const sectionLogIn = document.getElementById("main-log-in");
+
+// dentro de sectionLogIn
+const txtEmailLogIn = document.getElementById("txt-user-mail-login");
+const helperEmailLogIn = document.getElementById("incorrect-email");
+
+const txtPasswordLogIn = document.getElementById("txt-user-password-login");
+const helperPasswordLogIn = document.getElementById("incorrect-password");
+
+const btnLogIn = document.getElementById("btn-log-in");
+const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
+const btnGoogleLogIn = document.getElementById("btn-google-log-in");
+
+
+
+
+
+
+
+
+
+// sections
+const sectionSignUpDoctors = document.getElementById("main-sign-up-doctors");
+const sectionSignUpUsers = document.getElementById("main-sign-up-users");
 
 // botones
-const btnLogIn = document.getElementById("btn-log-in");
 const btnSignUpDoctors = document.getElementById("btn-sign-up-doctors");
 const btnSignUpUsers = document.getElementById("btn-sign-up-users");
 const btnLogOut = document.getElementById("btn-log-out");
-const btnGoogleLogIn = document.getElementById("btn-google-log-in");
-const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
 
 // inputs
-const txtEmailLogIn = document.getElementById("txt-user-mail-login");
-const txtPasswordLogIn = document.getElementById("txt-user-password-login");
 const txtEspecialidad = document.getElementById("specialty");
 const txtColegiatura = document.getElementById("colegiatura");
 const txtDoctorNameSignUp = document.getElementById("txt-doctor-name-signup");
@@ -36,17 +63,10 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
 const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 
-// botones de NAV
-const navBtnLogIn = document.getElementById("nav-modal-log-in");
-const navBtnSignUp = document.getElementById("nav-modal-sign-up");
-
 // modals
-const modalLogIn = document.getElementById("modal-log-in");
-const modalSignUp = document.getElementById("modal-sign-up");
-
 const optionsDoctors = document.getElementById('options-doctors');
 const optionsUsers = document.getElementById("options-users");
-const closeModalLogIn = document.getElementsByClassName("close")[0];
+// const closeModalLogIn = document.getElementsByClassName("close")[0];
 const closeModalSignUp = document.getElementsByClassName("close")[1];
 
 // modals buttons
@@ -58,8 +78,6 @@ const btnModalFbSignUpUsers = document.getElementById("btn-fb-modal-sign-up-user
 const btnModalGgSignUpUsers = document.getElementById("btn-gg-modal-sign-up-users");
 
 // labels helpers
-const helperEmailLogIn = document.getElementById("incorrect-email");
-const helperPasswordLogIn = document.getElementById("incorrect-password");
 const helperEspecialidad = document.getElementById("incorrect-specialty");
 const helperColegiatura = document.getElementById("incorrect-colegiatura");
 const helperNameDoctorSignUp = document.getElementById("incorrect-doctor-name-sign-up");
@@ -94,18 +112,12 @@ firebase.initializeApp(config);
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      sectionLogIn.hidden = true;
+      modalLogIn.style.display = "none";
       sectionResponseLogIn.hidden = false;
       sectionLogOut.hidden = false;
-      sectionUserSelection.hidden = true;
-      optionsUsers.style.display = "none";
-      optionsDoctors.style.display = "none";
-      // User is signed in.
-      // const displayName = user.displayName;
-      // const email = user.email;
-      // const emailVerified = user.emailVerified;
-      // const photoURL = user.photoURL;
-      // const uid = user.uid;
+      // sectionUserSelection.hidden = true;
+      // optionsUsers.style.display = "none";
+      // optionsDoctors.style.display = "none";
     } else {
       M.updateTextFields();
     }
@@ -131,13 +143,13 @@ const logOut = () => {
 
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
-    sectionUserSelection.hidden = true;
+    // sectionUserSelection.hidden = true;
     sectionResponseSignUp.hidden = true;
     // formularios de email
-    sectionSignUpUsers.hidden = true;
-    sectionSignUpDoctors.hidden = true;
+    // sectionSignUpUsers.hidden = true;
+    // sectionSignUpDoctors.hidden = true;
     // cuando se salga de sesión para cualquier caso siempre se mostrará el login
-    sectionLogIn.hidden = false;
+    modalLogIn.style.display = "block";
   });
 }
 
@@ -295,10 +307,11 @@ const ableSignUpByUsers = () => {
 }
 
 const showSignUp = () => {
+  // enlace de login para ingresar a signup
   txtEmailLogIn.value = "";
   txtPasswordLogIn.value = "";
-  sectionLogIn.hidden = true;
-  sectionUserSelection.hidden = false;
+  closeNavModalLogIn();
+  openNavModalSignUp();
 }
 
 const showLogIn = () => {
@@ -362,11 +375,21 @@ let openNavModalLogIn = () => {
 }
 
 let closeNavModalLogIn = () => {
+  // vaciamos contenido de login cuando se cierra el modal
+  helperEmailLogIn.hidden = true;
+  helperPasswordLogIn.hidden = true;
+  txtEmailLogIn.value = "";
+  txtPasswordLogIn.value = "";
+  M.updateTextFields();
   modalLogIn.style.display = "none";
-  console.log("close login")
 }
 
 let openNavModalSignUp = () => {
+  sectionUserSelection.style.display = "block";
+  optionsDoctors.style.display = "none";
+  optionsUsers.style.display = "none";
+  sectionSignUpUsers.style.display = "none";
+  sectionSignUpUsers.style.display = "none";
   modalSignUp.style.display = "block";
   console.log("open login")
 }
@@ -386,6 +409,8 @@ navBtnSignUp.addEventListener("click", () => {
 
 btnLogIn.addEventListener("click", () => validateLogIn());
 goToSignUp.addEventListener("click", () => showSignUp());
+
+
 goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
 goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
 closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
