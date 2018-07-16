@@ -109,7 +109,7 @@ body section {
 
 
 .post {
-  background-color: #fcfada !important;
+  background-color: #ffffff !important;
 }
 
 nav {
@@ -118,15 +118,15 @@ nav {
   margin-bottom: 5%;
 }
 
-nav a {
-  color: #fcfada !important;
-}
+/* nav a {
+  color: #ffffff !important;
+} */
 
-nav li div {
+/* nav li div {
   color: #fcfada !important;
-}
+} */
 
 #slide-out {
-  background-color: #fcfada !important;
+  /* background-color: #fcfada !important; */
   color: #000000 !important;
 }
