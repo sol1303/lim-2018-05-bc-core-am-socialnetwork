@@ -1,46 +1,49 @@
 // sections
-const sectionLogIn = document.getElementById("main-log-in");
-const sectionSelectionUsers = document.getElementById("select-user");
-const sectionSignUp = document.getElementById("main-sign-up");
-const sectionResponseLogIn = document.getElementById("response-log-in");
-const sectionResponseSignUp = document.getElementById("response-sign-up");
-const sectionLogOut = document.getElementById("log-out");
-const modal = document.getElementById('myModal');
-const closeModal = document.getElementsByClassName("close")[0];
+let sectionLogIn = document.getElementById("main-log-in");
+let sectionSelectionUsers = document.getElementById("select-user");
+let sectionSignUp = document.getElementById("main-sign-up");
+let sectionResponseLogIn = document.getElementById("response-log-in");
+let sectionResponseSignUp = document.getElementById("response-sign-up");
+let sectionLogOut = document.getElementById("log-out");
+let modal = document.getElementById('myModal');
+let spanLogIn = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close")[1];
+let sectionLogInInput = document.getElementById("section-log-in");
+let navMenuLogIn = document.getElementById("menu-log-in");
+let sideMenuLogIn = document.getElementById("side-log-in");
 
 // botones
-const btnLogIn = document.getElementById("btn-log-in");
-const btnSignUp = document.getElementById("btn-sign-up");
-const btnLogOut = document.getElementById("btn-log-out");
-const btnGoogleLogIn = document.getElementById("btn-google-log-in");
-const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
-const btnEmailUserResgister = document.getElementById("userRegister");
-const btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
-const btnGoogleSignUp = document.getElementById("btn-google-sign-up")
+let btnLogIn = document.getElementById("btn-log-in");
+let btnSignUp = document.getElementById("btn-sign-up");
+let btnLogOut = document.getElementById("btn-log-out");
+let btnGoogleLogIn = document.getElementById("btn-google-log-in");
+let btnFacebookLogIn = document.getElementById("btn-fb-log-in");
+let btnEmailUserResgister = document.getElementById("userRegister");
+let btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
+let btnGoogleSignUp = document.getElementById("btn-google-sign-up")
 
 // inputs
-const txtEmailLogIn = document.getElementById("txt-user-mail-login");
-const txtPasswordLogIn = document.getElementById("txt-user-password-login");
-const txtNameSignUp = document.getElementById("txt-user-name-signup");
-const txtEmailSignUp = document.getElementById("txt-user-mail-signup");
-const txtPasswordSignUp = document.getElementById("txt-user-password-signup");
-const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
+let txtEmailLogIn = document.getElementById("txt-user-mail-login");
+let txtPasswordLogIn = document.getElementById("txt-user-password-login");
+let txtNameSignUp = document.getElementById("txt-user-name-signup");
+let txtEmailSignUp = document.getElementById("txt-user-mail-signup");
+let txtPasswordSignUp = document.getElementById("txt-user-password-signup");
+let txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 
 // enlaces
-const goToSignUp = document.getElementById("go-to-sign-up");
-const goToLogIn = document.getElementById("go-to-log-in");
-const goToSignUpUsers = document.getElementById("sign-up-users");
-const goToSignUpDoctors = document.getElementById("sign-up-doctors");
+let goToSignUp = document.getElementById("go-to-sign-up");
+let goToLogIn = document.getElementById("go-to-log-in");
+let goToSignUpUsers = document.getElementById("sign-up-users");
+let goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
-const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-const user = {
+let user = {
   name: '',
   email: '',
   password: ''
 }
 
-const config = {
+var config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
   authDomain: "salutem-a2461.firebaseapp.com",
   databaseURL: "https://salutem-a2461.firebaseio.com",
@@ -50,25 +53,6 @@ const config = {
 };
 
 firebase.initializeApp(config);
-
-window.onload = () => {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      sectionLogIn.hidden = true;
-      sectionResponseLogIn.hidden = false;
-      sectionLogOut.hidden = false;
-      console.log("usuario logueado")
-      // User is signed in.
-      // const displayName = user.displayName;
-      // const email = user.email;
-      // const emailVerified = user.emailVerified;
-      // const photoURL = user.photoURL;
-      // const isAnonymous = user.isAnonymous;
-      // const uid = user.uid;
-      // const providerData = user.providerData;
-    } else console.log("no estas logueado");
-  });
-}
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
@@ -88,28 +72,9 @@ const logOut = () => {
   });
 }
 
-const ableBtnLogIn = () => {
-  if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
-    document.getElementById("incorrect-email").hidden = true;
-    if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
-      document.getElementById("incorrect-password").hidden = true;
-      user.email = txtEmailLogIn.value;
-      user.password = txtPasswordLogIn.value;
-      if (user.email !== "" && user.password !== "") {
-        logIn();
-      }
-    } else {
-      document.getElementById("incorrect-password").hidden = false;
-    }
-  } else {
-    document.getElementById("incorrect-email").hidden = false;
-  }
-}
-
 const validateLogIn = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      document.getElementById("user-name-log-in").innerHTML = user.displayName;
       sectionLogIn.hidden = true;
       sectionResponseLogIn.hidden = false;
       sectionLogOut.hidden = false;
@@ -119,23 +84,25 @@ const validateLogIn = () => {
 
 const logIn = () => {
   const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
-  promise.catch(e => {
-    document.getElementById("incorrect-password").hidden = false;
-  });
+  user.email = txtEmailLogIn.value;
+  user.password = txtPasswordLogIn.value;
+  if (user.email !== "" && user.password !== "") {
+    const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
+    promise.catch(e => console.log(e.message));
+  }
 }
 
 const signUpUsers = () => {
   sectionSignUp.hidden = false;
   sectionSelectionUsers.hidden = true;
-  closeModel();
+  close();
 }
 
 const verificate = () => {
-  const x = firebase.auth().currentUser;
+  let x = firebase.auth().currentUser;
   if (x) {
     x.sendEmailVerification().then(() => {
-      console.log("se envió correo de verificación de cuenta al correo");
+      console.log("enviando");
       document.getElementById("user-name-sign-up").innerHTML = user.name;
       sectionSignUp.hidden = true;
       sectionResponseSignUp.hidden = false;
@@ -175,8 +142,9 @@ const showSignUp = () => {
     txtPasswordLogIn.value = "";
     txtConfirmPasswordSignUp.value = "";
   }
-  sectionLogIn.hidden = true;
+  sectionLogInInput.hidden = true;
   sectionSelectionUsers.hidden = false;
+  // sectionLogIn.style.display = "none";
 }
 
 const showLogIn = () => {
@@ -185,34 +153,50 @@ const showLogIn = () => {
     txtPasswordLogIn.value = "";
   }
   sectionSignUp.hidden = true;
-  sectionLogIn.hidden = false;
+  sectionLogInInput.hidden = false;
+  sectionLogIn.style.display = "block";
 }
 
 const googleAccount = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
+  var provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    const person = result.user;
-    console.log(person.displayName);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
   }).catch(function (error) {
-    console.log(error.code);
-    console.log(error.message);
-    console.log(error.email);
-    console.log(error.credential);
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
   });
 }
 
 const facebookAccount = () => {
-  const provider = new firebase.auth.FacebookAuthProvider();
+  var provider = new firebase.auth.FacebookAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    const person = result.user;
-    console.log(person.displayName);
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user.displayName);
+    // ...
   }).catch(function (error) {
-    console.log(error.code);
-    console.log(error.message);
-    console.log(error.email);
-    console.log(error.credential);
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
   });
 }
 
@@ -220,26 +204,49 @@ let openModal = () => {
   modal.style.display = "block";
 };
 
-let closeModel = () => {
+let openLogInNav = () => {
+  sectionLogIn.style.display = "block";
+};
+
+//FUNCION PARA EL INGRESO EN MODAL
+window.onload = function() {
+  sectionLogIn.style.display = "block";
+}
+
+let close = () => {
   modal.style.display = "none";
 };
 
-// window.onclick = (event) => {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
+let closeModel = () => {
+  sectionLogIn.style.display = "none";
+};
 
-btnLogIn.addEventListener("click", () => ableBtnLogIn());
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToSignUpUsers.addEventListener("click", () => openModal());
 userRegister.addEventListener("click", () => signUpUsers());
 goToSignUpDoctors.addEventListener("click", () => console.log("seleccionaste doctores"));
 goToLogIn.addEventListener("click", () => showLogIn());
+btnLogIn.addEventListener("click", () => logIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
-closeModal.addEventListener("click", () => closeModel());
+span.addEventListener("click", () => close());
+spanLogIn.addEventListener("click", () => closeModel());
+navMenuLogIn.addEventListener("click", () => openLogInNav());
+sideMenuLogIn.addEventListener("click", () => openLogInNav());
+
+// FUNCIÓN PARA EL MENÚ DESPLEGABLE
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});

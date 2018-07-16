@@ -1,18 +1,17 @@
 body {
-  background: #FCFADA;
+  background: #ffffff;
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
 
 header {
   background: #1DB4BF;
-  color: #FCFADA;
+  color: #ffffff;
   font-size: 100%;
 }
 
 header img {
-  margin-left: -10%;
-  width: 40%;
+  width: 70px;
 }
 
 header p {
@@ -106,4 +105,28 @@ body section {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+.post {
+  background-color: #fcfada !important;
+}
+
+nav {
+  background-color: #1DB4BF !important;
+  height: 70px !important;
+  margin-bottom: 5%;
+}
+
+nav a {
+  color: #fcfada !important;
+}
+
+nav li div {
+  color: #fcfada !important;
+}
+
+#slide-out {
+  background-color: #fcfada !important;
+  color: #000000 !important;
 }
