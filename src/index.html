@@ -237,12 +237,28 @@
     </div>
   </section>
     <!-- PRUEBA MURO DOS-->
-    <ul id="tabs-swipe-demo" class="tabs">
-        <li class="tab col s3"><a href="#test-swipe-1" class="active">Test 1</a></li>
-        <li class="tab col s3"><a class="" href="#test-swipe-2">Test 2</a></li>
-        <li class="tab col s3"><a href="#test-swipe-3" class="">Test 3</a></li>
-      <li class="indicator" style="left: 0px; right: 312px;"></li></ul>
-      <div class="tabs-content carousel carousel-slider" style="height: 400px;"><div id="test-swipe-1" class="col s12 blue carousel-item active" style="z-index: 0; opacity: 1; visibility: visible; transform: translateX(0px) translateX(0px) translateX(0px) translateZ(0px);">Test 1</div><div id="test-swipe-2" class="col s12 red carousel-item" style="transform: translateX(0px) translateX(589px) translateZ(0px); z-index: -1; opacity: 1; visibility: visible;">Test 2</div><div id="test-swipe-3" class="col s12 green carousel-item" style="transform: translateX(0px) translateX(876.604px) translateZ(0px); z-index: -1; opacity: 0.0234172; visibility: visible;">Test 3</div></div>
+    <p>Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
 
   <script src="js/materialize.min.js"></script>
   <script src="main.js"></script>
