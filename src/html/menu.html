@@ -1,105 +1,182 @@
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Salutem</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style-wall.css">
-    <link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
-    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Salutem</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style-wall.css">
+	<link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
 
 <body>
-    <header class="center-align">
-        <!-- navbar -->
-        <nav>
-            <img class="center" src="../img/logo.png" alt="Logo">
-            <a href="#" data-target="slide-out" class="sidenav-trigger menu-initial right">
-                <i class="material-icons">menu</i>
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+	<header class="center-align">
+		<!-- navbar -->
+		<div class="navbar-fixed">
+			<nav>
+				<img class="center" src="../img/logo.png" alt="Logo">
+				<a href="#" data-target="slide-out" class="sidenav-trigger menu-initial right">
+					<i class="material-icons">menu</i>
+				</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
 
-                <li id="search-menu">
-                    <div>
-                        <div>
-                            <div id="topbarsearch">
-                                <div class="input-field">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" placeholder="Busca en Salutem" id="autocomplete-input" class="autocomplete red-text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a id="nav-modal-log-in" class="right">Inicia Sesión</a>
-                </li>
-                <li>
-                    <a id="nav-modal-sign-up" class="right">Regístrate</a>
-                </li>
-            </ul>
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'London')">Generales</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Buscador</button>
-            </div>
-        </nav>
-        <!-- menu chiquito -->
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <!-- <img src="images/office.jpg"> -->
-                    </div>
-                    <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
-                    <a href="#name">
-                        <span class="black-text name">John Doe</span>
-                    </a>
-                    <a href="#email">
-                        <span class="black-text email">jdandturk@gmail.com</span>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <a>
-                    <i class="material-icons">cloud</i>First Link With Icon</a>
-            </li>
-            <li>
-                <a>Second Link</a>
-            </li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li>
-                <a class="subheader">Subheader</a>
-            </li>
-            <li>
-                <a class="waves-effect" href="#!">Third Link With Waves</a>
-            </li>
-            <li>
-                <a class="waves-effect" id="side-log-in">Ingresa/Registrate</a>
-            </li>
-        </ul>
-    </header>
-    <section>
-    <div id="London" class="tabcontent">
-            <h3>London</h3>
-            <p>London is the capital city of England.</p>
-        </div>
+					<li id="search-menu">
+						<div>
+							<div>
+								<div id="topbarsearch">
+									<div class="input-field">
+										<i class="material-icons prefix">search</i>
+										<input type="text" placeholder="Busca en Salutem" id="autocomplete-input" class="autocomplete red-text">
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+					</li>
+					<li>
+						<a id="nav-modal-sign-up" class="right">Regístrate</a>
+					</li>
+				</ul>
+				<div class="tab">
+					<button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">Generales</button>
+					<button class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</button>
+					<button class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</button>
+					<!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">Buscador</button> -->
+				</div>
+			</nav>
+		</div>
+		<!-- menu chiquito -->
+		<ul id="slide-out" class="sidenav">
+			<li>
+				<div class="user-view">
+					<div class="background">
+						<!-- <img src="images/office.jpg"> -->
+					</div>
+					<!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+					<a href="#name">
+						<span class="black-text name">John Doe</span>
+					</a>
+					<a href="#email">
+						<span class="black-text email">jdandturk@gmail.com</span>
+					</a>
+				</div>
+			</li>
+			<li>
+				<a class="tablinks" onclick="openCity(event, 'London')">Generales</a>
+			</li>
+			<li>
+				<div class="divider"></div>
+			</li>
+			<li>
+				<a class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</a>
+			</li>
+			<li>
+				<div class="divider"></div>
+			</li>
+			<li>
+				<a class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</a>
+			</li>
+			<li>
+				<div class="divider"></div>
+			</li>
+			<!-- <li>
+				<a class="tablinks" onclick="openCity(event, 'Tokyo')">Buscador</a>
+			</li> -->
+			<li>
+				<div class="divider"></div>
+			</li>
+			<li>
+				<a class="waves-effect" id="side-log-in">Ingresa/Registrate</a>
+			</li>
+		</ul>
+	</header>
+	<section>
+		<main>
+			<div id="London" class="tabcontent">
+				<div class="row">
+					<div class="col s12 m9">
+						<div class="card">
+							<div class="card-content black-text">
+								<span class="card-title">John Smith</span>
+								<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
+									markup to use effectively.</p>
+							</div>
+							<div class="card-action">
+								<a class="heart" onClick="clickME()">
+									<i class="material-icons">favorite</i>
+								</a>
+								<a id="clicks">0</a>
+								<a>Comentario</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <div id="Paris" class="tabcontent">
-            <h3>Paris</h3>
-            <p>Paris is the capital of France.</p>
-        </div>
+			<div id="Paris" class="tabcontent">
+				<table>
+					<thead>
+						<tr>
+							<th>Clínica</th>
+							<th>Dirección</th>
+							<th>Teléfono</th>
+						</tr>
+					</thead>
 
-        <div id="Tokyo" class="tabcontent">
-            <h3>Tokyo</h3>
-            <p>Tokyo is the capital of Japan.</p>
-        </div>
-    </section>
+					<tbody>
+						<tr>
+							<td>CLINICA RICARDO PALMA</td>
+							<td>Av. Javier Prado Este No. 1066, San Isidro</td>
+							<td>224-2224</td>
+						</tr>
+						<tr>
+							<td>CLINICA RICARDO PALMA</td>
+							<td>Av. Javier Prado Este No. 1066, San Isidro</td>
+							<td>224-2224</td>
+						</tr>
+						<tr>
+							<td>CLINICA RICARDO PALMA</td>
+							<td>Av. Javier Prado Este No. 1066, San Isidro</td>
+							<td>224-2224</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div id="Tokyo" class="tabcontent">
+				<h3>Tokyo</h3>
+				<p>Tokyo is the capital of Japan.</p>
+			</div>
+		</main>
+		<div id="popularTags">
+			<h6>Busquedas populares</h6>
+			<div class="chip">
+				Odontologos
+				<i class="close material-icons">close</i>
+			</div>
+			<div class="chip">
+				Hospitales
+				<i class="close material-icons">close</i>
+			</div>
+			<div class="chip">
+				Recetas Medicas
+				<i class="close material-icons">close</i>
+			</div>
+			<div class="chip">
+				Niños
+				<i class="close material-icons">close</i>
+			</div>
+			<div class="chip">
+				Gestantes
+				<i class="close material-icons">close</i>
+			</div>
+		</div>
+	</section>
 </body>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/main.js"></script>
