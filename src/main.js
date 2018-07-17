@@ -89,10 +89,13 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
 const user = {
-  name: '',
+  uid: '',
+  username: '',
   email: '',
-  password: '',
-  type: ''
+  type: '',
+  specialty: '',
+  colegiatura: '',
+  profile_picture: ''
 }
 
 // OK
@@ -107,6 +110,18 @@ const config = {
 
 // OK
 firebase.initializeApp(config);
+
+// método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
+writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
+  firebase.database().ref('users/' + uid).set({
+    username: name,
+    email: email,
+    type: type,
+    specialty: specialty,
+    colegiatura: colegiatura,
+    profile_picture : imageUrl
+  });
+}
 
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
@@ -184,7 +199,7 @@ const validateLogIn = () => {
 
 // OK
 const showMuro = () => {
-  document.getElementById("user-name-sign-up").innerHTML = user.name;
+  document.getElementById("user-name-sign-up").innerHTML = user.username;
   closeNavModalSignUp();
   sectionResponseSignUp.hidden = false;
   sectionLogOut.hidden = false;
@@ -239,7 +254,7 @@ const ableSignUpByDoctors = () => {
   }
   // si todas las etiquetas estan ocultas hará el registro
   if (name && email && password && confirmPassword) {
-    user.name = txtDoctorNameSignUp.value;
+    user.username = txtDoctorNameSignUp.value;
     user.email = txtDoctorEmailSignUp.value;
     user.password = txtDoctorPasswordSignUp.value;
     signUpByDoctors();
@@ -268,6 +283,8 @@ const signUpByUsers = () => {
     if (x) {
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
+        // create pacientes in db
+        // writeUserDbFirebase();
         showMuro();
       }).catch(function (error) {
         alert(error);
@@ -310,6 +327,7 @@ const ableSignUpByUsers = () => {
     user.name = txtUserNameSignUp.value;
     user.email = txtUserEmailSignUp.value;
     user.password = txtUserPasswordSignUp.value;
+    // deberia actualizar el objeto user para almacenar en la db
     signUpByUsers();
   }
 }
@@ -340,7 +358,8 @@ const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    console.log(result.user);
+    fireUser = result.user;
+    // writeUserDbFirebase(fireUser.uid, fireUser.displayName, fireUser.email, 'paciente', '', '', fireUser.photoURL);
   }).catch(function (error) {
     console.log(error);
   });
@@ -351,7 +370,8 @@ const facebookAccount = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    console.log(result.user);
+    fireUser = result.user;
+    // writeUserDbFirebase(fireUser.uid, fireUser.displayName, fireUser.email, 'paciente', '', '', fireUser.photoURL);
   }).catch(function (error) {
     alert(error.message);
   });
