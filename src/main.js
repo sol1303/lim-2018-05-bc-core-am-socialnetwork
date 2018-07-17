@@ -88,14 +88,14 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-const user = {
-  uid: '',
-  username: '',
-  email: '',
-  type: '',
-  specialty: '',
-  colegiatura: '',
-  profile_picture: ''
+const userLocal = {
+  uid: null,
+  username: null,
+  email: null,
+  type: null,
+  specialty: null,
+  colegiatura: null,
+  profile_picture: null
 }
 
 // OK
@@ -107,11 +107,11 @@ const config = {
   // storageBucket: "salutem-a2461.appspot.com",
   // messagingSenderId: "953244358481"
   apiKey: "AIzaSyDW8PIGL6vbFaMhRy0PpXtNv_e59eZYmfs",
-    authDomain: "auth-social-network.firebaseapp.com",
-    databaseURL: "https://auth-social-network.firebaseio.com",
-    projectId: "auth-social-network",
-    storageBucket: "auth-social-network.appspot.com",
-    messagingSenderId: "1041115691430"
+  authDomain: "auth-social-network.firebaseapp.com",
+  databaseURL: "https://auth-social-network.firebaseio.com",
+  projectId: "auth-social-network",
+  storageBucket: "auth-social-network.appspot.com",
+  messagingSenderId: "1041115691430"
 };
 
 // OK
@@ -125,8 +125,16 @@ writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl)
     type: type,
     specialty: specialty,
     colegiatura: colegiatura,
-    profile_picture : imageUrl
+    profile_picture: imageUrl
   });
+}
+
+updateUserByProvider = (uid, name, email, photo) => {
+  userLocal.uid = uid;
+  userLocal.username = name;
+  userLocal.email = email;
+  userLocal.profile_picture = photo;
+  writeUserDbFirebase(userLocal.uid, userLocal.username, userLocal.email, userLocal.type, userLocal.specialty, userLocal.colegiatura, userLocal.profile_picture)
 }
 
 window.onload = () => {
@@ -151,6 +159,13 @@ window.onload = () => {
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
+    userLocal.uid = null,
+    userLocal.username = null,
+    userLocal.email = null,
+    userLocal.type = null,
+    userLocal.specialty = null,
+    userLocal.colegiatura = null,
+    userLocal.profile_picture = null,
     txtEmailLogIn.value = "";
     txtPasswordLogIn.value = "";
     // doctores
@@ -362,8 +377,8 @@ const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    fireUser = result.user;
-    // writeUserDbFirebase(fireUser.uid, fireUser.displayName, fireUser.email, 'paciente', '', '', fireUser.photoURL);
+    let fireUser = result.user;
+    updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   }).catch(function (error) {
     console.log(error);
   });
@@ -375,7 +390,7 @@ const facebookAccount = () => {
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
     fireUser = result.user;
-    // writeUserDbFirebase(fireUser.uid, fireUser.displayName, fireUser.email, 'paciente', '', '', fireUser.photoURL);
+    updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   }).catch(function (error) {
     alert(error.message);
   });
@@ -461,6 +476,9 @@ btnModalFbSignUpDoctors.addEventListener("click", () => {
   if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
+    userLocal.type = 'doctor';
+    userLocal.specialty = txtEspecialidad.value;
+    userLocal.colegiatura = txtColegiatura.value;
     closeNavModalSignUp();
     facebookAccount();
   } else {
@@ -472,6 +490,9 @@ btnModalGgSignUpDoctors.addEventListener("click", () => {
   if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
+    userLocal.type = 'doctor';
+    userLocal.specialty = txtEspecialidad.value;
+    userLocal.colegiatura = txtColegiatura.value;
     closeNavModalSignUp();
     googleAccount();
   } else {
@@ -517,8 +538,14 @@ goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 
 // signup users
 btnModalEmailSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
-btnModalFbSignUpUsers.addEventListener("click", () => facebookAccount());
-btnModalGgSignUpUsers.addEventListener("click", () => googleAccount());
+btnModalFbSignUpUsers.addEventListener("click", () => {
+  userLocal.type = 'paciente';
+  facebookAccount();
+});
+btnModalGgSignUpUsers.addEventListener("click", () => {
+  userLocal.type = 'paciente';
+  googleAccount();
+});
 txtUserNameSignUp.addEventListener("keyup", () => {
   if (txtUserNameSignUp.value.length > 0) {
     helperNameUserSignUp.hidden = true;
