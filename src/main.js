@@ -2,7 +2,7 @@
 const sectionResponseLogIn = document.getElementById("response-log-in");
 const sectionResponseSignUp = document.getElementById("response-sign-up");
 const sectionLogOut = document.getElementById("log-out");
-const sectionUserSelection = document.getElementById("select-user");
+const btnLogOut = document.getElementById("btn-log-out");
 
 // botones de NAV
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
@@ -23,71 +23,68 @@ const helperEmailLogIn = document.getElementById("incorrect-email");
 const txtPasswordLogIn = document.getElementById("txt-user-password-login");
 const helperPasswordLogIn = document.getElementById("incorrect-password");
 
-const btnLogIn = document.getElementById("btn-log-in");
+const btnEmailLogIn = document.getElementById("btn-email-log-in");
 const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
 const btnGoogleLogIn = document.getElementById("btn-google-log-in");
+const goToSignUp = document.getElementById("go-to-sign-up");
 
-
-
-
-
-
-
-
-
-// sections
+// dentro de modalSignUp
+const closeModalSignUp = document.getElementById("close-sign-up");
+const sectionUserSelection = document.getElementById("select-user");
+const optionsDoctors = document.getElementById('options-doctors');
+const optionsUsers = document.getElementById("options-users");
 const sectionSignUpDoctors = document.getElementById("main-sign-up-doctors");
 const sectionSignUpUsers = document.getElementById("main-sign-up-users");
 
-// botones
-const btnSignUpDoctors = document.getElementById("btn-sign-up-doctors");
-const btnSignUpUsers = document.getElementById("btn-sign-up-users");
-const btnLogOut = document.getElementById("btn-log-out");
-
-// inputs
-const txtEspecialidad = document.getElementById("specialty");
-const txtColegiatura = document.getElementById("colegiatura");
-const txtDoctorNameSignUp = document.getElementById("txt-doctor-name-signup");
-const txtDoctorEmailSignUp = document.getElementById("txt-doctor-mail-signup");
-const txtDoctorPasswordSignUp = document.getElementById("txt-doctor-password-signup");
-const txtDoctorConfirmPasswordSignUp = document.getElementById("txt-doctor-confirm-password-signup");
-const txtUserNameSignUp = document.getElementById("txt-user-name-signup");
-const txtUserEmailSignUp = document.getElementById("txt-user-mail-signup");
-const txtUserPasswordSignUp = document.getElementById("txt-user-password-signup");
-const txtUserConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
-
-// enlaces
-const goToSignUp = document.getElementById("go-to-sign-up");
-const goToLogInFromDoctors = document.getElementById("go-to-log-in-doctors");
-const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
+// dentro de sectionUserSelection
 const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
 const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 
-// modals
-const optionsDoctors = document.getElementById('options-doctors');
-const optionsUsers = document.getElementById("options-users");
-// const closeModalLogIn = document.getElementsByClassName("close")[0];
-const closeModalSignUp = document.getElementsByClassName("close")[1];
-
-// modals buttons
-const btnModalSignUpDoctors = document.getElementById("btn-email-modal-sign-up-doctors");
+// dentro de optionsDoctors
+const txtEspecialidad = document.getElementById("specialty");
+const helperEspecialidad = document.getElementById("incorrect-specialty");
+const txtColegiatura = document.getElementById("colegiatura");
+const helperColegiatura = document.getElementById("incorrect-colegiatura");
+const btnModalEmailSignUpDoctors = document.getElementById("btn-email-modal-sign-up-doctors");
 const btnModalFbSignUpDoctors = document.getElementById("btn-fb-modal-sign-up-doctors");
 const btnModalGgSignUpDoctors = document.getElementById("btn-gg-modal-sign-up-doctors");
-const btnModalSignUpUsers = document.getElementById("btn-email-modal-sign-up-users");
+
+// dentro de optionsUsers
+const btnModalEmailSignUpUsers = document.getElementById("btn-email-modal-sign-up-users");
 const btnModalFbSignUpUsers = document.getElementById("btn-fb-modal-sign-up-users");
 const btnModalGgSignUpUsers = document.getElementById("btn-gg-modal-sign-up-users");
 
-// labels helpers
-const helperEspecialidad = document.getElementById("incorrect-specialty");
-const helperColegiatura = document.getElementById("incorrect-colegiatura");
+// dentro de signup doctors de email sectionSignUpDoctors
+const txtDoctorNameSignUp = document.getElementById("txt-doctor-name-signup");
 const helperNameDoctorSignUp = document.getElementById("incorrect-doctor-name-sign-up");
+
+const txtDoctorEmailSignUp = document.getElementById("txt-doctor-mail-signup");
 const helperEmailDoctorSignUp = document.getElementById("incorrect-doctor-mail-sign-up");
+
+const txtDoctorPasswordSignUp = document.getElementById("txt-doctor-password-signup");
 const helperPasswordDoctorSignUp = document.getElementById("incorrect-doctor-password-sign-up");
+
+const txtDoctorConfirmPasswordSignUp = document.getElementById("txt-doctor-confirm-password-signup");
 const helperConfirmPasswordDoctorSignUp = document.getElementById("incorrect-doctor-confirm-password-sign-up");
+
+const btnSignUpDoctors = document.getElementById("btn-sign-up-doctors");
+const goToLogInFromDoctors = document.getElementById("go-to-log-in-doctors");
+
+// dentro de signup users de email sectionSignUpUsers
+const txtUserNameSignUp = document.getElementById("txt-user-name-signup");
 const helperNameUserSignUp = document.getElementById("incorrect-user-name-sign-up");
+
+const txtUserEmailSignUp = document.getElementById("txt-user-mail-signup");
 const helperEmailUserSignUp = document.getElementById("incorrect-user-email-sign-up");
+
+const txtUserPasswordSignUp = document.getElementById("txt-user-password-signup");
 const helperPasswordUserSignUp = document.getElementById("incorrect-user-password-sign-up");
+
+const txtUserConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
 const helperConfirmPasswordUserSignUp = document.getElementById("incorrect-user-confirm-password-sign-up");
+
+const btnSignUpUsers = document.getElementById("btn-sign-up-users");
+const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
@@ -98,6 +95,7 @@ const user = {
   type: ''
 }
 
+// OK
 const config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
   authDomain: "salutem-a2461.firebaseapp.com",
@@ -107,19 +105,25 @@ const config = {
   messagingSenderId: "953244358481"
 };
 
+// OK
 firebase.initializeApp(config);
 
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       modalLogIn.style.display = "none";
+      modalSignUp.style.display = "none";
       sectionResponseLogIn.hidden = false;
       sectionLogOut.hidden = false;
-      // sectionUserSelection.hidden = true;
-      // optionsUsers.style.display = "none";
-      // optionsDoctors.style.display = "none";
+      navBtnLogIn.style.display = "none";
+      navBtnSignUp.style.display = "none";
+      if (user.displayName) {
+        document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${user.displayName}`;
+      }
     } else {
       M.updateTextFields();
+      navBtnLogIn.style.display = "block";
+      navBtnSignUp.style.display = "block";
     }
   });
 }
@@ -143,24 +147,23 @@ const logOut = () => {
 
     sectionLogOut.hidden = true;
     sectionResponseLogIn.hidden = true;
-    // sectionUserSelection.hidden = true;
     sectionResponseSignUp.hidden = true;
-    // formularios de email
-    // sectionSignUpUsers.hidden = true;
-    // sectionSignUpDoctors.hidden = true;
     // cuando se salga de sesión para cualquier caso siempre se mostrará el login
     modalLogIn.style.display = "block";
   });
 }
 
+// OK
 const logIn = () => {
   const auth = firebase.auth();
   const promise = auth.signInWithEmailAndPassword(user.email, user.password);
   promise.catch(e => {
     helperPasswordLogIn.hidden = false;
+    console.log(e);
   });
 }
 
+// OK
 const validateLogIn = () => {
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     helperEmailLogIn.hidden = true;
@@ -179,14 +182,17 @@ const validateLogIn = () => {
   }
 }
 
+// OK
 const showMuro = () => {
   document.getElementById("user-name-sign-up").innerHTML = user.name;
-  sectionSignUpDoctors.hidden = true;
-  sectionSignUpUsers.hidden = true;
+  closeNavModalSignUp();
   sectionResponseSignUp.hidden = false;
   sectionLogOut.hidden = false;
+  sectionSignUpDoctors.style.display = "none";
+  sectionSignUpUsers.style.display = "none";
 }
 
+// OK
 const signUpByDoctors = () => {
   const auth = firebase.auth();
   const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
@@ -203,6 +209,7 @@ const signUpByDoctors = () => {
   promise.catch(e => alert(e.message));
 }
 
+// OK
 //validaciones de signup divisiones para users
 const ableSignUpByDoctors = () => {
   let name, email, password, confirmPassword;
@@ -239,21 +246,21 @@ const ableSignUpByDoctors = () => {
   }
 }
 
+// OK
 const signUpUsers = (e) => {
   if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
-    sectionSignUpUsers.hidden = false;
-    sectionUserSelection.hidden = true;
+    sectionSignUpUsers.style.display = "block";
+    sectionUserSelection.style.display = "none";
     optionsUsers.style.display = "none";
   } else {
-    txtEspecialidad.value = "";
-    txtColegiatura.value = "";
     // aqui se deberia mostrar el signup para los doctores
-    sectionSignUpDoctors.hidden = false;
-    sectionUserSelection.hidden = true;
+    sectionSignUpDoctors.style.display = "block";
+    sectionUserSelection.style.display = "none";
     optionsDoctors.style.display = "none";
   }
 }
 
+// OK
 const signUpByUsers = () => {
   const auth = firebase.auth();
   const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
@@ -270,6 +277,7 @@ const signUpByUsers = () => {
   promise.catch(e => alert(e.message));
 }
 
+// OK
 //validaciones de signup divisiones para users
 const ableSignUpByUsers = () => {
   let name, email, password, confirmPassword;
@@ -306,6 +314,7 @@ const ableSignUpByUsers = () => {
   }
 }
 
+// OK
 const showSignUp = () => {
   // enlace de login para ingresar a signup
   txtEmailLogIn.value = "";
@@ -314,40 +323,41 @@ const showSignUp = () => {
   openNavModalSignUp();
 }
 
+// OK
 const showLogIn = () => {
   if (txtEmailLogIn !== "" && txtPasswordLogIn !== "") {
     txtEmailLogIn.value = "";
     txtPasswordLogIn.value = "";
   }
-  sectionSignUpUsers.hidden = true;
-  sectionSignUpDoctors.hidden = true;
-  sectionLogIn.hidden = false;
+  closeNavModalSignUp();
+  sectionSignUpUsers.style.display = "none";
+  sectionSignUpDoctors.style.display = "none";
+  openNavModalLogIn();
 }
 
+// OK
 const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    const person = result.user;
-    document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${person.displayName}`;
+    console.log(result.user);
   }).catch(function (error) {
-    // console.log(error.code);
-    // console.log(error.message);
+    console.log(error);
   });
 }
 
+// OK
 const facebookAccount = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    const person = result.user;
-    document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${person.displayName}`;
+    console.log(result.user);
   }).catch(function (error) {
-    // console.log(error.code);
-    // console.log(error.message);
+    console.log(error);
   });
 }
 
+// OK
 let showOptionsUserSelect = (e) => {
   M.updateTextFields();
   if (e.currentTarget.id === "sign-up-selection-users") {
@@ -359,85 +369,75 @@ let showOptionsUserSelect = (e) => {
   }
 };
 
-// let closeModel = (e) => {
-//   if (e.currentTarget.offsetParent.id === "modal-users") {
-//     optionsUsers.style.display = "none";
-//   } else {
-//     optionsDoctors.style.display = "none";
-//     txtEspecialidad.value = "";
-//     txtColegiatura.value = "";
-//   }
-// };
-
+// OK
 let openNavModalLogIn = () => {
   modalLogIn.style.display = "block";
-  console.log("open login")
 }
 
+// OK
 let closeNavModalLogIn = () => {
   // vaciamos contenido de login cuando se cierra el modal
+  modalLogIn.style.display = "none";
   helperEmailLogIn.hidden = true;
   helperPasswordLogIn.hidden = true;
   txtEmailLogIn.value = "";
   txtPasswordLogIn.value = "";
   M.updateTextFields();
-  modalLogIn.style.display = "none";
 }
 
+// OK
 let openNavModalSignUp = () => {
+  txtEspecialidad.value = "";
+  txtColegiatura.value = "";
+  txtDoctorNameSignUp.value = "";
+  txtDoctorEmailSignUp.value = "";
+  txtDoctorPasswordSignUp.value = "";
+  txtDoctorConfirmPasswordSignUp.value = "";
+  // para cualquier ocasion está quedando en blanquear las secciones y que solo aparezca la seleccion de usuarios
   sectionUserSelection.style.display = "block";
   optionsDoctors.style.display = "none";
   optionsUsers.style.display = "none";
-  sectionSignUpUsers.style.display = "none";
+  sectionSignUpDoctors.style.display = "none";
   sectionSignUpUsers.style.display = "none";
   modalSignUp.style.display = "block";
-  console.log("open login")
 }
 
+// OK
 let closeNavModalSignUp = () => {
   modalSignUp.style.display = "none";
-  console.log("close login")
 }
 
-// botones de NAV al apretarse saldran modals
-navBtnLogIn.addEventListener("click", () => {
-  openNavModalLogIn();
-});
-navBtnSignUp.addEventListener("click", () => {
-  openNavModalSignUp();
-});
 
-btnLogIn.addEventListener("click", () => validateLogIn());
+// login
+navBtnLogIn.addEventListener("click", () => openNavModalLogIn());
+closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
+btnEmailLogIn.addEventListener("click", () => validateLogIn());
+btnFacebookLogIn.addEventListener("click", () => facebookAccount());
+btnGoogleLogIn.addEventListener("click", () => googleAccount());
 goToSignUp.addEventListener("click", () => showSignUp());
 
-
+// signup
+navBtnSignUp.addEventListener("click", () => openNavModalSignUp());
+closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
 goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
 goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
-closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
-closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
-goToLogInFromDoctors.addEventListener("click", () => showLogIn());
-goToLogInFromUsers.addEventListener("click", () => showLogIn());
-btnSignUpDoctors.addEventListener("click", () => ableSignUpByDoctors());
-btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
-btnGoogleLogIn.addEventListener("click", () => googleAccount());
-btnFacebookLogIn.addEventListener("click", () => facebookAccount());
-btnLogOut.addEventListener("click", () => logOut());
 
-//button opciones
-btnModalSignUpDoctors.addEventListener("click", (e) => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
+// signup doctors
+btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
-    signUpUsers(e)
+    signUpUsers(e);
   } else {
     helperColegiatura.hidden = false;
     helperEspecialidad.hidden = false;
   }
 });
 btnModalFbSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
+    closeNavModalSignUp();
     facebookAccount();
   } else {
     helperColegiatura.hidden = false;
@@ -445,18 +445,16 @@ btnModalFbSignUpDoctors.addEventListener("click", () => {
   }
 });
 btnModalGgSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length) {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
+    closeNavModalSignUp();
     googleAccount();
   } else {
     helperColegiatura.hidden = false;
     helperEspecialidad.hidden = false;
   }
 });
-btnModalSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
-btnModalFbSignUpUsers.addEventListener("click", () => facebookAccount());
-btnModalGgSignUpUsers.addEventListener("click", () => googleAccount());
 
 txtDoctorNameSignUp.addEventListener("keyup", () => {
   if (txtDoctorNameSignUp.value.length > 0) {
@@ -490,7 +488,13 @@ txtDoctorConfirmPasswordSignUp.addEventListener("keyup", () => {
     confirmPassword = false;
   }
 });
+btnSignUpDoctors.addEventListener("click", () => ableSignUpByDoctors());
+goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 
+// signup users
+btnModalEmailSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
+btnModalFbSignUpUsers.addEventListener("click", () => facebookAccount());
+btnModalGgSignUpUsers.addEventListener("click", () => googleAccount());
 txtUserNameSignUp.addEventListener("keyup", () => {
   if (txtUserNameSignUp.value.length > 0) {
     helperNameUserSignUp.hidden = true;
@@ -519,9 +523,13 @@ txtUserConfirmPasswordSignUp.addEventListener("keyup", () => {
     helperConfirmPasswordUserSignUp.hidden = false;
   }
 });
+btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
+goToLogInFromUsers.addEventListener("click", () => showLogIn());
+
+btnLogOut.addEventListener("click", () => logOut());
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   M.Sidenav.init(elems);
 });
