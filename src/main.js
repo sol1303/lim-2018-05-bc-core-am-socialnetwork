@@ -353,7 +353,7 @@ const facebookAccount = () => {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     console.log(result.user);
   }).catch(function (error) {
-    console.log(error);
+    alert(error.message);
   });
 }
 
