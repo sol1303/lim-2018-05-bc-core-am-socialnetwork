@@ -87,7 +87,7 @@
     <!-- modal de login -->
     <section id="modal-log-in" class="modal-signup">
       <div class="modal-content-signup">
-        <span class="close">&times;</span>
+        <span id="close-log-in" class="close">&times;</span>
         <!-- LOG IN -->
         <section id="main-log-in" class="center-align s12">
           <!-- INPUTS -->
@@ -105,8 +105,8 @@
               <span class="helper-text-wrong" id="incorrect-password" hidden>la contraseña es incorrecta</span>
             </div>
             <!-- BOTON LOGIN -->
-            <div id="section-btn-log-in">
-              <button id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</button>
+            <div>
+              <button id="btn-email-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</button>
               <div class="btn-log-in-social">
                 <a id="btn-fb-log-in" class="waves-effect waves-light social-icon btn facebook indigo darken-3">
                   <i class="fa fa-facebook"></i>
@@ -127,7 +127,7 @@
     <!-- modal de signup -->
     <section id="modal-sign-up" class="modal-signup">
       <div class="modal-content-signup">
-        <span class="close">&times;</span>
+        <span id="close-sign-up" class="close">&times;</span>
 
         <!-- SELECCION DE USUARIO -->
         <section id="select-user">
@@ -185,7 +185,7 @@
         </section>
 
         <!-- SIGN UP DE DOCTOR -->
-        <section id="main-sign-up-doctors" class="center-align s12" hidden>
+        <section id="main-sign-up-doctors" class="center-align s12" style="display: none">
           <!-- INPUTS -->
           <div class="row spaces">
             <div class="input-field col s12 input-sign-up">
@@ -223,7 +223,7 @@
         </section>
 
         <!-- SIGN UP DE USERS -->
-        <section id="main-sign-up-users" class="center-align s12" hidden>
+        <section id="main-sign-up-users" class="center-align s12" style="display: none">
           <!-- INPUTS -->
           <div class="row spaces-signup">
             <div class="input-field col s12 input-sign-up">
