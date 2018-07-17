@@ -100,12 +100,18 @@ const user = {
 
 // OK
 const config = {
-  apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
-  authDomain: "salutem-a2461.firebaseapp.com",
-  databaseURL: "https://salutem-a2461.firebaseio.com",
-  projectId: "salutem-a2461",
-  storageBucket: "salutem-a2461.appspot.com",
-  messagingSenderId: "953244358481"
+  // apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
+  // authDomain: "salutem-a2461.firebaseapp.com",
+  // databaseURL: "https://salutem-a2461.firebaseio.com",
+  // projectId: "salutem-a2461",
+  // storageBucket: "salutem-a2461.appspot.com",
+  // messagingSenderId: "953244358481"
+  apiKey: "AIzaSyDW8PIGL6vbFaMhRy0PpXtNv_e59eZYmfs",
+    authDomain: "auth-social-network.firebaseapp.com",
+    databaseURL: "https://auth-social-network.firebaseio.com",
+    projectId: "auth-social-network",
+    storageBucket: "auth-social-network.appspot.com",
+    messagingSenderId: "1041115691430"
 };
 
 // OK
@@ -210,11 +216,12 @@ const showMuro = () => {
 // OK
 const signUpByDoctors = () => {
   const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+  const promise = auth.createUserWithEmailAndPassword(txtDoctorEmailSignUp.value, txtDoctorPasswordSignUp.value).then(() => {
     const x = firebase.auth().currentUser;
     if (x) {
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
+        writeUserDbFirebase(x.uid, txtDoctorNameSignUp.value, x.email, 'doctor', txtEspecialidad.value, txtColegiatura.value, null);
         showMuro();
       }).catch(function (error) {
         alert(error);
@@ -254,9 +261,9 @@ const ableSignUpByDoctors = () => {
   }
   // si todas las etiquetas estan ocultas hará el registro
   if (name && email && password && confirmPassword) {
-    user.username = txtDoctorNameSignUp.value;
-    user.email = txtDoctorEmailSignUp.value;
-    user.password = txtDoctorPasswordSignUp.value;
+    // user.username = txtDoctorNameSignUp.value;
+    // user.email = txtDoctorEmailSignUp.value;
+    // user.password = txtDoctorPasswordSignUp.value;
     signUpByDoctors();
   }
 }
@@ -278,13 +285,13 @@ const signUpUsers = (e) => {
 // OK
 const signUpByUsers = () => {
   const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+  const promise = auth.createUserWithEmailAndPassword(txtUserEmailSignUp.value, txtUserPasswordSignUp.value).then(() => {
     const x = firebase.auth().currentUser;
     if (x) {
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
         // create pacientes in db
-        // writeUserDbFirebase();
+        writeUserDbFirebase(x.uid, txtUserNameSignUp.value, x.email, 'paciente', null, null, null);
         showMuro();
       }).catch(function (error) {
         alert(error);
@@ -324,9 +331,6 @@ const ableSignUpByUsers = () => {
   }
   // si todas las etiquetas estan ocultas hará el registro
   if (name && email && password && confirmPassword) {
-    user.name = txtUserNameSignUp.value;
-    user.email = txtUserEmailSignUp.value;
-    user.password = txtUserPasswordSignUp.value;
     // deberia actualizar el objeto user para almacenar en la db
     signUpByUsers();
   }
