@@ -216,7 +216,7 @@ const validateLogIn = () => {
 
 // OK
 const showMuro = () => {
-  document.getElementById("user-name-sign-up").innerHTML = user.username;
+  document.getElementById("user-name-sign-up").innerHTML = userLocal.username;
   closeNavModalSignUp();
   sectionResponseSignUp.hidden = false;
   sectionLogOut.hidden = false;
@@ -272,9 +272,6 @@ const ableSignUpByDoctors = () => {
   }
   // si todas las etiquetas estan ocultas hará el registro
   if (name && email && password && confirmPassword) {
-    // user.username = txtDoctorNameSignUp.value;
-    // user.email = txtDoctorEmailSignUp.value;
-    // user.password = txtDoctorPasswordSignUp.value;
     signUpByDoctors();
   }
 }
