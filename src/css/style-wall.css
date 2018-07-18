@@ -194,6 +194,13 @@ main {
   float: left !important;
 }
 
+#textarea {
+  border-bottom: none;
+}
+
+.image-post {
+  width: 60px;
+}
 
 @media only screen and (max-width: 1000px) {
   .tab {
@@ -212,3 +219,4 @@ main {
 table tr {
 font-size: 14px !important;
 }
+
