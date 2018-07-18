@@ -1,6 +1,6 @@
 body {
   background: #ffffff;
-  font-family: 'Roboto', sans-serif;
+
 }
 
 header {
@@ -19,12 +19,14 @@ header p {
 }
 
 nav a {
+  font-family: 'Dosis', sans-serif;
   margin-right: 15% !;
 }
 
 body section {
-  margin-left: 5%;
-  margin-right: 10%;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 2%;
+  /* margin-right: 5%; */
 }
 
 .btn-log-in-social {
@@ -142,6 +144,79 @@ nav {
   color: #000000 !important;
 }
 
+/* CSS MURO */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  /* border: 1px solid #ccc; */
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #FAB768;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  /* border: 1px solid #ccc; */
+  border-top: none;
+}
+
+main {
+  margin-top: 5%;
+  float: left;
+  width: 70%;
+}
+
 .heart {
   cursor: pointer;
 }
+
+#popularTags {
+  margin-top: 10%;
+  width: 30%;
+  float: left !important;
+}
+
+#textarea {
+  border-bottom: none;
+}
+
+.image-post {
+  width: 60px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .tab {
+    display: none;
+  }
+
+  #popularTags {
+    display: none;
+  }
+  
+  main {
+    width: 100%;
+  }
+}
+
+table tr {
+font-size: 14px !important;
+}
+

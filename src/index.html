@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +12,6 @@
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
-
 <body>
   <header class="center-align">
     <!-- navbar -->
@@ -85,7 +83,6 @@
       </li> -->
     </ul>
   </header>
-
   <main>
     <!-- modal de login -->
     <section id="modal-log-in" class="modal-signup">
@@ -126,12 +123,10 @@
         </section>
       </div>
     </section>
-
     <!-- modal de signup -->
     <section id="modal-sign-up" class="modal-signup">
       <div class="modal-content-signup">
         <span id="close-sign-up" class="close">&times;</span>
-
         <!-- SELECCION DE USUARIO -->
         <section id="select-user">
           <h3>Elige el tipo de usuario</h3>
@@ -144,7 +139,6 @@
             <h5>Soy Paciente</h5>
           </div>
         </section>
-
         <!-- opciones para doctores -->
         <section id="options-doctors" style="display: none">
           <div class="center-align">
@@ -172,7 +166,6 @@
               <i class="material-icons left fa fa-google"></i>Google</button>
           </div>
         </section>
-
         <!-- opciones para pacientes -->
         <section id="options-users" style="display: none">
           <div class="center-align">
@@ -186,7 +179,6 @@
               <i class="material-icons left fa fa-google"></i>Google</a>
           </div>
         </section>
-
         <!-- SIGN UP DE DOCTOR -->
         <section id="main-sign-up-doctors" class="center-align s12" style="display: none">
           <!-- INPUTS -->
@@ -224,7 +216,6 @@
             </div>
           </div>
         </section>
-
         <!-- SIGN UP DE USERS -->
         <section id="main-sign-up-users" class="center-align s12" style="display: none">
           <!-- INPUTS -->
@@ -262,23 +253,18 @@
             </div>
           </div>
         </section>
-
       </div>
     </section>
-
   </main>
-
   <!-- RESPUESTA DE INICIO DE SESION SATISFACTORIO -->
   <section id="response-log-in" class="center-align" hidden>
     <h4 id="user-name-log-in">Entraste a SALUTEM</h4>
   </section>
-
   <!-- RESPUESTA DE CREACION DE CUENTA -->
   <section id="response-sign-up" class="center-align" hidden>
     <h4 for="">Bienvenido</h4>
     <h3 id="user-name-sign-up"></h3>
   </section>
-
   <section id="log-out" class="center-align" hidden>
     <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
   </section>
@@ -413,5 +399,4 @@
   <script src="js/materialize.min.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>
