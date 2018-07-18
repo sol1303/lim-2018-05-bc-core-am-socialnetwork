@@ -144,3 +144,7 @@ nav li div {
   background-color: #fcfada !important;
   color: #000000 !important;
 }
+
+.heart {
+  cursor: pointer;
+}

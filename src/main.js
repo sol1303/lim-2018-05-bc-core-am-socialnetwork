@@ -2,6 +2,7 @@
 const sectionResponseLogIn = document.getElementById("response-log-in");
 const sectionResponseSignUp = document.getElementById("response-sign-up");
 const sectionLogOut = document.getElementById("log-out");
+const sectionMuroFalso = document.getElementById("muro-falso");
 const btnLogOut = document.getElementById("btn-log-out");
 
 // botones de NAV
@@ -134,6 +135,7 @@ updateUserByProvider = (uid, name, email, photo) => {
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
+      sectionMuroFalso.style.display = "none";
       modalLogIn.style.display = "none";
       modalSignUp.style.display = "none";
       sectionResponseLogIn.hidden = false;
@@ -145,6 +147,7 @@ window.onload = () => {
       }
     } else {
       M.updateTextFields();
+      sectionMuroFalso.style.display = "block";
       navBtnLogIn.style.display = "block";
       navBtnSignUp.style.display = "block";
     }
@@ -179,6 +182,7 @@ const logOut = () => {
     sectionResponseLogIn.hidden = true;
     sectionResponseSignUp.hidden = true;
     // cuando se salga de sesión para cualquier caso siempre se mostrará el login
+    sectionMuroFalso.style.display = "block"
     modalLogIn.style.display = "block";
   });
 }
@@ -186,7 +190,7 @@ const logOut = () => {
 // OK
 const logIn = () => {
   const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(user.email, user.password);
+  const promise = auth.signInWithEmailAndPassword(txtEmailLogIn.value, txtPasswordLogIn.value);
   promise.catch(e => {
     helperPasswordLogIn.hidden = false;
     console.log(e);
@@ -199,9 +203,7 @@ const validateLogIn = () => {
     helperEmailLogIn.hidden = true;
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
       helperPasswordLogIn.hidden = true;
-      user.email = txtEmailLogIn.value;
-      user.password = txtPasswordLogIn.value;
-      if (user.email !== "" && user.password !== "") {
+      if (txtEmailLogIn.value !== "" && txtPasswordLogIn.value !== "") {
         logIn();
       }
     } else {
@@ -572,6 +574,7 @@ btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
 
 btnLogOut.addEventListener("click", () => logOut());
+sectionMuroFalso.addEventListener("click", () => openNavModalLogIn());
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
