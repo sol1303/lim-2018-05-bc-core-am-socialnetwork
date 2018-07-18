@@ -212,10 +212,7 @@ const validateLogIn = () => {
 }
 
 const showMuro = () => {
-  document.getElementById("user-name-sign-up").innerHTML = userLocal.username;
   closeNavModalSignUp();
-  // sectionResponseSignUp.hidden = false;
-  // sectionLogOut.hidden = false;
   sectionSignUpDoctors.style.display = "none";
   sectionSignUpUsers.style.display = "none";
 }
@@ -230,7 +227,7 @@ const signUpByDoctors = () => {
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-      }).catch(function (error) {
+      }).catch(error => {
         alert(error);
       });
     }
@@ -294,7 +291,7 @@ const signUpByUsers = () => {
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-      }).catch(function (error) {
+      }).catch(error => {
         alert(error);
       });
     }
@@ -361,7 +358,7 @@ const googleAccount = () => {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     let fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(function (error) {
+  }).catch(error => {
     console.log(error);
   });
 }
@@ -372,7 +369,7 @@ const facebookAccount = () => {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(function (error) {
+  }).catch(error => {
     alert(error.message);
   });
 }
