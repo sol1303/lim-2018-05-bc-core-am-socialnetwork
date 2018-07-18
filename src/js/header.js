@@ -17,11 +17,8 @@ let headerHtml =
 						</div>
 			</li>
 			<li>
-			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+			<a id="nav-modal-log-in" class="right">Cerrar Sesión</a>
 		</li>
-		<li>
-						<a id="nav-modal-sign-up" class="right">Regístrate</a>
-					</li>
 		</ul>
 		<div class="tab">
           <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">Generales</button>
