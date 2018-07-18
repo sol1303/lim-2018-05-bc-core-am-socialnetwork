@@ -141,3 +141,7 @@ nav {
 #slide-out {
   color: #000000 !important;
 }
+
+.heart {
+  cursor: pointer;
+}
