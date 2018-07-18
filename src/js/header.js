@@ -1,5 +1,5 @@
 let headerHtml =
-	`<div class="navbar-fixed">
+  `<div class="navbar-fixed">
 		<nav>
 		<img class="center" src="../img/logo.png" alt="Logo">
 		<a data-target="slide-out" class="sidenav-trigger menu-initial right"><i class="material-icons">menu</i></a>
@@ -17,11 +17,8 @@ let headerHtml =
 						</div>
 			</li>
 			<li>
-			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+			<a id="header-nav-log-out" class="right">Cerrar sesión</a>
 		</li>
-		<li>
-						<a id="nav-modal-sign-up" class="right">Regístrate</a>
-					</li>
 		</ul>
 		<div class="tab">
           <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">Generales</button>

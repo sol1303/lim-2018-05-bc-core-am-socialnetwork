@@ -1,7 +1,4 @@
 // sections que están generales
-const sectionResponseLogIn = document.getElementById("response-log-in");
-const sectionResponseSignUp = document.getElementById("response-sign-up");
-const sectionLogOut = document.getElementById("log-out");
 const sectionMuroFalso = document.getElementById("muro-falso");
 const btnLogOut = document.getElementById("btn-log-out");
 
@@ -93,6 +90,8 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
+let isProcessing = false;
+
 const userLocal = {
   uid: null,
   username: null,
@@ -103,7 +102,6 @@ const userLocal = {
   profile_picture: null
 }
 
-// OK
 const config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
   authDomain: "salutem-a2461.firebaseapp.com",
@@ -113,7 +111,6 @@ const config = {
   messagingSenderId: "953244358481"
 };
 
-// OK
 firebase.initializeApp(config);
 
 // método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
@@ -125,6 +122,11 @@ writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl)
     specialty: specialty,
     colegiatura: colegiatura,
     profile_picture: imageUrl
+  }).then(response => {
+    console.log(response);
+    window.location.href = 'html/menu.html'
+  }).catch(error => {
+    console.error('error', error);
   });
 }
 
@@ -142,13 +144,9 @@ window.onload = () => {
       sectionMuroFalso.style.display = "none";
       modalLogIn.style.display = "none";
       modalSignUp.style.display = "none";
-      sectionResponseLogIn.hidden = false;
-      sectionLogOut.hidden = false;
       navBtnLogIn.style.display = "none";
       navBtnSignUp.style.display = "none";
-      if (user.displayName) {
-        document.getElementById("user-name-log-in").innerHTML = `Bienvenido a Salutem ${user.displayName}`;
-      }
+      if (!isProcessing) window.location.href = 'html/menu.html'
     } else {
       M.updateTextFields();
       sectionMuroFalso.style.display = "block";
@@ -182,16 +180,12 @@ const logOut = () => {
     txtUserPasswordSignUp.value = "";
     txtUserConfirmPasswordSignUp.value = "";
 
-    sectionLogOut.hidden = true;
-    sectionResponseLogIn.hidden = true;
-    sectionResponseSignUp.hidden = true;
     // cuando se salga de sesión para cualquier caso siempre se mostrará el login
     sectionMuroFalso.style.display = "block"
     modalLogIn.style.display = "block";
   });
 }
 
-// OK
 const logIn = () => {
   const auth = firebase.auth();
   const promise = auth.signInWithEmailAndPassword(txtEmailLogIn.value, txtPasswordLogIn.value);
@@ -201,7 +195,6 @@ const logIn = () => {
   });
 }
 
-// OK
 const validateLogIn = () => {
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     helperEmailLogIn.hidden = true;
@@ -218,26 +211,25 @@ const validateLogIn = () => {
   }
 }
 
-// OK
 const showMuro = () => {
   document.getElementById("user-name-sign-up").innerHTML = userLocal.username;
   closeNavModalSignUp();
-  sectionResponseSignUp.hidden = false;
-  sectionLogOut.hidden = false;
+  // sectionResponseSignUp.hidden = false;
+  // sectionLogOut.hidden = false;
   sectionSignUpDoctors.style.display = "none";
   sectionSignUpUsers.style.display = "none";
 }
 
-// OK
 const signUpByDoctors = () => {
   const auth = firebase.auth();
   const promise = auth.createUserWithEmailAndPassword(txtDoctorEmailSignUp.value, txtDoctorPasswordSignUp.value).then(() => {
     const x = firebase.auth().currentUser;
+    isProcessing = true;
     if (x) {
+      writeUserDbFirebase(x.uid, txtDoctorNameSignUp.value, x.email, 'doctor', txtEspecialidad.value, txtColegiatura.value, null);
+      showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-        writeUserDbFirebase(x.uid, txtDoctorNameSignUp.value, x.email, 'doctor', txtEspecialidad.value, txtColegiatura.value, null);
-        showMuro();
       }).catch(function (error) {
         alert(error);
       });
@@ -246,7 +238,6 @@ const signUpByDoctors = () => {
   promise.catch(e => alert(e.message));
 }
 
-// OK
 //validaciones de signup divisiones para users
 const ableSignUpByDoctors = () => {
   let name, email, password, confirmPassword;
@@ -280,7 +271,6 @@ const ableSignUpByDoctors = () => {
   }
 }
 
-// OK
 const signUpUsers = (e) => {
   if (e.currentTarget.id === "btn-email-modal-sign-up-users") {
     sectionSignUpUsers.style.display = "block";
@@ -294,17 +284,16 @@ const signUpUsers = (e) => {
   }
 }
 
-// OK
 const signUpByUsers = () => {
   const auth = firebase.auth();
   const promise = auth.createUserWithEmailAndPassword(txtUserEmailSignUp.value, txtUserPasswordSignUp.value).then(() => {
     const x = firebase.auth().currentUser;
+    isProcessing = true;
     if (x) {
+      writeUserDbFirebase(x.uid, txtUserNameSignUp.value, x.email, 'paciente', null, null, null);
+      showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-        // create pacientes in db
-        writeUserDbFirebase(x.uid, txtUserNameSignUp.value, x.email, 'paciente', null, null, null);
-        showMuro();
       }).catch(function (error) {
         alert(error);
       });
@@ -313,7 +302,6 @@ const signUpByUsers = () => {
   promise.catch(e => alert(e.message));
 }
 
-// OK
 //validaciones de signup divisiones para users
 const ableSignUpByUsers = () => {
   let name, email, password, confirmPassword;
@@ -348,7 +336,6 @@ const ableSignUpByUsers = () => {
   }
 }
 
-// OK
 const showSignUp = () => {
   // enlace de login para ingresar a signup
   txtEmailLogIn.value = "";
@@ -357,7 +344,6 @@ const showSignUp = () => {
   openNavModalSignUp();
 }
 
-// OK
 const showLogIn = () => {
   if (txtEmailLogIn !== "" && txtPasswordLogIn !== "") {
     txtEmailLogIn.value = "";
@@ -369,10 +355,9 @@ const showLogIn = () => {
   openNavModalLogIn();
 }
 
-// OK
 const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-
+  isProcessing = true;
   firebase.auth().signInWithPopup(provider).then(function (result) {
     let fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
@@ -381,10 +366,9 @@ const googleAccount = () => {
   });
 }
 
-// OK
 const facebookAccount = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
-
+  isProcessing = true;
   firebase.auth().signInWithPopup(provider).then(function (result) {
     fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
@@ -393,7 +377,6 @@ const facebookAccount = () => {
   });
 }
 
-// OK
 let showOptionsUserSelect = (e) => {
   M.updateTextFields();
   if (e.currentTarget.id === "sign-up-selection-users") {
@@ -405,12 +388,10 @@ let showOptionsUserSelect = (e) => {
   }
 };
 
-// OK
 let openNavModalLogIn = () => {
   modalLogIn.style.display = "block";
 }
 
-// OK
 let closeNavModalLogIn = () => {
   // vaciamos contenido de login cuando se cierra el modal
   modalLogIn.style.display = "none";
@@ -421,7 +402,6 @@ let closeNavModalLogIn = () => {
   M.updateTextFields();
 }
 
-// OK
 let openNavModalSignUp = () => {
   txtEspecialidad.value = "";
   txtColegiatura.value = "";
@@ -438,7 +418,6 @@ let openNavModalSignUp = () => {
   modalSignUp.style.display = "block";
 }
 
-// OK
 let closeNavModalSignUp = () => {
   modalSignUp.style.display = "none";
 }
