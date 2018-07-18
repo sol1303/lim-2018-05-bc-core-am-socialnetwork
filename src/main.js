@@ -102,17 +102,6 @@ const userLocal = {
   profile_picture: null
 }
 
-const config = {
-  apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
-  authDomain: "salutem-a2461.firebaseapp.com",
-  databaseURL: "https://salutem-a2461.firebaseio.com",
-  projectId: "salutem-a2461",
-  storageBucket: "salutem-a2461.appspot.com",
-  messagingSenderId: "953244358481"
-};
-
-firebase.initializeApp(config);
-
 // método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
 writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
   firebase.database().ref('users/' + uid).set({
