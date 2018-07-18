@@ -9,6 +9,10 @@ const btnLogOut = document.getElementById("btn-log-out");
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
 const navBtnSignUp = document.getElementById("nav-modal-sign-up");
 
+// mini nav
+const miniNavBtnLogIn = document.getElementById("mini-nav-modal-log-in");
+const miniNavBtnSignUp = document.getElementById("mini-nav-modal-sign-up");
+
 // modals dentro de MAIN
 const modalLogIn = document.getElementById("modal-log-in");
 const modalSignUp = document.getElementById("modal-sign-up");
@@ -447,12 +451,14 @@ btnEmailLogIn.addEventListener("click", () => validateLogIn());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 goToSignUp.addEventListener("click", () => showSignUp());
+miniNavBtnLogIn.addEventListener("click", () => openNavModalLogIn());
 
 // signup
 navBtnSignUp.addEventListener("click", () => openNavModalSignUp());
 closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
 goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
 goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
+miniNavBtnSignUp.addEventListener("click", () => openNavModalSignUp());
 
 // signup doctors
 btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
