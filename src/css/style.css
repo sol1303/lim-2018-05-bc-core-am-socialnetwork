@@ -146,6 +146,10 @@ nav {
   cursor: pointer;
 }
 
+#mini-nav-modal-log-in {
+  margin-top: 10%;
+}
+
 @media screen and (min-width: 700px) and (max-width: 1400px) {
   .selection-image {
     width: 50%;
