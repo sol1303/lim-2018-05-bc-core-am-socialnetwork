@@ -412,6 +412,7 @@ let closeNavModalSignUp = () => {
 // login
 navBtnLogIn.addEventListener("click", () => openNavModalLogIn());
 closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
+// funcion validate debe mandar dos parámetros (email, password)
 btnEmailLogIn.addEventListener("click", () => validateLogIn());
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
