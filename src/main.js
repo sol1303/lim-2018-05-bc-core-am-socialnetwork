@@ -102,17 +102,6 @@ const userLocal = {
   profile_picture: null
 }
 
-const config = {
-  apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
-  authDomain: "salutem-a2461.firebaseapp.com",
-  databaseURL: "https://salutem-a2461.firebaseio.com",
-  projectId: "salutem-a2461",
-  storageBucket: "salutem-a2461.appspot.com",
-  messagingSenderId: "953244358481"
-};
-
-firebase.initializeApp(config);
-
 // método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
 writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
   firebase.database().ref('users/' + uid).set({
@@ -212,10 +201,7 @@ const validateLogIn = () => {
 }
 
 const showMuro = () => {
-  document.getElementById("user-name-sign-up").innerHTML = userLocal.username;
   closeNavModalSignUp();
-  // sectionResponseSignUp.hidden = false;
-  // sectionLogOut.hidden = false;
   sectionSignUpDoctors.style.display = "none";
   sectionSignUpUsers.style.display = "none";
 }
@@ -230,7 +216,7 @@ const signUpByDoctors = () => {
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-      }).catch(function (error) {
+      }).catch(error => {
         alert(error);
       });
     }
@@ -294,7 +280,7 @@ const signUpByUsers = () => {
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
-      }).catch(function (error) {
+      }).catch(error => {
         alert(error);
       });
     }
@@ -361,7 +347,7 @@ const googleAccount = () => {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     let fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(function (error) {
+  }).catch(error => {
     console.log(error);
   });
 }
@@ -372,7 +358,7 @@ const facebookAccount = () => {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(function (error) {
+  }).catch(error => {
     alert(error.message);
   });
 }
