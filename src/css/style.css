@@ -150,6 +150,11 @@ nav {
   margin-top: 10%;
 }
 
+#slide-out img {
+  margin-top: 10%;
+  margin-right: 20%;
+}
+
 @media screen and (min-width: 700px) and (max-width: 1400px) {
   .selection-image {
     width: 50%;
