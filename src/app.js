@@ -175,29 +175,23 @@ const logOut = () => {
   });
 }
 
-const logIn = () => {
+const logIn = (email, password) => {
   const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(txtEmailLogIn.value, txtPasswordLogIn.value);
+  const promise = auth.signInWithEmailAndPassword(email, password);
   promise.catch(e => {
     helperPasswordLogIn.hidden = false;
     console.log(e);
   });
 }
 
-const validateLogIn = () => {
-  if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
-    helperEmailLogIn.hidden = true;
-    if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
-      helperPasswordLogIn.hidden = true;
-      if (txtEmailLogIn.value !== "" && txtPasswordLogIn.value !== "") {
-        logIn();
-      }
-    } else {
-      helperPasswordLogIn.hidden = false;
-    }
-  } else {
-    helperEmailLogIn.hidden = false;
-  }
+const showAlertLogIn = (validate) => {
+  if (validate.email) helperEmailLogIn.hidden = true;
+  else helperEmailLogIn.hidden = false;
+
+  if (validate.password) helperPasswordLogIn.hidden = true;
+  else helperPasswordLogIn.hidden = false;
+
+  if (validate.email && validate.password) logIn(txtEmailLogIn.value, txtPasswordLogIn.value);
 }
 
 const showMuro = () => {
@@ -413,7 +407,10 @@ let closeNavModalSignUp = () => {
 navBtnLogIn.addEventListener("click", () => openNavModalLogIn());
 closeModalLogIn.addEventListener("click", () => closeNavModalLogIn());
 // funcion validate debe mandar dos parámetros (email, password)
-btnEmailLogIn.addEventListener("click", () => validateLogIn());
+btnEmailLogIn.addEventListener("click", () => {
+  const validate = validateLogIn(txtEmailLogIn.value, txtPasswordLogIn.value);
+  showAlertLogIn(validate);
+});
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 goToSignUp.addEventListener("click", () => showSignUp());

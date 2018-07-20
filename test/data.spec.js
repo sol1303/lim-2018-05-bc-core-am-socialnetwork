@@ -9,7 +9,6 @@ describe("data", () => {
 		let email = "ana@gmail.com";
 		let password = "123456";
 		const patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-		// let email, password;
     const validate = validateLogIn(email, password);
 
     it("debe retornar un objeto que tenga como propiedades email y password", () => {
