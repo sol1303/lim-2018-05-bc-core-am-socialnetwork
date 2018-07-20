@@ -20,7 +20,7 @@ const logIn = () => {
   });
 }
 
-const funcion = (validate) => {
+const showAlertLogIn = (validate) => {
   if (validate.email) alertErrorEmail.hidden = true;
   else alertErrorEmail.hidden = false;
 
@@ -33,5 +33,5 @@ const funcion = (validate) => {
 
 btnLogIn.addEventListener("click", () => {
   const validate = validateLogIn(txtEmailLogIn.value, txtPasswordLogIn.value);
-  funcion(validate);
+  showAlertLogIn(validate);
 });
