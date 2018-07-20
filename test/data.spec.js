@@ -22,16 +22,9 @@ describe("data", () => {
 			assert.equal(validate.password, true);
 		});
 
-		it("email y password deben mas de un caracter", ()=> {
-			assert.notEqual(email, "");
-			assert.notEqual(password, "");
-			assert.notEqual(email, null);
-			assert.notEqual(password, null);
-		})
-
 		it("el email debe ser valido con tener como contenido @ seguido de 4 caracteres como mínimo . 2 caracteres más", () => {
-			assert.isOk(email, patron.test(email));
-		})
+			assert.equal(patron.test(email), true);
+		});
 
   });
 

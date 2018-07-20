@@ -6,16 +6,9 @@ window.validateLogIn = (email, password) => {
     password: false
   }
 
-  if (email !== "" && patronEmail.test(email)) {
-    logIn.email = true;
-
-    if (password !== "" && password !== null) {
-      logIn.password = true;
-		}
-		// else logIn.password = false;
-
-	}
-	// else logIn.email = false;
+  // logIn.email va a obtener true porque email !== "" && patronEmail.test(email) retornan el boolean true
+  logIn.email = email !== "" && patronEmail.test(email);
+  logIn.password = password !== "" && password !== null;
 
   return logIn;
 }

@@ -21,7 +21,8 @@ const logIn = () => {
 }
 
 const funcion = (validate) => {
-  if (validate.email) alertErrorEmail.hidden = true;
+  if (validate.email) 
+    alertErrorEmail.hidden = true;
   else alertErrorEmail.hidden = false;
 
   if (validate.password) alertErrorPassword.hidden = true;
