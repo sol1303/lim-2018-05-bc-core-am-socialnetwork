@@ -25,6 +25,33 @@ describe("data", () => {
 			assert.equal(patron.test(email), true);
 		});
 
-  });
+	});
+
+	it("la función de validateFormSignUpUsers debe ser global", () => {
+		assert.isFunction(validateFormSignUpUsers);
+	})
+
+	describe("validateFormSignUpUsers(name, email, password, confirm_password)", () => {
+		let name = "Raymond";
+		let email = "raymond@gmail.com";
+		let password = "123456";
+		let confirm_password = "123456";
+		const validate = validateFormSignUpUsers(name, email, password, confirm_password);
+
+		it("debe retornar un objeto que tenga como propiedades name, email, password y confirm_password", () => {
+			assert.ok(validate.hasOwnProperty("name"));
+			assert.ok(validate.hasOwnProperty("email"));
+			assert.ok(validate.hasOwnProperty("password"));
+			assert.ok(validate.hasOwnProperty("confirm_password"));
+    });
+
+    it("debe retornar que todas las propiedades tengan como valor true para que sean válidas", () => {
+			assert.equal(validate.name, true);
+			assert.equal(validate.email, true);
+			assert.equal(validate.password, true);
+			assert.equal(validate.confirm_password, true);
+		});
+
+	});
 
 });

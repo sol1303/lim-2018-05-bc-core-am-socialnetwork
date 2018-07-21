@@ -264,13 +264,13 @@ const signUpUsers = (e) => {
   }
 }
 
-const signUpByUsers = () => {
+const signUpByUsers = (name, email, pass) => {
   const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(txtUserEmailSignUp.value, txtUserPasswordSignUp.value).then(() => {
+  const promise = auth.createUserWithEmailAndPassword(email, pass).then(() => {
     const x = firebase.auth().currentUser;
     isProcessing = true;
     if (x) {
-      writeUserDbFirebase(x.uid, txtUserNameSignUp.value, x.email, 'paciente', null, null, null);
+      writeUserDbFirebase(x.uid, name, x.email, 'paciente', null, null, null);
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
@@ -283,38 +283,55 @@ const signUpByUsers = () => {
 }
 
 //validaciones de signup divisiones para users
-const ableSignUpByUsers = () => {
-  let name, email, password, confirmPassword;
-  //nombre
-  if (txtUserNameSignUp.value.length > 0) {
-    name = true;
-  } else if (!txtUserNameSignUp.value.length > 0) {
-    name = false;
-  }
-  //email
-  if (txtUserEmailSignUp.value.length > 0 && patronEmail.test(txtUserEmailSignUp.value)) {
-    email = true;
-  } else if (txtUserEmailSignUp.value.length === 0 || !patronEmail.test(txtUserEmailSignUp.value)) {
-    email = false;
-  }
-  //new password
-  if (txtUserPasswordSignUp.value.length >= 6) {
-    password = true;
-  } else if (txtUserPasswordSignUp.value.length < 6) {
-    password = false;
-  }
-  //confirm password
-  if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
-    confirmPassword = true;
-  } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
-    confirmPassword = false;
-  }
-  // si todas las etiquetas estan ocultas hará el registro
-  if (name && email && password && confirmPassword) {
-    // deberia actualizar el objeto user para almacenar en la db
-    signUpByUsers();
+const showAlertSignUpUsers = (validate) => {
+	if (validate.name) helperNameUserSignUp.hidden = true;
+	else helperNameUserSignUp.hidden = false;
+
+	if (validate.email) helperEmailUserSignUp.hidden = true;
+	else helperEmailUserSignUp.hidden = false;
+
+	if (validate.password) helperPasswordUserSignUp.hidden = true;
+	else helperPasswordUserSignUp.hidden = false;
+
+	if (validate.confirm_password) helperConfirmPasswordUserSignUp.hidden = true;
+	else helperConfirmPasswordUserSignUp.hidden = false;
+
+	if (validate.name && validate.email && validate.password && validate.confirm_password) {
+    signUpByUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value, txtUserConfirmPasswordSignUp.value);
   }
 }
+// const ableSignUpByUsers = () => {
+//   let name, email, password, confirmPassword;
+//   //nombre
+//   if (txtUserNameSignUp.value.length > 0) {
+//     name = true;
+//   } else if (!txtUserNameSignUp.value.length > 0) {
+//     name = false;
+//   }
+//   //email
+//   if (txtUserEmailSignUp.value.length > 0 && patronEmail.test(txtUserEmailSignUp.value)) {
+//     email = true;
+//   } else if (txtUserEmailSignUp.value.length === 0 || !patronEmail.test(txtUserEmailSignUp.value)) {
+//     email = false;
+//   }
+//   //new password
+//   if (txtUserPasswordSignUp.value.length >= 6) {
+//     password = true;
+//   } else if (txtUserPasswordSignUp.value.length < 6) {
+//     password = false;
+//   }
+//   //confirm password
+//   if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
+//     confirmPassword = true;
+//   } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
+//     confirmPassword = false;
+//   }
+//   // si todas las etiquetas estan ocultas hará el registro
+//   if (name && email && password && confirmPassword) {
+//     // deberia actualizar el objeto user para almacenar en la db
+//     signUpByUsers();
+//   }
+// }
 
 const showSignUp = () => {
   // enlace de login para ingresar a signup
@@ -425,7 +442,7 @@ miniNavBtnSignUp.addEventListener("click", () => openNavModalSignUp());
 
 // signup doctors
 btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
     signUpUsers(e);
@@ -435,7 +452,7 @@ btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
   }
 });
 btnModalFbSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
     userLocal.type = 'doctor';
@@ -449,7 +466,7 @@ btnModalFbSignUpDoctors.addEventListener("click", () => {
   }
 });
 btnModalGgSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length > 0) {
+  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
     helperColegiatura.hidden = true;
     helperEspecialidad.hidden = true;
     userLocal.type = 'doctor';
@@ -508,35 +525,11 @@ btnModalGgSignUpUsers.addEventListener("click", () => {
   userLocal.type = 'paciente';
   googleAccount();
 });
-txtUserNameSignUp.addEventListener("keyup", () => {
-  if (txtUserNameSignUp.value.length > 0) {
-    helperNameUserSignUp.hidden = true;
-  } else if (!txtUserNameSignUp.value.length > 0) {
-    helperNameUserSignUp.hidden = false;
-  }
+
+btnSignUpUsers.addEventListener("click", () => {
+  const validate = validateFormSignUpUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value, txtUserConfirmPasswordSignUp.value);
+  showAlertSignUpUsers(validate);
 });
-txtUserEmailSignUp.addEventListener("keyup", () => {
-  if (txtUserEmailSignUp.value.length > 0 && patronEmail.test(txtUserEmailSignUp.value)) {
-    helperEmailUserSignUp.hidden = true;
-  } else if (txtUserEmailSignUp.value.length === 0 || !patronEmail.test(txtUserEmailSignUp.value)) {
-    helperEmailUserSignUp.hidden = false;
-  }
-});
-txtUserPasswordSignUp.addEventListener("keyup", () => {
-  if (txtUserPasswordSignUp.value.length >= 6) {
-    helperPasswordUserSignUp.hidden = true;
-  } else if (txtUserPasswordSignUp.value.length < 6) {
-    helperPasswordUserSignUp.hidden = false;
-  }
-});
-txtUserConfirmPasswordSignUp.addEventListener("keyup", () => {
-  if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
-    helperConfirmPasswordUserSignUp.hidden = true;
-  } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
-    helperConfirmPasswordUserSignUp.hidden = false;
-  }
-});
-btnSignUpUsers.addEventListener("click", () => ableSignUpByUsers());
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
 
 btnLogOut.addEventListener("click", () => logOut());
