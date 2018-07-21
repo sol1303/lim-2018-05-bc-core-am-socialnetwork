@@ -1,5 +1,10 @@
 // sections que están generales
+const sectionHeader = document.getElementById("header-main");
+sectionHeader.innerHTML = headerMain; //obtiene la seccion en que pintara y la une con el codigo del componente
+
 const sectionMuroFalso = document.getElementById("muro-falso");
+sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
+
 const btnLogOut = document.getElementById("btn-log-out");
 
 // botones de NAV
@@ -300,38 +305,6 @@ const showAlertSignUpUsers = (validate) => {
     signUpByUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value, txtUserConfirmPasswordSignUp.value);
   }
 }
-// const ableSignUpByUsers = () => {
-//   let name, email, password, confirmPassword;
-//   //nombre
-//   if (txtUserNameSignUp.value.length > 0) {
-//     name = true;
-//   } else if (!txtUserNameSignUp.value.length > 0) {
-//     name = false;
-//   }
-//   //email
-//   if (txtUserEmailSignUp.value.length > 0 && patronEmail.test(txtUserEmailSignUp.value)) {
-//     email = true;
-//   } else if (txtUserEmailSignUp.value.length === 0 || !patronEmail.test(txtUserEmailSignUp.value)) {
-//     email = false;
-//   }
-//   //new password
-//   if (txtUserPasswordSignUp.value.length >= 6) {
-//     password = true;
-//   } else if (txtUserPasswordSignUp.value.length < 6) {
-//     password = false;
-//   }
-//   //confirm password
-//   if (txtUserConfirmPasswordSignUp.value.length >= 6 && txtUserConfirmPasswordSignUp.value === txtUserPasswordSignUp.value) {
-//     confirmPassword = true;
-//   } else if (txtUserConfirmPasswordSignUp.value.length < 6 || txtUserConfirmPasswordSignUp.value !== txtUserPasswordSignUp.value) {
-//     confirmPassword = false;
-//   }
-//   // si todas las etiquetas estan ocultas hará el registro
-//   if (name && email && password && confirmPassword) {
-//     // deberia actualizar el objeto user para almacenar en la db
-//     signUpByUsers();
-//   }
-// }
 
 const showSignUp = () => {
   // enlace de login para ingresar a signup
