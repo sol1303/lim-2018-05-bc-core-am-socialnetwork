@@ -159,6 +159,10 @@ nav {
   margin-right: 20%;
 }
 
+#select_especialidad {
+  margin-top: -10%;
+}
+
 @media screen and (min-width: 700px) and (max-width: 1400px) {
   .selection-image {
     width: 50%;
@@ -187,7 +191,7 @@ nav {
   }
   .btn-social {
     width: 60%;
-    margin: 3%;
+    margin: 2.5%;
   }
 }
 
@@ -206,5 +210,12 @@ nav {
   #desktop-img {
     margin-left: -15% !important;
     width: 70px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .btn-social {
+    width: 60%;
+    margin: 1%;
   }
 }

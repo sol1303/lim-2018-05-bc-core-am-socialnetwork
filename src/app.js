@@ -49,6 +49,7 @@ const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 
 // dentro de optionsDoctors
 const txtEspecialidad = document.getElementById("specialty");
+const selectEspecialidad = document.getElementById("select_especialidad")
 const helperEspecialidad = document.getElementById("incorrect-specialty");
 const txtColegiatura = document.getElementById("colegiatura");
 const helperColegiatura = document.getElementById("incorrect-colegiatura");
@@ -175,13 +176,23 @@ const showMuro = () => {
   sectionSignUpUsers.style.display = "none";
 }
 
-const signUpByDoctors = () => {
+const showAlertEspecificDoctor = (validate, e) => {
+  if (validate.especialidad) helperEspecialidad.hidden = true;
+  else helperEspecialidad.hidden = false;
+
+  if (validate.colegiatura) helperColegiatura.hidden = true;
+  else helperColegiatura.hidden = false;
+
+  if (validate.especialidad && validate.colegiatura) signUpUsers(e);
+}
+
+const signUpByDoctors = (name, email, pass, especialidad, colegiatura) => {
   const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(txtDoctorEmailSignUp.value, txtDoctorPasswordSignUp.value).then(() => {
+  const promise = auth.createUserWithEmailAndPassword(email, pass).then(() => {
     const x = firebase.auth().currentUser;
     isProcessing = true;
     if (x) {
-      writeUserDbFirebase(x.uid, txtDoctorNameSignUp.value, x.email, 'doctor', txtEspecialidad.value, txtColegiatura.value, null);
+      writeUserDbFirebase(x.uid, name, x.email, 'doctor', especialidad, colegiatura, null);
       showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
@@ -191,39 +202,6 @@ const signUpByDoctors = () => {
     }
   });
   promise.catch(e => alert(e.message));
-}
-
-//validaciones de signup divisiones para users
-const ableSignUpByDoctors = () => {
-  let name, email, password, confirmPassword;
-  //nombre
-  if (txtDoctorNameSignUp.value.length > 0) {
-    name = true;
-  } else if (!txtDoctorNameSignUp.value.length > 0) {
-    name = false;
-  }
-  //email
-  if (txtDoctorEmailSignUp.value.length > 0 && patronEmail.test(txtDoctorEmailSignUp.value)) {
-    email = true;
-  } else if (txtDoctorEmailSignUp.value.length === 0 || !patronEmail.test(txtDoctorEmailSignUp.value)) {
-    email = false;
-  }
-  //new password
-  if (txtDoctorPasswordSignUp.value.length >= 6) {
-    password = true;
-  } else if (txtDoctorPasswordSignUp.value.length < 6) {
-    password = false;
-  }
-  //confirm password
-  if (txtDoctorConfirmPasswordSignUp.value.length >= 6 && txtDoctorConfirmPasswordSignUp.value === txtDoctorPasswordSignUp.value) {
-    confirmPassword = true;
-  } else if (txtDoctorConfirmPasswordSignUp.value.length < 6 || txtDoctorConfirmPasswordSignUp.value !== txtDoctorPasswordSignUp.value) {
-    confirmPassword = false;
-  }
-  // si todas las etiquetas estan ocultas hará el registro
-  if (name && email && password && confirmPassword) {
-    signUpByDoctors();
-  }
 }
 
 const signUpUsers = (e) => {
@@ -257,22 +235,41 @@ const signUpByUsers = (name, email, pass) => {
   promise.catch(e => alert(e.message));
 }
 
-//validaciones de signup divisiones para users
-const showAlertSignUpUsers = (validate) => {
-	if (validate.name) helperNameUserSignUp.hidden = true;
-	else helperNameUserSignUp.hidden = false;
+//validaciones de signup divisiones para pacientes y doctores
+const showAlertSignUpUsers = (validate, e) => {
+  // para pacientes
+  if (e.currentTarget.id === "btn-sign-up-users") {
+    if (validate.name) helperNameUserSignUp.hidden = true;
+    else helperNameUserSignUp.hidden = false;
 
-	if (validate.email) helperEmailUserSignUp.hidden = true;
-	else helperEmailUserSignUp.hidden = false;
+    if (validate.email) helperEmailUserSignUp.hidden = true;
+    else helperEmailUserSignUp.hidden = false;
 
-	if (validate.password) helperPasswordUserSignUp.hidden = true;
-	else helperPasswordUserSignUp.hidden = false;
+    if (validate.password) helperPasswordUserSignUp.hidden = true;
+    else helperPasswordUserSignUp.hidden = false;
 
-	if (validate.confirm_password) helperConfirmPasswordUserSignUp.hidden = true;
-	else helperConfirmPasswordUserSignUp.hidden = false;
+    if (validate.confirm_password) helperConfirmPasswordUserSignUp.hidden = true;
+    else helperConfirmPasswordUserSignUp.hidden = false;
 
-	if (validate.name && validate.email && validate.password && validate.confirm_password) {
-    signUpByUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value, txtUserConfirmPasswordSignUp.value);
+    if (validate.name && validate.email && validate.password && validate.confirm_password) {
+      signUpByUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value);
+    }
+  } else { //para doctores
+    if (validate.name) helperNameDoctorSignUp.hidden = true;
+    else helperNameDoctorSignUp.hidden = false;
+
+    if (validate.email) helperEmailDoctorSignUp.hidden = true;
+    else helperEmailDoctorSignUp.hidden = false;
+
+    if (validate.password) helperPasswordDoctorSignUp.hidden = true;
+    else helperPasswordDoctorSignUp.hidden = false;
+
+    if (validate.confirm_password) helperConfirmPasswordDoctorSignUp.hidden = true;
+    else helperConfirmPasswordDoctorSignUp.hidden = false;
+
+    if (validate.name && validate.email && validate.password && validate.confirm_password) {
+      signUpByDoctors(txtDoctorNameSignUp.value, txtDoctorEmailSignUp.value, txtDoctorPasswordSignUp.value, selectEspecialidad.options[selectEspecialidad.selectedIndex].value, txtColegiatura.value);
+    }
   }
 }
 
@@ -343,7 +340,7 @@ let closeNavModalLogIn = () => {
 }
 
 let openNavModalSignUp = () => {
-  txtEspecialidad.value = "";
+  // txtEspecialidad.value = "";
   txtColegiatura.value = "";
   txtDoctorNameSignUp.value = "";
   txtDoctorEmailSignUp.value = "";
@@ -361,7 +358,6 @@ let openNavModalSignUp = () => {
 let closeNavModalSignUp = () => {
   modalSignUp.style.display = "none";
 }
-
 
 // login
 navBtnLogIn.addEventListener("click", () => openNavModalLogIn());
@@ -391,14 +387,8 @@ miniNavBtnSignUp.addEventListener("click", () => {
 
 // signup doctors
 btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
-    helperColegiatura.hidden = true;
-    helperEspecialidad.hidden = true;
-    signUpUsers(e);
-  } else {
-    helperColegiatura.hidden = false;
-    helperEspecialidad.hidden = false;
-  }
+  const validate = validateEspecificDoctor(selectEspecialidad.options[selectEspecialidad.selectedIndex].value, txtColegiatura.value);
+  showAlertEspecificDoctor(validate, e);
 });
 btnModalFbSignUpDoctors.addEventListener("click", () => {
   if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
@@ -429,39 +419,10 @@ btnModalGgSignUpDoctors.addEventListener("click", () => {
   }
 });
 
-txtDoctorNameSignUp.addEventListener("keyup", () => {
-  if (txtDoctorNameSignUp.value.length > 0) {
-    helperNameDoctorSignUp.hidden = true;
-  } else if (!txtDoctorNameSignUp.value.length > 0) {
-    helperNameDoctorSignUp.hidden = false;
-  }
+btnSignUpDoctors.addEventListener("click", (e) => {
+  const validate = validateFormSignUpUsers(txtDoctorNameSignUp.value, txtDoctorEmailSignUp.value, txtDoctorPasswordSignUp.value, txtDoctorConfirmPasswordSignUp.value);
+  showAlertSignUpUsers(validate, e);
 });
-txtDoctorEmailSignUp.addEventListener("keyup", () => {
-  if (txtDoctorEmailSignUp.value.length > 0 && patronEmail.test(txtDoctorEmailSignUp.value)) {
-    helperEmailDoctorSignUp.hidden = true;
-  } else if (txtDoctorEmailSignUp.value.length === 0 || !patronEmail.test(txtDoctorEmailSignUp.value)) {
-    helperEmailDoctorSignUp.hidden = false;
-  }
-});
-txtDoctorPasswordSignUp.addEventListener("keyup", () => {
-  if (txtDoctorPasswordSignUp.value.length >= 6) {
-    helperPasswordDoctorSignUp.hidden = true;
-    password = true;
-  } else if (txtDoctorPasswordSignUp.value.length < 6) {
-    helperPasswordDoctorSignUp.hidden = false;
-    password = false;
-  }
-});
-txtDoctorConfirmPasswordSignUp.addEventListener("keyup", () => {
-  if (txtDoctorConfirmPasswordSignUp.value.length >= 6 && txtDoctorConfirmPasswordSignUp.value === txtDoctorPasswordSignUp.value) {
-    helperConfirmPasswordDoctorSignUp.hidden = true;
-    confirmPassword = true;
-  } else if (txtDoctorConfirmPasswordSignUp.value.length < 6 || txtDoctorConfirmPasswordSignUp.value !== txtDoctorPasswordSignUp.value) {
-    helperConfirmPasswordDoctorSignUp.hidden = false;
-    confirmPassword = false;
-  }
-});
-btnSignUpDoctors.addEventListener("click", () => ableSignUpByDoctors());
 goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 
 // signup users
@@ -475,9 +436,9 @@ btnModalGgSignUpUsers.addEventListener("click", () => {
   googleAccount();
 });
 
-btnSignUpUsers.addEventListener("click", () => {
+btnSignUpUsers.addEventListener("click", (e) => {
   const validate = validateFormSignUpUsers(txtUserNameSignUp.value, txtUserEmailSignUp.value, txtUserPasswordSignUp.value, txtUserConfirmPasswordSignUp.value);
-  showAlertSignUpUsers(validate);
+  showAlertSignUpUsers(validate, e);
 });
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
 sectionMuroFalso.addEventListener("click", () => openNavModalLogIn());

@@ -78,17 +78,42 @@
           <div class="center-align">
             <h4>Registro de Doctor</h4>
             <div class="row spaces">
-              <div class="input-field col s12 input-sign-up-doctors">
-                <i class="material-icons prefix">assignment_ind</i>
+              <div class="input-field col s12">
+                <select class="browser-default" id="select_especialidad">
+                  <option value="" disabled selected>Especialidad</option>
+                  <option value="Alergología">Alergología</option>
+                  <option value="Cardiología">Cardiología</option>
+                  <option value="Dermatología">Dermatología</option>
+                  <option value="Ecografía">Ecografía</option>
+                  <option value="Endocrinología">Endocrinología</option>
+                  <option value="Gastroenterología">Gastroenterología</option>
+                  <option value="Geriatría">Geriatría</option>
+                  <option value="Ginecología Oncológica">Ginecología Oncológica</option>
+                  <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                  <option value="Hematología">Hematología</option>
+                  <option value="Mastología">Mastología</option>
+                  <option value="Medicina Física y Rehabilitación">Medicina Física y Rehabilitación</option>
+                  <option value="Medicina General">Medicina General</option>
+                  <option value="Medicina Interna">Medicina Interna</option>
+                  <option value="Nefrología">Nefrología</option>
+                  <option value="Neumología">Neumología</option>
+                  <option value="Neurología">Neurología</option>
+                  <option value="Nutrición">Nutrición</option>
+                  <option value="Odontología">Odontología</option>
+                  <option value="Oftalmología">Oftalmología</option>
+                  <option value="Otorrinolaringología">Otorrinolaringología</option>
+                  <option value="Pediatría">Pediatría</option>
+                </select>
+                <!-- <i class="material-icons prefix">assignment_ind</i>
                 <input id="specialty" type="text">
-                <label for="specialty">Especialidad</label>
-                <span class="helper-text-wrong" id="incorrect-specialty" hidden>campo vacío</span>
+                <label for="specialty">Especialidad</label> -->
+                <span class="helper-text-wrong" id="incorrect-specialty" hidden>no seleccionó opción</span>
               </div>
               <div class="input-field col s12 input-sign-up-doctors">
                 <i class="material-icons prefix">dialpad</i>
                 <input id="colegiatura" type="number">
                 <label for="colegiatura">Número de Colegiatura</label>
-                <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>campo vacío</span>
+                <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>incorrecto</span>
               </div>
             </div>
             <h5 class="center-align">Elige con que deseas registrarte:</h5>
@@ -190,10 +215,6 @@
       </div>
     </section>
   </main>
-
-  <section id="log-out" class="center-align" hidden>
-    <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
-  </section>
 
   <!-- contenido falso del muro -->
   <section id="muro-falso"></section>

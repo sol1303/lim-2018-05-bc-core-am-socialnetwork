@@ -30,3 +30,15 @@ window.validateFormSignUpUsers = (name, email, password, confirm_pass) => {
 
   return signUpUser;
 }
+
+window.validateEspecificDoctor = (especialidad, colegiatura) => {
+  let especificDoctor = {
+    especialidad: false,
+    colegiatura: false
+  }
+
+  especificDoctor.especialidad = especialidad !== "";
+  especificDoctor.colegiatura = colegiatura.length > 5;
+
+  return especificDoctor;
+}
