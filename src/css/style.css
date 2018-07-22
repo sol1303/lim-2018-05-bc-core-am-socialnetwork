@@ -10,7 +10,7 @@ header {
 }
 
 header img {
-  margin-left: 15%;
+  margin-left: 21%;
   width: 70px;
 }
 
@@ -44,10 +44,10 @@ body section {
   background: #1DB4BF !important;
 }
 
-.input-sign-up {
-  margin-top: 0rem !important;
-  margin-bottom: 0rem !important;
-}
+/* .input-sign-up {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+} */
 
 .input-sign-up-doctors {
   margin-top: -0.5rem !important;
@@ -62,7 +62,8 @@ body section {
 }
 
 #select-user {
-  margin-top: 5% !important;
+  display: inline-block;
+  /* margin-top: 5% !important; */
 }
 
 .helper-text {
@@ -131,12 +132,15 @@ body section {
   cursor: pointer;
 }
 
+a {
+  cursor: pointer;
+}
+
 nav {
   background-color: #1DB4BF !important;
   height: 70px !important;
   margin-bottom: 5%;
 }
-
 
 #slide-out {
   color: #000000 !important;
@@ -144,4 +148,74 @@ nav {
 
 .heart {
   cursor: pointer;
+}
+
+#mini-nav-modal-log-in {
+  margin-top: 10%;
+}
+
+#slide-out img {
+  margin-top: 10%;
+  margin-right: 20%;
+}
+
+#select_especialidad {
+  margin-top: -10%;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1400px) {
+  .selection-image {
+    width: 50%;
+  }
+  #sign-up-selection-doctors {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 .75rem;
+    min-height: 1px;
+    width: 50%;
+    margin-left: auto;
+    left: auto;
+    right: auto
+  }
+  #sign-up-selection-users {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 .75rem;
+    min-height: 1px;
+    width: 50%;
+    margin-left: auto;
+    left: auto;
+    right: auto
+  }
+  .btn-social {
+    width: 60%;
+    margin: 2.5%;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 700px) {
+  .selection-image {
+    width: 35%;
+  }
+
+  #desktop-img {
+    margin-left: -15% !important;
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #desktop-img {
+    margin-left: -15% !important;
+    width: 70px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .btn-social {
+    width: 60%;
+    margin: 1%;
+  }
 }

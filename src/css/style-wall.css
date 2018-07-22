@@ -223,3 +223,6 @@ table tr {
 font-size: 14px !important;
 }
 
+.dnone{
+  display:none;
+}

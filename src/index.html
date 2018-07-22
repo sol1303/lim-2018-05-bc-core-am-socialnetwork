@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,77 +13,10 @@
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
+
 <body>
-  <header class="center-align">
-    <!-- navbar -->
-    <nav>
-      <a href="#" data-target="slide-out" class="sidenav-trigger menu-initial">
-        <i class="material-icons ">menu</i>
-      </a>
-      <img class="right" src="img/logo.png" alt="Logo">
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li>
-          <a>Muro</a>
-        </li>
-        <li>
-          <div class="center row">
-            <div class="col s12 ">
-              <div class="row" id="topbarsearch">
-                <div class="input-field col s6 s12">
-                  <i class="material-icons prefix">search</i>
-                  <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text">
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a id="nav-modal-log-in" class="right">Inicia Sesión</a>
-        </li>
-        <li>
-          <a id="nav-modal-sign-up" class="right">Regístrate</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- menu chiquito -->
-    <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <!-- <div class="background"> -->
-            <!-- <img src="images/office.jpg"> -->
-          <!-- </div> -->
-          <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
-          <!-- se comenta porque desde un inicio no hay un usuario logueado, por lo tanto no muestra nombre -->
-          <!-- <a href="#name">
-            <span class="black-text name">John Doe</span>
-          </a>
-          <a href="#email">
-            <span class="black-text email">jdandturk@gmail.com</span>
-          </a> -->
-        </div>
-      </li>
-      <li>
-        <a id="mini-nav-modal-log-in">
-          <i class="material-icons">vpn_key</i>Inicia Sesión</a>
-      </li>
-      <li>
-        <a id="mini-nav-modal-sign-up"> <i class="material-icons">portrait</i> Regístrate</a>
-      </li>
-      <!-- por el momento para la demo solo debería mostrar lo que funciona -->
-      <!-- <li>
-        <div class="divider"></div>
-      </li>
-      <li>
-        <a class="subheader">Subheader</a>
-      </li>
-      <li>
-        <a class="waves-effect" href="#!">Third Link With Waves</a>
-      </li>
-      <li>
-        <a class="waves-effect" id="side-log-in">Ingresa/Registrate</a>
-      </li> -->
-    </ul>
-  </header>
+  <header class="center-align" id="header-main"></header>
+
   <main>
     <!-- modal de login -->
     <section id="modal-log-in" class="modal-signup">
@@ -128,15 +62,15 @@
       <div class="modal-content-signup">
         <span id="close-sign-up" class="close">&times;</span>
         <!-- SELECCION DE USUARIO -->
-        <section id="select-user">
-          <h3>Elige el tipo de usuario</h3>
-          <div id="sign-up-selection-doctors" class="row center-align">
+        <section id="select-user" class="row">
+          <h4 class="center-align">Elige el tipo de usuario</h4>
+          <div id="sign-up-selection-doctors" class="center-align">
             <img src="img/doctors.png" class="selection-image" alt="doctors">
-            <h5>Soy Doctor</h5>
+            <h6>Soy Doctor</h6>
           </div>
-          <div id="sign-up-selection-users" class="row center-align">
+          <div id="sign-up-selection-users" class="center-align">
             <img src="img/users.png" class="selection-image" alt="users">
-            <h5>Soy Paciente</h5>
+            <h6>Soy Paciente</h6>
           </div>
         </section>
         <!-- opciones para doctores -->
@@ -144,20 +78,42 @@
           <div class="center-align">
             <h4>Registro de Doctor</h4>
             <div class="row spaces">
-              <div class="input-field col s12 input-sign-up-doctors">
-                <i class="material-icons prefix">assignment_ind</i>
-                <input id="specialty" type="text">
-                <label for="specialty">Especialidad</label>
-                <span class="helper-text-wrong" id="incorrect-specialty" hidden>campo vacío</span>
+              <div class="input-field col s12">
+                <select class="browser-default" id="select_especialidad">
+                  <option value="" disabled selected>Especialidad</option>
+                  <option value="Alergología">Alergología</option>
+                  <option value="Cardiología">Cardiología</option>
+                  <option value="Dermatología">Dermatología</option>
+                  <option value="Ecografía">Ecografía</option>
+                  <option value="Endocrinología">Endocrinología</option>
+                  <option value="Gastroenterología">Gastroenterología</option>
+                  <option value="Geriatría">Geriatría</option>
+                  <option value="Ginecología Oncológica">Ginecología Oncológica</option>
+                  <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                  <option value="Hematología">Hematología</option>
+                  <option value="Mastología">Mastología</option>
+                  <option value="Medicina Física y Rehabilitación">Medicina Física y Rehabilitación</option>
+                  <option value="Medicina General">Medicina General</option>
+                  <option value="Medicina Interna">Medicina Interna</option>
+                  <option value="Nefrología">Nefrología</option>
+                  <option value="Neumología">Neumología</option>
+                  <option value="Neurología">Neurología</option>
+                  <option value="Nutrición">Nutrición</option>
+                  <option value="Odontología">Odontología</option>
+                  <option value="Oftalmología">Oftalmología</option>
+                  <option value="Otorrinolaringología">Otorrinolaringología</option>
+                  <option value="Pediatría">Pediatría</option>
+                </select>
+                <span class="helper-text-wrong" id="incorrect-specialty" hidden>no seleccionó opción</span>
               </div>
               <div class="input-field col s12 input-sign-up-doctors">
                 <i class="material-icons prefix">dialpad</i>
                 <input id="colegiatura" type="number">
                 <label for="colegiatura">Número de Colegiatura</label>
-                <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>campo vacío</span>
+                <span class="helper-text-wrong" id="incorrect-colegiatura" hidden>incorrecto</span>
               </div>
             </div>
-            <h5>Elige con que deseas registrarte:</h5>
+            <h5 class="center-align">Elige con que deseas registrarte:</h5>
             <button class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-doctors">
               <i class="material-icons left">email</i>Correo Electrónico</button>
             <button class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-doctors">
@@ -170,7 +126,7 @@
         <section id="options-users" style="display: none">
           <div class="center-align">
             <h4>Paciente</h4>
-            <h5>Elige con que deseas registrarte:</h5>
+            <h5 class="center-align">Elige con que deseas registrarte:</h5>
             <a class="waves-effect waves-light btn btn-social" id="btn-email-modal-sign-up-users">
               <i class="material-icons left">email</i>Correo Electrónico</a>
             <a class="waves-effect waves-light btn indigo darken-3 btn-social" id="btn-fb-modal-sign-up-users">
@@ -256,147 +212,17 @@
       </div>
     </section>
   </main>
-  <!-- RESPUESTA DE INICIO DE SESION SATISFACTORIO -->
-  <section id="response-log-in" class="center-align" hidden>
-    <h4 id="user-name-log-in">Entraste a SALUTEM</h4>
-  </section>
-  <!-- RESPUESTA DE CREACION DE CUENTA -->
-  <section id="response-sign-up" class="center-align" hidden>
-    <h4 for="">Bienvenido</h4>
-    <h3 id="user-name-sign-up"></h3>
-  </section>
-  <section id="log-out" class="center-align" hidden>
-    <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
-  </section>
 
   <!-- contenido falso del muro -->
-  <section id="muro-falso">
-    <!-- post publico estatico -->
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title">Génesis Nole</span>
-            <p>El Día Mundial contra el Cáncer, se conmemora cada 4 de febrero, siendo una oportunidad para reflexionar y pensar
-              en lo que queremos hacer para comprometernos y para actuar. La campaña mundial propone el lema, "Nosotros podemos.
-              Yo puedo", explora cómo todos juntos o de manera individual podemos ayudar a reducir la incidencia mundial
-              del cáncer (OMS 2018). Entérate más aquí:</p>
-            <a class="truncate">http://www.minsa.gob.pe/cancer2018/index.asp</a>
-          </div>
-          <div class="card-action">
-            <a class="heart">
-              <i class="material-icons">favorite</i>
-            </a>
-            <a>2</a>
-            <a>Comentario</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section id="muro-falso"></section>
 
-    <!-- post publico estatico -->
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title">Solange Lavarello</span>
-            <p>La temporada de bajas temperaturas en zonas altoandinas se caracteriza por la presencia de heladas, acompañada
-              algunas veces de nevadas y granizadas. Asimismo, en la Amazonía se presentan eventos de caídas bruscas de temperatura
-              en pocas horas, principalmente entre los meses de junio, julio y agosto, donde la temperatura del aire sufre
-              caídas significativas hasta de 15°C. Estos eventos suelen generar impactos negativos que influyen en la salud
-              de la población. Entérate más aquí:</p>
-            <a class="truncate">http://www.minsa.gob.pe/portada/Especiales/2018/friaje_adultos/index.asp</a>
-          </div>
-          <div class="card-action">
-            <a class="heart">
-              <i class="material-icons">favorite</i>
-            </a>
-            <a>2</a>
-            <a>Comentario</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- post publico estatico -->
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title">Anaflavia Díaz</span>
-            <p>El Síndrome de Guillain Barré es un trastorno del sistema nervioso poco frecuente por el cual, el propio sistema
-              inmunológico de una persona daña las neuronas y causa debilidad muscular y a veces parálisis. Entérate más
-              aquí sobre SGB</p>
-            <a class="truncate">http://www.minsa.gob.pe/portada/Especiales/2018/guillain_barre/index.asp</a>
-          </div>
-          <div class="card-action">
-            <a class="heart">
-              <i class="material-icons">favorite</i>
-            </a>
-            <a>2</a>
-            <a>Comentario</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-        <h4>Clínicas</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Clínica</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div>
-      <h4>Búsquedas Populares</h4>
-      <div class="chip">
-        Síndrome de Guillain Barré
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Hospitales
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Recetas Medicas
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Friaje
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-          Cáncer
-        <i class="close material-icons">close</i>
-      </div>
-    </div>
-  </section>
-
+  <!-- components -->
+  <script src="components/header-main.js"></script>
+  <script src="components/muro_falso.js"></script>
+  <script src="data/data.js"></script>
+  <script src="firebase/firebase.js"></script>
   <script src="js/materialize.min.js"></script>
-  <script src="main.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="row spaces-signup">
+    <div class="input-field col s12 input-sign-up">
+      <i class="material-icons prefix">account_circle</i>
+      <input id="txt-user-name-signup" type="text">
+      <label for="txt-user-name-signup">Nombre</label>
+      <span class="helper-text-wrong" id="incorrect-user-name-sign-up" hidden>no hay nombre</span>
+    </div>
+    <div class="input-field col s12 input-sign-up">
+      <i class="material-icons prefix">email</i>
+      <input id="txt-user-mail-signup" type="email">
+      <label for="txt-user-mail-signup">Correo Electrónico</label>
+      <span class="helper-text-wrong" id="incorrect-user-email-sign-up" hidden>el correo no es válido</span>
+    </div>
+    <div class="input-field col s12 input-sign-up">
+      <i class="material-icons prefix">https</i>
+      <input id="txt-user-password-signup" type="password">
+      <label for="txt-user-password-signup">Nueva Contraseña</label>
+      <span class="helper-text-wrong" id="incorrect-user-password-sign-up" hidden>debe contener más de 6 caracteres</span>
+    </div>
+    <div class="input-field col s12 input-sign-up">
+      <i class="material-icons prefix">https</i>
+      <input id="txt-user-confirm-password-signup" type="password">
+      <label for="txt-user-confirm-password-signup">Confirma Contraseña</label>
+      <span class="helper-text-wrong" id="incorrect-user-confirm-password-sign-up" hidden>no coinciden</span>
+    </div>
+    <!-- BOTON SIGNUP -->
+    <div>
+      <button id="btn-sign-up-users" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="controller.js"></script>
+</body>
+
+</html>
