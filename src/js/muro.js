@@ -9,15 +9,40 @@ const config = {
 
 firebase.initializeApp(config);
 
-// COMPONENTE HEADER
+// PINTA HEADER
 const menuHeader = document.getElementById("menu-header");
 menuHeader.innerHTML = headerHtml;
-// COMPONENTE GENERAL (POSTEAR Y PUBLICACIONES)
-// const tabLondon = document.getElementById("London");
-// tabLondon.innerHTML = muroTabs;
-// COMPONENTE LISTA DE HOSPITALES
-const tabParis = document.getElementById("Paris");
-tabParis.innerHTML = tableClinic;
+// PINTA MURO
+const tabWall = document.getElementById("principal-tab");
+tabWall.innerHTML = muroTabs;
+
+// CLICK EN INICIO Y PINTA MURO
+document.getElementById("defaultOpen").addEventListener("click", () => {
+tabWall.innerHTML = muroTabs;
+});
+document.getElementById("nav-wall").addEventListener("click", () => {
+tabWall.innerHTML = muroTabs;
+});
+// CLICK EN LISTA DE HOSPITALES Y PINTA LISTA
+document.getElementById("tab-list-clinic").addEventListener("click", () => {
+const tabListClinic = document.getElementById("principal-tab");
+tabListClinic.innerHTML = tableClinic;
+});
+document.getElementById("nav-list-clinic").addEventListener("click", () => {
+const tabListClinic = document.getElementById("principal-tab");
+tabListClinic.innerHTML = tableClinic;
+});
+
+// CLICK EN RECOMENDACIONES Y PINTA POST DE DOCTORES
+document.getElementById("tab-doctor-post").addEventListener("click", () => {
+const tabPostDoctor = document.getElementById("principal-tab");
+tabPostDoctor.innerHTML = tabDoctor;
+});
+document.getElementById("nav-doctor-post").addEventListener("click", () => {
+const tabPostDoctor = document.getElementById("principal-tab");
+tabPostDoctor.innerHTML = tabDoctor;
+});
+
 
 const logOut = document.getElementById("header-nav-log-out");
 logOut.addEventListener("click", () => {
@@ -31,23 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems);
 });
-
-// FUNCIÓN PARA APARECER SEGUN TABS
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName('tabcontent');
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = 'none';
-  }
-  tablinks = document.getElementsByClassName('tablinks');
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(' active', '');
-  }
-  document.getElementById(cityName).style.display = 'block';
-  evt.currentTarget.className += ' active';
-}
-// Get the element with id='defaultOpen' and click on it
-document.getElementById('defaultOpen').click();
 
 // contador de clicks
 var clicks = 0;
@@ -67,18 +75,3 @@ document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.dropdown-trigger');
   var instances = M.Dropdown.init(elems);
 });
-
-
-// crear elemento
-// let post = document.getElementById('defaultOpen');
-
-// post.addEventListener('click', () => {
-// 	const prueba = document.getElementById('London');
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-// 	prueba.innerHTML += '<div class='row'><div class='col s12 m9'><div class='card'><div class='card-content black-text'><span class='card-title'>John Smith</span><p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p></div><div class='card-action'><a class='heart' onClick='clickME()'><i class='material-icons'>favorite</i></a><a id='clicks'>0</a><a>Comentario</a></div></div></div></div>'
-
-// });

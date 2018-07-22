@@ -10,7 +10,7 @@ header {
 }
 
 header img {
-  margin-left: 15%;
+  margin-right: 15%;
   width: 70px;
 }
 
@@ -26,7 +26,6 @@ nav a {
 body section {
   font-family: 'Open Sans', sans-serif;
   margin-left: 2%;
-  /* margin-right: 5%; */
 }
 
 .btn-log-in-social {
@@ -142,6 +141,10 @@ nav {
 
 #slide-out {
   color: #000000 !important;
+}
+
+#slide-out div a {
+  display: inline-block;
 }
 
 /* CSS MURO */
