@@ -77,7 +77,4 @@ describe("data", () => {
 
 	});
 
-	//validar formulario de doctor igual a signup de pacientes
-	
-
 });

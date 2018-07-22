@@ -5,8 +5,6 @@ sectionHeader.innerHTML = headerMain; //obtiene la seccion en que pintara y la u
 const sectionMuroFalso = document.getElementById("muro-falso");
 sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
 
-// const btnLogOut = document.getElementById("btn-log-out");
-
 // botones de NAV
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
 const navBtnSignUp = document.getElementById("nav-modal-sign-up");
@@ -48,7 +46,6 @@ const goToSignUpDoctors = document.getElementById("sign-up-selection-doctors");
 const goToSignUpUsers = document.getElementById("sign-up-selection-users");
 
 // dentro de optionsDoctors
-const txtEspecialidad = document.getElementById("specialty");
 const selectEspecialidad = document.getElementById("select_especialidad")
 const helperEspecialidad = document.getElementById("incorrect-specialty");
 const txtColegiatura = document.getElementById("colegiatura");
@@ -102,7 +99,7 @@ const userLocal = {
   uid: null,
   username: null,
   email: null,
-  type: null,
+  type: 'paciente',
   specialty: null,
   colegiatura: null,
   profile_picture: null
@@ -183,7 +180,20 @@ const showAlertEspecificDoctor = (validate, e) => {
   if (validate.colegiatura) helperColegiatura.hidden = true;
   else helperColegiatura.hidden = false;
 
-  if (validate.especialidad && validate.colegiatura) signUpUsers(e);
+  if (validate.especialidad && validate.colegiatura) {
+    if (e.currentTarget.id === "btn-email-modal-sign-up-doctors") signUpUsers(e);
+    else if (e.currentTarget.id === "btn-gg-modal-sign-up-doctors") {
+      userLocal.type = 'doctor';
+      userLocal.specialty = selectEspecialidad.options[selectEspecialidad.selectedIndex].value;
+      userLocal.colegiatura = txtColegiatura.value;
+      googleAccount();
+    } else if (e.currentTarget.id === "btn-fb-modal-sign-up-doctors") {
+      userLocal.type = 'doctor';
+      userLocal.specialty = selectEspecialidad.options[selectEspecialidad.selectedIndex].value;
+      userLocal.colegiatura = txtColegiatura.value;
+      facebookAccount();
+    }
+  }
 }
 
 const signUpByDoctors = (name, email, pass, especialidad, colegiatura) => {
@@ -295,18 +305,18 @@ const showLogIn = () => {
 const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   isProcessing = true;
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  firebase.auth().signInWithPopup(provider).then(result => {
     let fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   }).catch(error => {
-    console.log(error);
+    console.log(error.message);
   });
 }
 
 const facebookAccount = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   isProcessing = true;
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  firebase.auth().signInWithPopup(provider).then(result => {
     fireUser = result.user;
     updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   }).catch(error => {
@@ -340,7 +350,6 @@ let closeNavModalLogIn = () => {
 }
 
 let openNavModalSignUp = () => {
-  // txtEspecialidad.value = "";
   txtColegiatura.value = "";
   txtDoctorNameSignUp.value = "";
   txtDoctorEmailSignUp.value = "";
@@ -390,33 +399,13 @@ btnModalEmailSignUpDoctors.addEventListener("click", (e) => {
   const validate = validateEspecificDoctor(selectEspecialidad.options[selectEspecialidad.selectedIndex].value, txtColegiatura.value);
   showAlertEspecificDoctor(validate, e);
 });
-btnModalFbSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
-    helperColegiatura.hidden = true;
-    helperEspecialidad.hidden = true;
-    userLocal.type = 'doctor';
-    userLocal.specialty = txtEspecialidad.value;
-    userLocal.colegiatura = txtColegiatura.value;
-    closeNavModalSignUp();
-    facebookAccount();
-  } else {
-    helperColegiatura.hidden = false;
-    helperEspecialidad.hidden = false;
-  }
+btnModalFbSignUpDoctors.addEventListener("click", (e) => {
+  const validate = validateEspecificDoctor(selectEspecialidad.options[selectEspecialidad.selectedIndex].value, txtColegiatura.value);
+  showAlertEspecificDoctor(validate, e);
 });
-btnModalGgSignUpDoctors.addEventListener("click", () => {
-  if (txtColegiatura.value.length > 0 && txtEspecialidad.value.length === 6) {
-    helperColegiatura.hidden = true;
-    helperEspecialidad.hidden = true;
-    userLocal.type = 'doctor';
-    userLocal.specialty = txtEspecialidad.value;
-    userLocal.colegiatura = txtColegiatura.value;
-    closeNavModalSignUp();
-    googleAccount();
-  } else {
-    helperColegiatura.hidden = false;
-    helperEspecialidad.hidden = false;
-  }
+btnModalGgSignUpDoctors.addEventListener("click", (e) => {
+  const validate = validateEspecificDoctor(selectEspecialidad.options[selectEspecialidad.selectedIndex].value, txtColegiatura.value);
+  showAlertEspecificDoctor(validate, e);
 });
 
 btnSignUpDoctors.addEventListener("click", (e) => {
@@ -444,7 +433,7 @@ goToLogInFromUsers.addEventListener("click", () => showLogIn());
 sectionMuroFalso.addEventListener("click", () => openNavModalLogIn());
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   var elems = document.querySelectorAll('.sidenav');
   M.Sidenav.init(elems);
 });
