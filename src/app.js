@@ -5,7 +5,7 @@ sectionHeader.innerHTML = headerMain; //obtiene la seccion en que pintara y la u
 const sectionMuroFalso = document.getElementById("muro-falso");
 sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
 
-const btnLogOut = document.getElementById("btn-log-out");
+// const btnLogOut = document.getElementById("btn-log-out");
 
 // botones de NAV
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
@@ -147,36 +147,6 @@ window.onload = () => {
       navBtnLogIn.style.display = "block";
       navBtnSignUp.style.display = "block";
     }
-  });
-}
-
-const logOut = () => {
-  firebase.auth().signOut().then(() => {
-    userLocal.uid = null,
-    userLocal.username = null,
-    userLocal.email = null,
-    userLocal.type = null,
-    userLocal.specialty = null,
-    userLocal.colegiatura = null,
-    userLocal.profile_picture = null,
-    txtEmailLogIn.value = "";
-    txtPasswordLogIn.value = "";
-    // doctores
-    txtEspecialidad.value = "";
-    txtColegiatura.value = "";
-    txtDoctorNameSignUp.value = "";
-    txtDoctorEmailSignUp.value = "";
-    txtDoctorPasswordSignUp.value = "";
-    txtDoctorConfirmPasswordSignUp.value = "";
-    //pacientes
-    txtUserNameSignUp.value = "";
-    txtUserEmailSignUp.value = "";
-    txtUserPasswordSignUp.value = "";
-    txtUserConfirmPasswordSignUp.value = "";
-
-    // cuando se salga de sesión para cualquier caso siempre se mostrará el login
-    sectionMuroFalso.style.display = "block"
-    modalLogIn.style.display = "block";
   });
 }
 
@@ -510,8 +480,6 @@ btnSignUpUsers.addEventListener("click", () => {
   showAlertSignUpUsers(validate);
 });
 goToLogInFromUsers.addEventListener("click", () => showLogIn());
-
-btnLogOut.addEventListener("click", () => logOut());
 sectionMuroFalso.addEventListener("click", () => openNavModalLogIn());
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
