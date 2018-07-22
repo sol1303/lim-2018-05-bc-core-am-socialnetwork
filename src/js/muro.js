@@ -203,7 +203,7 @@ function savePost(post){
       posTextArea.innerHTML = newPost;
       postP.style.display = "block";
       posTextArea.style.display = "none";
-      saveButton.style.display = "inline-block";
+      saveButton.style.display = "none";
     }
   })
 
