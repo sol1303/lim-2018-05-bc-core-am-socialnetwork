@@ -10,7 +10,7 @@ header {
 }
 
 header img {
-  margin-left: 15%;
+  margin-left: 21%;
   width: 70px;
 }
 
@@ -181,10 +181,26 @@ nav {
     left: auto;
     right: auto
   }
+  .btn-social {
+    width: 60%;
+    margin: 3%;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 700px) {
   .selection-image {
     width: 35%;
+  }
+
+  #desktop-img {
+    margin-left: -15% !important;
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #desktop-img {
+    margin-left: -15% !important;
+    width: 70px;
   }
 }

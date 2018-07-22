@@ -404,14 +404,20 @@ btnEmailLogIn.addEventListener("click", () => {
 btnFacebookLogIn.addEventListener("click", () => facebookAccount());
 btnGoogleLogIn.addEventListener("click", () => googleAccount());
 goToSignUp.addEventListener("click", () => showSignUp());
-miniNavBtnLogIn.addEventListener("click", () => openNavModalLogIn());
+miniNavBtnLogIn.addEventListener("click", () => {
+  closeNavModalSignUp();
+  openNavModalLogIn();
+});
 
 // signup
 navBtnSignUp.addEventListener("click", () => openNavModalSignUp());
 closeModalSignUp.addEventListener("click", () => closeNavModalSignUp());
 goToSignUpDoctors.addEventListener("click", (e) => showOptionsUserSelect(e));
 goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
-miniNavBtnSignUp.addEventListener("click", () => openNavModalSignUp());
+miniNavBtnSignUp.addEventListener("click", () => {
+  closeNavModalLogIn();
+  openNavModalSignUp();
+});
 
 // signup doctors
 btnModalEmailSignUpDoctors.addEventListener("click", (e) => {

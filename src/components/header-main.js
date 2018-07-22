@@ -5,7 +5,7 @@ headerMain = `
 	<a href="#" data-target="slide-out" class="sidenav-trigger">
 		<i class="material-icons ">menu</i>
 	</a>
-	<img class="center" src="img/logo.png" alt="Logo">
+	<img id="desktop-img" class="center" src="img/logo.png" alt="Logo">
 	<ul class="right hide-on-med-and-down">
 		<li>
 			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
@@ -17,7 +17,7 @@ headerMain = `
 </nav>
 
 <ul id="slide-out" class="sidenav">
-	<img src="img/logo-turquesa.png" alt="Logo">
+	<img class="center" src="img/logo-turquesa.png" alt="Logo">
 	<li>
 		<a id="mini-nav-modal-log-in">
 			<i class="material-icons">vpn_key</i>Inicia Sesión</a>
