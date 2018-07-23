@@ -76,7 +76,7 @@ function mostrarAllPost() {
       var post = newPost.val();
       cont++;
       ref.ref('/users/' + post.uid).once('value').then(function (snapshot) {
-        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML += ` 
         <div class="row" id="${post.idPost}">
           <div class="col s12 m9">
@@ -160,10 +160,15 @@ function deletePost(post) {
 }
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 function editPost(post) {
+  console.log(post)
   let postId = post.dataset.idpost,
     postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
+    console.log(postId);
+    console.log(postP);
+    console.log(saveButton);
+    console.log(postTextArea);
   //mostrar text area y oculpar p tag
   postP.style.display = "none";
   postTextArea.style.display = "block";
