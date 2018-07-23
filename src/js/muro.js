@@ -135,12 +135,12 @@ function deletePost(post) {
   updates['/users/' + x.uid + '/posts/' + postId] = null;
   //Aparece mensaje de confirmación para eliminiacion del mensaje
   swal({
-    title: "Está Seguro que desea eliminar esta publicación?",
-    text: "Puedes editar esta publicación si quieres cambiar algo.!",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
+      title: "Está Seguro que desea eliminar esta publicación?",
+      text: "Puedes editar esta publicación si quieres cambiar algo.!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
     .then((willDelete) => {
       if (willDelete) {
         firebase.database().ref().update(updates, function (error) {
@@ -202,10 +202,13 @@ function savePost(post) {
   })
 
 }
+
 function likePost(favorite) {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
-  let like = { countLike: cantLikes };
+  let like = {
+    countLike: cantLikes
+  };
 
   var updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
