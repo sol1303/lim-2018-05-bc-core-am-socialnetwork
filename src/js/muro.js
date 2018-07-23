@@ -12,14 +12,14 @@ menuHeader.innerHTML = headerHtml;
 // const tabWall = document.getElementById("principal-tab");
 // tabWall.innerHTML = muroTabs;
 
-// CLICK EN INICIO Y PINTA MURO
+// // CLICK EN INICIO Y PINTA MURO
 // document.getElementById("defaultOpen").addEventListener("click", () => {
 // tabWall.innerHTML = muroTabs;
 // });
 // document.getElementById("nav-wall").addEventListener("click", () => {
 // tabWall.innerHTML = muroTabs;
 // });
-// CLICK EN LISTA DE HOSPITALES Y PINTA LISTA
+// // CLICK EN LISTA DE HOSPITALES Y PINTA LISTA
 // document.getElementById("tab-list-clinic").addEventListener("click", () => {
 // const tabListClinic = document.getElementById("principal-tab");
 // tabListClinic.innerHTML = tableClinic;
@@ -29,7 +29,7 @@ menuHeader.innerHTML = headerHtml;
 // tabListClinic.innerHTML = tableClinic;
 // });
 
-// CLICK EN RECOMENDACIONES Y PINTA POST DE DOCTORES
+// // CLICK EN RECOMENDACIONES Y PINTA POST DE DOCTORES
 // document.getElementById("tab-doctor-post").addEventListener("click", () => {
 // const tabPostDoctor = document.getElementById("principal-tab");
 // tabPostDoctor.innerHTML = tabDoctor;
