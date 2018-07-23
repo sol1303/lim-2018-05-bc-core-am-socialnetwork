@@ -27,6 +27,7 @@ describe("data", () => {
 
 	});
 
+	// solo para signup de validar formulario de pacientes
 	it("la función de validateFormSignUpUsers debe ser global", () => {
 		assert.isFunction(validateFormSignUpUsers);
 	})
@@ -50,6 +51,28 @@ describe("data", () => {
 			assert.equal(validate.email, true);
 			assert.equal(validate.password, true);
 			assert.equal(validate.confirm_password, true);
+		});
+
+	});
+
+	// solo para validar datos veridicos de un doctor
+	it("la función de validateEspecificDoctor debe ser global", ()=> {
+		assert.isFunction(validateEspecificDoctor);
+	});
+
+	describe("validateEspecificDoctor(especialidad, colegiatura)", ()=> {
+		let especialidad = "Pediatría";
+		let colegiatura = "123456";
+		const validate = validateEspecificDoctor(especialidad, colegiatura);
+
+		it("debería retornar un objeto que tenga como propiedad especialidad y colegiatura", () => {
+			assert.ok(validate.hasOwnProperty("especialidad"));
+			assert.ok(validate.hasOwnProperty("colegiatura"));
+		});
+
+		it("debe retornar que todas las propiedades tengan como valor true para que sean válidas", () => {
+			assert.equal(validate.especialidad, true);
+			assert.equal(validate.colegiatura, true);
 		});
 
 	});
