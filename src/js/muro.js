@@ -165,10 +165,6 @@ function editPost(post) {
     postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-    console.log(postId);
-    console.log(postP);
-    console.log(saveButton);
-    console.log(postTextArea);
   //mostrar text area y oculpar p tag
   postP.style.display = "none";
   postTextArea.style.display = "block";
