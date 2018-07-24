@@ -46,7 +46,7 @@ function openCity(evt, cityName) {
 document.getElementById('defaultOpen').click();
 
 //FUNCION PARA CREAR POST Y GUARDAR EN DATABASE DE FIREBASE
-function makePost() {
+const makePost = () => {
   const x = firebase.auth().currentUser;
   let datePosted = new Date();
   let posts = {
@@ -54,28 +54,28 @@ function makePost() {
     description: postUser.value,
     uid: x.uid
   }
-  var key = firebase.database().ref().child('users').push().key;
+  let key = firebase.database().ref().child('users').push().key;
   posts.idPost = key;
-  var updates = {};
+  let updates = {};
   updates['/post/' + key] = posts;
   updates['/users/' + x.uid + '/posts/' + key] = posts;
   firebase.database().ref().update(updates)
 };
 
 window.onload = () => {
-  var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems);
+  let elems = document.querySelectorAll('.dropdown-trigger');
+  M.Dropdown.init(elems);
   mostrarAllPost()
 }
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
-function mostrarAllPost() {
+const mostrarAllPost = () => {
   let cont = 0;
   let ref = firebase.database();
   ref.ref('/post')
     .on('child_added', (newPost) => {
       var post = newPost.val();
       cont++;
-      ref.ref('/users/' + post.uid).once('value').then(function (snapshot) {
+      ref.ref('/users/' + post.uid).once('value').then((snapshot) =>{
         var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML += ` 
         <div class="row" id="${post.idPost}">
@@ -111,22 +111,22 @@ function mostrarAllPost() {
                 <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
                 <a>Comentario</a>
                 <a id="${post.idPost}" onclick="savePost(this)" class="dnone waves-effect waves-light btn">
-                  <i class="mdi-maps-rate-review left" type="button"></i>Guardar
+                  <i class="mdi-maps-rate-review left">Guardar</i>
                 </a>
               </div>
             </div>
           </div>
         </div>
     `;
-        var elems = document.querySelectorAll('#section_posts .dropdown-trigger');
-        var instances = M.Dropdown.init(elems);
+        let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
+        M.Dropdown.init(elems);
       });
 
 
     })
 }
 // FUNCION QUE PERMITE ELIMINAR POST
-function deletePost(post) {
+const deletePost = (post) => {
   let postId = post.dataset.idpost,
     postBlock = document.querySelector("div#" + postId);
   const x = firebase.auth().currentUser;
@@ -143,7 +143,7 @@ function deletePost(post) {
   })
     .then((willDelete) => {
       if (willDelete) {
-        firebase.database().ref().update(updates, function (error) {
+        firebase.database().ref().update(updates ,(error)=>{
           if (error) {
             alert("No se pudo eliminar")
           } else {
@@ -159,8 +159,7 @@ function deletePost(post) {
 
 }
 // FUNCION QUE PERMITE EDITAR PUBLICACION
-function editPost(post) {
-  console.log(post)
+const editPost = (post) => {
   let postId = post.dataset.idpost,
     postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
@@ -172,7 +171,7 @@ function editPost(post) {
 
 }
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
-function savePost(post) {
+const savePost = (post) => {
   let postId = post.attributes["0"].value,
     newPost = document.querySelector("textarea." + postId).value;
   const x = firebase.auth().currentUser;
@@ -183,10 +182,10 @@ function savePost(post) {
     description: newPost,
     uid: x.uid
   }
-  var updates = {};
+  let updates = {};
   updates['/post/' + postId] = newPostValues;
   updates['/users/' + x.uid + '/posts/' + postId] = newPostValues;
-  firebase.database().ref().update(updates, function (error) {
+  firebase.database().ref().update(updates, (error) =>{
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
@@ -202,15 +201,15 @@ function savePost(post) {
   })
 
 }
-function likePost(favorite) {
+const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
-  let like = { countLike: cantLikes };
+  {countLike: cantLikes};
 
   var updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
   updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/countLike'] = cantLikes;
-  firebase.database().ref().update(updates, function (error) {
+  firebase.database().ref().update(updates, (error) => {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
@@ -220,9 +219,7 @@ function likePost(favorite) {
   })
 
 }
-
-
-btnPublic.addEventListener("click", function () {
+btnPublic.addEventListener("click", () => {
   makePost()
   postUser.value = "";
 });
