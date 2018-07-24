@@ -1,10 +1,36 @@
 muroFalso =
   `
+  <div class="row">
+  <div class="col s10">
+  <div class="card horizontal">
+	<div class="card-stacked">
+	<img src="../src/img/Direct-primary-care-doctor-1024x683.jpeg">
+	</div>
+	<div class="card-stacked">
+	  <div class="card-content post-content">
+	  <span class="card-title">Génesis Nole</span>
+		<p>El Día Mundial contra el Cáncer, se conmemora cada 4 de febrero, siendo una oportunidad para reflexionar y pensar
+		en lo que queremos hacer para comprometernos y para actuar. La campaña mundial propone el lema, "Nosotros podemos.
+		Yo puedo", explora cómo todos juntos o de manera individual podemos ayudar a reducir la incidencia mundial
+		del cáncer (OMS 2018). Entérate más aquí:</p>
+	<a class="truncate">http://www.minsa.gob.pe/cancer2018/index.asp</a>
+	  </div>
+	  <div class="card-action right">
+			<a class="heart">
+				<i class="material-icons">favorite</i>
+			</a>
+			<a>2</a>
+			<a>Comentario</a>
+		</div>
+	</div>
+  </div>
+</div>
+</div>
 <div class="row">
-<div class="col s12">
+<div class="col s9">
 	<div class="card">
 		<div class="card-content black-text">
-			<span class="card-title">Génesis Nole</span>
+		<span class="card-title">Génesis Nole</span>
 			<p>El Día Mundial contra el Cáncer, se conmemora cada 4 de febrero, siendo una oportunidad para reflexionar y pensar
 				en lo que queremos hacer para comprometernos y para actuar. La campaña mundial propone el lema, "Nosotros podemos.
 				Yo puedo", explora cómo todos juntos o de manera individual podemos ayudar a reducir la incidencia mundial

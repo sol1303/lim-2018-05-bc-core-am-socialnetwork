@@ -44,11 +44,6 @@ body section {
   background: #1DB4BF !important;
 }
 
-/* .input-sign-up {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
-} */
-
 .input-sign-up-doctors {
   margin-top: -0.5rem !important;
 }
@@ -163,7 +158,20 @@ nav {
   margin-top: -10%;
 }
 
-@media screen and (min-width: 700px) and (max-width: 1400px) {
+.post-content {
+  white-space: normal;
+  overflow:hidden;
+  width: 100%;
+  height: 200px !important;
+  text-overflow: ellipsis;
+}
+
+.card-stacked img {
+  height: 200px;
+  width: auto;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1440px) {
   .selection-image {
     width: 50%;
   }
