@@ -15,9 +15,9 @@ miniBtnLogout.addEventListener("click", () => {
     window.location.href = '../../src/'
   })
 });
-// COMPONENTE LISTA DE HOSPITALES
-const tabParis = document.getElementById("Paris");
-tabParis.innerHTML = tableClinic;
+// // COMPONENTE LISTA DE HOSPITALES
+// const tabParis = document.getElementById("Paris");
+// tabParis.innerHTML = tableClinic;
 
 const logOut = document.getElementById("header-nav-log-out");
 logOut.addEventListener("click", () => {
@@ -92,7 +92,7 @@ function mostrarAllPost() {
                     <i class="material-icons left">more_vert</i>
                   </a>
                   <ul id="dropdown${cont}" class="dropdown-content">
-                    <li data-idpost="${post.idPost}"  onclick="editPost(this) ">
+                    <li data-idpost="${post.idPost}"  onclick="editPost(this)">
                       <a >
                         <i class="material-icons">mode_edit</i>Editar</a>
                     </li >

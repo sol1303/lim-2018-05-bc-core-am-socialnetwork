@@ -26,10 +26,6 @@ body section {
   margin-left: 5%;
   margin-right: 10%;
 }
-/* revisar */
-header ul li {
-  margin-top: 10%;
-}
 
 .btn-log-in-social {
   margin: 5%;
@@ -62,7 +58,6 @@ header ul li {
 
 #select-user {
   display: inline-block;
-  /* margin-top: 5% !important; */
 }
 
 .helper-text {
@@ -162,20 +157,8 @@ nav {
   margin-top: -10%;
 }
 
-.post-content {
-  white-space: normal;
-  overflow:hidden;
-  width: 100%;
-  height: 200px !important;
-  text-overflow: ellipsis;
-}
 
-.card-stacked img {
-  height: 200px;
-  width: auto;
-}
-
-@media screen and (min-width: 700px) and (max-width: 1440px) {
+@media screen and (min-width: 700px) {
   .selection-image {
     width: 50%;
   }
@@ -205,6 +188,14 @@ nav {
     width: 60%;
     margin: 2.5%;
   }
+}
+
+.modal-content-signup {
+  width: 50%;
+}
+
+.selection-image {
+  width: 45%;
 }
 
 @media screen and (min-width: 600px) and (max-width: 700px) {
