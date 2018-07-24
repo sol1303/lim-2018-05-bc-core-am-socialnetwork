@@ -8,23 +8,24 @@ const menuHeader = document.getElementById("menu-header");
 // menuHeader.innerHTML = headerHtml;
 menuHeader.innerHTML = headerMenu; //components/header-menu
 
-//al cargar el menu del componente header se trae los botones
+//al cargar el menu del componente header se trae los botones btn salir menu grande
 const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
 miniBtnLogout.addEventListener("click", () => {
   firebase.auth().signOut().then(() => {
     window.location.href = '../../src/'
   })
 });
-// // COMPONENTE LISTA DE HOSPITALES
-// const tabParis = document.getElementById("Paris");
-// tabParis.innerHTML = tableClinic;
 
+//al cargar el menu del componente header se trae los botones btn salir menu desplegable
 const logOut = document.getElementById("header-nav-log-out");
 logOut.addEventListener("click", () => {
   firebase.auth().signOut().then(() => {
     window.location.href = '../../src/'
   })
 });
+// COMPONENTE LISTA DE HOSPITALES
+const tabParis = document.getElementById("Paris");
+tabParis.innerHTML = tableClinic;
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -73,14 +74,14 @@ window.onload = () => {
   mostrarAllPost()
 }
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
-function mostrarAllPost() {
+const mostrarAllPost = () => {
   let cont = 0;
   let ref = firebase.database();
   ref.ref('/post')
     .on('child_added', (newPost) => {
       var post = newPost.val();
       cont++;
-      ref.ref('/users/' + post.uid).once('value').then(function (snapshot) {
+      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML += ` 
         <div class="row" id="${post.idPost}">
@@ -111,7 +112,7 @@ function mostrarAllPost() {
               </div>
               <div class="card-action">
                 <a class="heart">
-                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite</i>
+                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite_border</i>
                 </a>
                 <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
                 <a>Comentario</a>
@@ -124,7 +125,7 @@ function mostrarAllPost() {
         </div>
     `;
         var elems = document.querySelectorAll('#section_posts .dropdown-trigger');
-        var instances = M.Dropdown.init(elems);
+        M.Dropdown.init(elems);
       });
 
 
@@ -211,9 +212,6 @@ function savePost(post) {
 function likePost(favorite) {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
-  let like = {
-    countLike: cantLikes
-  };
 
   var updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
@@ -222,7 +220,7 @@ function likePost(favorite) {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
-      favorite.style.color = 'red';
+      favorite.innerHTML = "favorite";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
   })

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Data dashboard</title>
+  <title>Salutem - Test</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/4.1.0/mocha.min.css" />
 </head>
 
@@ -11,12 +11,14 @@
   <div id="mocha"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/4.1.0/mocha.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.min.js"></script>
+  <script src="../src/data/mockFirebase.js"></script>
   <script src="../src/data/data.js"></script>
   <script>
     const { assert } = chai;
     mocha.setup('bdd');
 
   </script>
+  <script src="./mockFirebase.spec.js"></script>
   <script src="./data.spec.js"></script>
   <script>
     mocha.checkLeaks();

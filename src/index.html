@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Salutem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/ico" href="./img/favicon.ico"/>
+  <link rel="shortcut icon" type="image/ico" href="./img/favicon.ico" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,11 +19,13 @@
   <header class="center-align" id="header-main"></header>
   <main>
     <!-- modal de login -->
-    <section id="modal-log-in" class="modal-signup">
+    <aside id="modal-log-in" class="modal-signup">
+
       <div class="modal-content-signup">
         <span id="close-log-in" class="close">&times;</span>
         <!-- LOG IN -->
-        <section id="main-log-in" class="center-align s12">
+        <aside id="main-log-in" class="center-align s12">
+
           <!-- INPUTS -->
           <div class="row spaces">
             <div class="input-field col s12">
@@ -54,11 +56,12 @@
               </p>
             </div>
           </div>
-        </section>
+        </aside>
       </div>
-    </section>
+    </aside>
     <!-- modal de signup -->
-    <section id="modal-sign-up" class="modal-signup">
+    <aside id="modal-sign-up" class="modal-signup">
+
       <div class="modal-content-signup">
         <span id="close-sign-up" class="close">&times;</span>
         <!-- SELECCION DE USUARIO -->
@@ -136,7 +139,8 @@
           </div>
         </section>
         <!-- SIGN UP DE DOCTOR -->
-        <section id="main-sign-up-doctors" class="center-align s12" style="display: none">
+        <aside id="main-sign-up-doctors" class="center-align s12" style="display: none">
+
           <!-- INPUTS -->
           <div class="row spaces">
             <div class="input-field col s12 input-sign-up">
@@ -171,9 +175,10 @@
               </p>
             </div>
           </div>
-        </section>
+        </aside>
         <!-- SIGN UP DE USERS -->
-        <section id="main-sign-up-users" class="center-align s12" style="display: none">
+        <aside id="main-sign-up-users" class="center-align s12" style="display: none">
+
           <!-- INPUTS -->
           <div class="row spaces-signup">
             <div class="input-field col s12 input-sign-up">
@@ -208,17 +213,20 @@
               </p>
             </div>
           </div>
-        </section>
+        </aside>
       </div>
-    </section>
+    </aside>
   </main>
 
   <!-- contenido falso del muro -->
-  <section id="muro-falso"></section>
+  <aside id="muro-falso">
+
+  </aside>
 
   <!-- components -->
   <script src="components/header-main.js"></script>
   <script src="components/muro_falso.js"></script>
+  <script src="data/mockFirebase.js"></script>
   <script src="data/data.js"></script>
   <script src="firebase/firebase.js"></script>
   <script src="js/materialize.min.js"></script>
