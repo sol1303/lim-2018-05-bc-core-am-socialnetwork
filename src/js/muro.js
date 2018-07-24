@@ -8,9 +8,17 @@ const menuHeader = document.getElementById("menu-header");
 // menuHeader.innerHTML = headerHtml;
 menuHeader.innerHTML = headerMenu; //components/header-menu
 
-//al cargar el menu del componente header se trae los botones
+//al cargar el menu del componente header se trae los botones btn salir menu grande
 const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
 miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+//al cargar el menu del componente header se trae los botones btn salir menu desplegable
+const logOut = document.getElementById("header-nav-log-out");
+logOut.addEventListener("click", () => {
   firebase.auth().signOut().then(() => {
     window.location.href = '../../src/'
   })
@@ -18,13 +26,6 @@ miniBtnLogout.addEventListener("click", () => {
 // COMPONENTE LISTA DE HOSPITALES
 const tabParis = document.getElementById("Paris");
 tabParis.innerHTML = tableClinic;
-
-const logOut = document.getElementById("header-nav-log-out");
-logOut.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -73,14 +74,14 @@ window.onload = () => {
   mostrarAllPost()
 }
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
-function mostrarAllPost() {
+const mostrarAllPost = () => {
   let cont = 0;
   let ref = firebase.database();
   ref.ref('/post')
     .on('child_added', (newPost) => {
       var post = newPost.val();
       cont++;
-      ref.ref('/users/' + post.uid).once('value').then(function (snapshot) {
+      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML += ` 
         <div class="row" id="${post.idPost}">
