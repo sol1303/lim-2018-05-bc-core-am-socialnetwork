@@ -3,6 +3,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Salutem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/ico" href="../img/favicon.ico" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -20,7 +21,7 @@
     <main>
       <div id="London" class="tabcontent">
         <div class="row">
-          <div class="col s12 m9">
+          <div class="col s12">
             <div class="card">
               <div class="card-content black-text">
                 <div class="row tab-content col s12">
@@ -29,39 +30,39 @@
                   </div>
                   <div class="input-field col s10">
                     <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
-                    <label for="textarea-post-user" class="">¿Que tienes en mente?</label>
+                    <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s12 m6 right">
                     <a class="dropdown-trigger btn" data-target="dropdown">
-                      <i class="material-icons left">language</i>PUBLICO</a>
+                      <i class="material-icons left">public</i>Público</a>
                     <ul id="dropdown" class="dropdown-content type_post">
                       <li>
                         <a>
-                          <i class="material-icons">language</i>PÚBLICO</a>
+                          <i class="material-icons">public</i>Público</a>
                       </li>
                       <li>
                         <a>
-                          <i class="material-icons">face</i>AMIGOS</a>
+                          <i class="material-icons">face</i>Amigos</a>
                       </li>
                     </ul>
                     <a id="btn-publicar" class="waves-effect waves-light btn">
-                      <i id="btn-publicar_" class="mdi-maps-rate-review left" type="button"></i>Post</a>
+                      <i class="material-icons left">send</i>Postear</a>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
+          <div id="section_posts"></div>
         </div>
-        <div id="section_posts"></div>
-      </div>
-      <!-- TABLA CON CLINICAS -->
-      <div id="Paris" class="tabcontent"></div>
-      <!-- RECOMENDACIONES DE DOCTORES -->
-      <div id="Tokyo" class="tabcontent">
-        <h3>Tokyo</h3>
-        <p>Tokyo is the capital of Japan.</p>
-      </div>
+        <!-- TABLA CON CLINICAS -->
+        <div id="Paris" class="tabcontent"></div>
+        <!-- RECOMENDACIONES DE DOCTORES -->
+        <div id="Tokyo" class="tabcontent">
+          <h3>Tokyo</h3>
+          <p>Tokyo is the capital of Japan.</p>
+        </div>
     </main>
     <!-- TAGS -->
     <div id="popularTags">
@@ -91,7 +92,8 @@
   <script src="../firebase/firebase.js"></script>
   <script src="../js/materialize.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="../js/header.js"></script>
+  <!-- <script src="../js/header.js"></script> -->
+  <script src="../components/header-menu.js"></script>
   <script src="../js/paris.js"></script>
   <script src="../js/muro.js"></script>
 </body>

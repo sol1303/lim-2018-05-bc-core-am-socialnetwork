@@ -122,6 +122,7 @@ writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl)
   });
 }
 
+// para el caso de los proveedores se actualiza el objeto local para que con los datos obtenidos del usuario cuando se va a registrar los mande a la db de firebase
 updateUserByProvider = (uid, name, email, photo) => {
   userLocal.uid = uid;
   userLocal.username = name;
@@ -148,15 +149,12 @@ window.onload = () => {
   });
 }
 
-const logIn = (email, password) => {
-  const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(email, password);
-  promise.catch(e => {
-    helperPasswordLogIn.hidden = false;
-    console.log(e);
-  });
+// en login cuando la contraseña no sea la correcta mostrara la etiqueta que está mal
+showWrongPassword = () => {
+  helperPasswordLogIn.hidden = false;
 }
 
+// al hacer las validacion del form de login, hace que se muestren las etiquetas de los campos que estan mal, cuando todas estan bien manda a firebase
 const showAlertLogIn = (validate) => {
   if (validate.email) helperEmailLogIn.hidden = true;
   else helperEmailLogIn.hidden = false;
@@ -173,6 +171,7 @@ const showMuro = () => {
   sectionSignUpUsers.style.display = "none";
 }
 
+// al validar el form para doctores especificos(especialidad y colegitura) muestra etiquetas de campo erroneo, cuando son correctos verifica con que medio quiere registrarse(email, gg, fb)
 const showAlertEspecificDoctor = (validate, e) => {
   if (validate.especialidad) helperEspecialidad.hidden = true;
   else helperEspecialidad.hidden = false;
@@ -186,11 +185,13 @@ const showAlertEspecificDoctor = (validate, e) => {
       userLocal.type = 'doctor';
       userLocal.specialty = selectEspecialidad.options[selectEspecialidad.selectedIndex].value;
       userLocal.colegiatura = txtColegiatura.value;
+      isProcessing = true;
       googleAccount();
     } else if (e.currentTarget.id === "btn-fb-modal-sign-up-doctors") {
       userLocal.type = 'doctor';
       userLocal.specialty = selectEspecialidad.options[selectEspecialidad.selectedIndex].value;
       userLocal.colegiatura = txtColegiatura.value;
+      isProcessing = true;
       facebookAccount();
     }
   }
@@ -302,26 +303,12 @@ const showLogIn = () => {
   openNavModalLogIn();
 }
 
-const googleAccount = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  isProcessing = true;
-  firebase.auth().signInWithPopup(provider).then(result => {
-    let fireUser = result.user;
-    updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(error => {
-    console.log(error.message);
-  });
+const providerGoogle = (fireUser) => {
+  updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
 }
 
-const facebookAccount = () => {
-  const provider = new firebase.auth.FacebookAuthProvider();
-  isProcessing = true;
-  firebase.auth().signInWithPopup(provider).then(result => {
-    fireUser = result.user;
-    updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
-  }).catch(error => {
-    alert(error.message);
-  });
+const providerFacebook = (fireUser) => {
+  updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
 }
 
 let showOptionsUserSelect = (e) => {
@@ -376,8 +363,14 @@ btnEmailLogIn.addEventListener("click", () => {
   const validate = validateLogIn(txtEmailLogIn.value, txtPasswordLogIn.value);
   showAlertLogIn(validate);
 });
-btnFacebookLogIn.addEventListener("click", () => facebookAccount());
-btnGoogleLogIn.addEventListener("click", () => googleAccount());
+btnFacebookLogIn.addEventListener("click", () => {
+  isProcessing = true;
+  facebookAccount();
+});
+btnGoogleLogIn.addEventListener("click", () => {
+  isProcessing = true;
+  googleAccount();
+});
 goToSignUp.addEventListener("click", () => showSignUp());
 miniNavBtnLogIn.addEventListener("click", () => {
   closeNavModalSignUp();
@@ -418,10 +411,12 @@ goToLogInFromDoctors.addEventListener("click", () => showLogIn());
 btnModalEmailSignUpUsers.addEventListener("click", (e) => signUpUsers(e));
 btnModalFbSignUpUsers.addEventListener("click", () => {
   userLocal.type = 'paciente';
+  isProcessing = true;
   facebookAccount();
 });
 btnModalGgSignUpUsers.addEventListener("click", () => {
   userLocal.type = 'paciente';
+  isProcessing = true;
   googleAccount();
 });
 

@@ -151,7 +151,7 @@ nav {
 }
 
 #mini-nav-modal-log-in {
-  margin-top: 10%;
+  margin-top: 20%;
 }
 
 #slide-out img {
@@ -199,7 +199,6 @@ nav {
   .selection-image {
     width: 35%;
   }
-
   #desktop-img {
     margin-left: -15% !important;
     width: 70px;

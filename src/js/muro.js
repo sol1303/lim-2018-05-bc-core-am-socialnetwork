@@ -3,34 +3,39 @@ const postUser = document.getElementById("textarea-post-user");
 const btnPublic = document.getElementById("btn-publicar");
 const bodyPosts = document.getElementById("section_posts");
 
-
-
 // COMPONENTE HEADER
 const menuHeader = document.getElementById("menu-header");
-menuHeader.innerHTML = headerHtml;
-// COMPONENTE GENERAL (POSTEAR Y PUBLICACIONES)
-// const tabLondon = document.getElementById("London");
-// tabLondon.innerHTML = muroTabs;
-// COMPONENTE LISTA DE HOSPITALES
-const tabParis = document.getElementById("Paris");
-tabParis.innerHTML = tableClinic;
+// menuHeader.innerHTML = headerHtml;
+menuHeader.innerHTML = headerMenu; //components/header-menu
 
+//al cargar el menu del componente header se trae los botones btn salir menu grande
+const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+//al cargar el menu del componente header se trae los botones btn salir menu desplegable
 const logOut = document.getElementById("header-nav-log-out");
 logOut.addEventListener("click", () => {
   firebase.auth().signOut().then(() => {
     window.location.href = '../../src/'
   })
 });
+// COMPONENTE LISTA DE HOSPITALES
+const tabParis = document.getElementById("Paris");
+tabParis.innerHTML = tableClinic;
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  const elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
 });
 
 // FUNCIÓN PARA APARECER SEGUN TABS
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
+const openCity = (evt, cityName) => {
+  let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = 'none';
@@ -42,6 +47,7 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = 'block';
   evt.currentTarget.className += ' active';
 }
+
 // Get the element with id='defaultOpen' and click on it
 document.getElementById('defaultOpen').click();
 
@@ -106,7 +112,7 @@ const mostrarAllPost = () => {
               </div>
               <div class="card-action">
                 <a class="heart">
-                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite</i>
+                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">star_border</i>
                 </a>
                 <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
                 <a>Comentario</a>
@@ -135,12 +141,12 @@ const deletePost = (post) => {
   updates['/users/' + x.uid + '/posts/' + postId] = null;
   //Aparece mensaje de confirmación para eliminiacion del mensaje
   swal({
-    title: "Está Seguro que desea eliminar esta publicación?",
-    text: "Puedes editar esta publicación si quieres cambiar algo.!",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
+      title: "Está Seguro que desea eliminar esta publicación?",
+      text: "Puedes editar esta publicación si quieres cambiar algo.!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
     .then((willDelete) => {
       if (willDelete) {
         firebase.database().ref().update(updates ,(error)=>{
@@ -213,7 +219,7 @@ const likePost = (favorite) => {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
-      favorite.style.color = 'red';
+      favorite.innerHTML = "star";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
   })
