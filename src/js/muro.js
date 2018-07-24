@@ -112,7 +112,7 @@ const mostrarAllPost = () => {
               </div>
               <div class="card-action">
                 <a class="heart">
-                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">star_border</i>
+                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite_border</i>
                 </a>
                 <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
                 <a>Comentario</a>
@@ -219,7 +219,7 @@ const likePost = (favorite) => {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
-      favorite.innerHTML = "star";
+      favorite.innerHTML = "favorite";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
   })
