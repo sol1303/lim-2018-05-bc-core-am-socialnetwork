@@ -1,4 +1,4 @@
-const firebase = require("firebase");
+// const firebase = require("firebase");
 
 const config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
