@@ -112,7 +112,7 @@ const mostrarAllPost = () => {
               </div>
               <div class="card-action">
                 <a class="heart">
-                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite</i>
+                  <i class="material-icons ${post.idPost}" onclick="likePost(this)">star_border</i>
                 </a>
                 <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
                 <a>Comentario</a>
@@ -125,7 +125,7 @@ const mostrarAllPost = () => {
         </div>
     `;
         var elems = document.querySelectorAll('#section_posts .dropdown-trigger');
-        var instances = M.Dropdown.init(elems);
+        M.Dropdown.init(elems);
       });
 
 
@@ -223,7 +223,7 @@ function likePost(favorite) {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
-      favorite.style.color = 'red';
+      favorite.innerHTML = "star";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
   })
