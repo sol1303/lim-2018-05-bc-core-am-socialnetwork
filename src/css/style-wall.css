@@ -1,6 +1,5 @@
 body {
   background: #ffffff;
-
 }
 
 header {
@@ -10,7 +9,7 @@ header {
 }
 
 header img {
-  margin-right: 15%;
+  margin-left: -5%;
   width: 70px;
 }
 
@@ -26,6 +25,14 @@ nav a {
 body section {
   font-family: 'Open Sans', sans-serif;
   margin-left: 2%;
+}
+
+header ul li {
+  margin-top: 5%;
+}
+
+#mini-nav-modal-log-out {
+  margin-top: 70%;
 }
 
 .btn-log-in-social {
@@ -138,7 +145,6 @@ nav {
   margin-bottom: 5%;
 }
 
-
 #slide-out {
   color: #000000 !important;
 }
@@ -148,7 +154,9 @@ nav {
 }
 
 /* CSS MURO */
+
 /* Style the tab */
+
 .tab {
   overflow: hidden;
   /* border: 1px solid #ccc; */
@@ -157,6 +165,7 @@ nav {
 }
 
 /* Style the buttons inside the tab */
+
 .tab button {
   background-color: inherit;
   float: left;
@@ -169,11 +178,13 @@ nav {
 }
 
 /* Change background color of buttons on hover */
+
 .tab button:hover {
   background-color: #FAB768;
 }
 
 /* Style the tab content */
+
 .tabcontent {
   display: none;
   padding: 6px 12px;
@@ -209,20 +220,24 @@ main {
   .tab {
     display: none;
   }
-
   #popularTags {
     display: none;
   }
-  
   main {
     width: 100%;
   }
 }
 
 table tr {
-font-size: 14px !important;
+  font-size: 14px !important;
 }
 
-.dnone{
-  display:none;
+.dnone {
+  display: none;
+}
+
+#slide-out img {
+  margin-top: 10%;
+  margin-right: 20%;
+  margin-bottom: 10%;
 }

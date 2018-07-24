@@ -3,42 +3,21 @@ const postUser = document.getElementById("textarea-post-user");
 const btnPublic = document.getElementById("btn-publicar");
 const bodyPosts = document.getElementById("section_posts");
 
-
-
-// PINTA HEADER
+// COMPONENTE HEADER
 const menuHeader = document.getElementById("menu-header");
-menuHeader.innerHTML = headerHtml;
-// PINTA MURO
-// const tabWall = document.getElementById("principal-tab");
-// tabWall.innerHTML = muroTabs;
+// menuHeader.innerHTML = headerHtml;
+menuHeader.innerHTML = headerMenu; //components/header-menu
 
-// // CLICK EN INICIO Y PINTA MURO
-// document.getElementById("defaultOpen").addEventListener("click", () => {
-// tabWall.innerHTML = muroTabs;
-// });
-// document.getElementById("nav-wall").addEventListener("click", () => {
-// tabWall.innerHTML = muroTabs;
-// });
-// // CLICK EN LISTA DE HOSPITALES Y PINTA LISTA
-// document.getElementById("tab-list-clinic").addEventListener("click", () => {
-// const tabListClinic = document.getElementById("principal-tab");
-// tabListClinic.innerHTML = tableClinic;
-// });
-// document.getElementById("nav-list-clinic").addEventListener("click", () => {
-// const tabListClinic = document.getElementById("principal-tab");
-// tabListClinic.innerHTML = tableClinic;
-// });
-
-// // CLICK EN RECOMENDACIONES Y PINTA POST DE DOCTORES
-// document.getElementById("tab-doctor-post").addEventListener("click", () => {
-// const tabPostDoctor = document.getElementById("principal-tab");
-// tabPostDoctor.innerHTML = tabDoctor;
-// });
-// document.getElementById("nav-doctor-post").addEventListener("click", () => {
-// const tabPostDoctor = document.getElementById("principal-tab");
-// tabPostDoctor.innerHTML = tabDoctor;
-// });
-
+//al cargar el menu del componente header se trae los botones
+const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+// COMPONENTE LISTA DE HOSPITALES
+const tabParis = document.getElementById("Paris");
+tabParis.innerHTML = tableClinic;
 
 const logOut = document.getElementById("header-nav-log-out");
 logOut.addEventListener("click", () => {
@@ -49,13 +28,13 @@ logOut.addEventListener("click", () => {
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  const elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
 });
 
 // FUNCIÓN PARA APARECER SEGUN TABS
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
+const openCity = (evt, cityName) => {
+  let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = 'none';
@@ -67,6 +46,7 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = 'block';
   evt.currentTarget.className += ' active';
 }
+
 // Get the element with id='defaultOpen' and click on it
 document.getElementById('defaultOpen').click();
 
