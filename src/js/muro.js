@@ -212,9 +212,6 @@ function savePost(post) {
 function likePost(favorite) {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
-  let like = {
-    countLike: cantLikes
-  };
 
   var updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
