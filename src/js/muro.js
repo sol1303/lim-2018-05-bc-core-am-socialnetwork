@@ -3,14 +3,18 @@ const postUser = document.getElementById("textarea-post-user");
 const btnPublic = document.getElementById("btn-publicar");
 const bodyPosts = document.getElementById("section_posts");
 
-
-
 // COMPONENTE HEADER
 const menuHeader = document.getElementById("menu-header");
-menuHeader.innerHTML = headerHtml;
-// COMPONENTE GENERAL (POSTEAR Y PUBLICACIONES)
-// const tabLondon = document.getElementById("London");
-// tabLondon.innerHTML = muroTabs;
+// menuHeader.innerHTML = headerHtml;
+menuHeader.innerHTML = headerMenu; //components/header-menu
+
+//al cargar el menu del componente header se trae los botones
+const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
 // COMPONENTE LISTA DE HOSPITALES
 const tabParis = document.getElementById("Paris");
 tabParis.innerHTML = tableClinic;
@@ -24,13 +28,13 @@ logOut.addEventListener("click", () => {
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  const elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
 });
 
 // FUNCIÓN PARA APARECER SEGUN TABS
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
+const openCity = (evt, cityName) => {
+  let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = 'none';
@@ -42,6 +46,7 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = 'block';
   evt.currentTarget.className += ' active';
 }
+
 // Get the element with id='defaultOpen' and click on it
 document.getElementById('defaultOpen').click();
 
