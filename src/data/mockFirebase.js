@@ -13,8 +13,7 @@ firebase.initializeApp(config);
 
 
 window.logIn = (email, password) => {
-  const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(email, password);
+  firebase.auth().signInWithEmailAndPassword(email, password);
   promise.catch(e => {
     showWrongPassword();
     // console.log(e);

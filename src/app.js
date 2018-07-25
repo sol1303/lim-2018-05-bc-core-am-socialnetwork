@@ -106,7 +106,7 @@ const userLocal = {
 }
 
 // método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
-writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
+const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
   firebase.database().ref('users/' + uid).set({
     username: name,
     email: email,
@@ -123,7 +123,7 @@ writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl)
 }
 
 // para el caso de los proveedores se actualiza el objeto local para que con los datos obtenidos del usuario cuando se va a registrar los mande a la db de firebase
-updateUserByProvider = (uid, name, email, photo) => {
+const updateUserByProvider = (uid, name, email, photo) => {
   userLocal.uid = uid;
   userLocal.username = name;
   userLocal.email = email;
@@ -131,15 +131,21 @@ updateUserByProvider = (uid, name, email, photo) => {
   writeUserDbFirebase(userLocal.uid, userLocal.username, userLocal.email, userLocal.type, userLocal.specialty, userLocal.colegiatura, userLocal.profile_picture)
 }
 
+window.goToMenu = () => {
+  if (!isProcessing) {
+    window.location.href = 'html/menu.html';
+  }
+}
+
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      sectionMuroFalso.style.display = "none";
-      modalLogIn.style.display = "none";
-      modalSignUp.style.display = "none";
-      navBtnLogIn.style.display = "none";
-      navBtnSignUp.style.display = "none";
-      if (!isProcessing) window.location.href = 'html/menu.html'
+      // sectionMuroFalso.style.display = "none";
+      // modalLogIn.style.display = "none";
+      // modalSignUp.style.display = "none";
+      // navBtnLogIn.style.display = "none";
+      // navBtnSignUp.style.display = "none";
+      goToMenu();
     } else {
       M.updateTextFields();
       sectionMuroFalso.style.display = "block";
@@ -150,7 +156,7 @@ window.onload = () => {
 }
 
 // en login cuando la contraseña no sea la correcta mostrara la etiqueta que está mal
-showWrongPassword = () => {
+const showWrongPassword = () => {
   helperPasswordLogIn.hidden = false;
 }
 
@@ -311,7 +317,7 @@ const providerFacebook = (fireUser) => {
   updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
 }
 
-let showOptionsUserSelect = (e) => {
+const showOptionsUserSelect = (e) => {
   M.updateTextFields();
   if (e.currentTarget.id === "sign-up-selection-users") {
     sectionUserSelection.style.display = "none";
@@ -322,11 +328,11 @@ let showOptionsUserSelect = (e) => {
   }
 };
 
-let openNavModalLogIn = () => {
+const openNavModalLogIn = () => {
   modalLogIn.style.display = "block";
 }
 
-let closeNavModalLogIn = () => {
+const closeNavModalLogIn = () => {
   // vaciamos contenido de login cuando se cierra el modal
   modalLogIn.style.display = "none";
   helperEmailLogIn.hidden = true;
@@ -336,7 +342,7 @@ let closeNavModalLogIn = () => {
   M.updateTextFields();
 }
 
-let openNavModalSignUp = () => {
+const openNavModalSignUp = () => {
   txtColegiatura.value = "";
   txtDoctorNameSignUp.value = "";
   txtDoctorEmailSignUp.value = "";
@@ -351,7 +357,7 @@ let openNavModalSignUp = () => {
   modalSignUp.style.display = "block";
 }
 
-let closeNavModalSignUp = () => {
+const closeNavModalSignUp = () => {
   modalSignUp.style.display = "none";
 }
 
