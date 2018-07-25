@@ -60,7 +60,7 @@ const makePost = () => {
     description: postUser.value,
     uid: x.uid
   }
-  let key = firebase.database().ref().child('users').push().key;
+  const key = firebase.database().ref().child('users').push().key;
   posts.idPost = key;
   let updates = {};
   updates['/post/' + key] = posts;
@@ -81,9 +81,9 @@ const mostrarAllPost = () => {
     .on('child_added', (newPost) => {
       var post = newPost.val();
       cont++;
-      ref.ref('/users/' + post.uid).once('value').then((snapshot) =>{
+      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
-        bodyPosts.innerHTML += ` 
+        bodyPosts.innerHTML =  ` 
         <div class="row" id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
@@ -93,11 +93,11 @@ const mostrarAllPost = () => {
                     <i class="material-icons left">more_vert</i>
                   </a>
                   <ul id="dropdown${cont}" class="dropdown-content">
-                    <li data-idpost="${post.idPost}"  onclick="editPost(this) ">
+                    <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="editPost(this) ">
                       <a >
                         <i class="material-icons">mode_edit</i>Editar</a>
                     </li >
-                    <li data-idpost="${post.idPost}"  onclick="deletePost(this)">
+                    <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
                       <a>
                         <i class="material-icons">cloud</i>Eliminar</a>
                     </li>
@@ -123,57 +123,76 @@ const mostrarAllPost = () => {
             </div>
           </div>
         </div>
-    `;
+    ` + bodyPosts.innerHTML;
         let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
         M.Dropdown.init(elems);
       });
-
-
     })
 }
 // FUNCION QUE PERMITE ELIMINAR POST
 const deletePost = (post) => {
   let postId = post.dataset.idpost,
+    userid = post.dataset.iduser,
     postBlock = document.querySelector("div#" + postId);
   const x = firebase.auth().currentUser;
-  var updates = {};
+  let updates = {};
   updates['/post/' + postId] = null;
   updates['/users/' + x.uid + '/posts/' + postId] = null;
-  //Aparece mensaje de confirmación para eliminiacion del mensaje
-  swal({
+  if (x.uid == userid) {
+    //Aparece mensaje de confirmación para eliminiacion del mensaje
+    swal({
       title: "Está Seguro que desea eliminar esta publicación?",
       text: "Puedes editar esta publicación si quieres cambiar algo.!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        firebase.database().ref().update(updates ,(error)=>{
-          if (error) {
-            alert("No se pudo eliminar")
-          } else {
-            postBlock.parentNode.removeChild(postBlock);
-            swal("Tu archivo ha sido eliminado!", {
-              icon: "success",
-            });
-          }
-        })
+      .then((willDelete) => {
+        if (willDelete) {
+          firebase.database().ref().update(updates, (error) => {
+            if (error) {
+              alert("No se pudo eliminar")
+            } else {
+              postBlock.parentNode.removeChild(postBlock);
+              swal("Tu archivo ha sido eliminado!", {
+                icon: "success",
+              });
+            }
+          })
 
-      }
+        }
+      });
+  } else {
+    swal(" no seeeeee ", {
+      button: false,
+      timer: 1000,
     });
-
+  }
 }
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 const editPost = (post) => {
-  let postId = post.dataset.idpost,
+  const x = firebase.auth().currentUser;
+  // let idpost = post.idPost;
+  let postId = post.dataset.idpost;
+  let userid = post.dataset.iduser,
     postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-  //mostrar text area y oculpar p tag
-  postP.style.display = "none";
-  postTextArea.style.display = "block";
-  saveButton.style.display = "inline-block";
+  console.log(x.uid);
+  console.log(userid);
+  if (x.uid == userid) {
+    //mostrar text area y oculpar p tag
+    postP.style.display = "none";
+    postTextArea.style.display = "block";
+    saveButton.style.display = "inline-block";
+  } else {
+    swal(" no seeeeee ", {
+      button: false,
+      timer: 1000,
+    });
+  }
+
+
 
 }
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
@@ -191,7 +210,7 @@ const savePost = (post) => {
   let updates = {};
   updates['/post/' + postId] = newPostValues;
   updates['/users/' + x.uid + '/posts/' + postId] = newPostValues;
-  firebase.database().ref().update(updates, (error) =>{
+  firebase.database().ref().update(updates, (error) => {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
@@ -210,9 +229,9 @@ const savePost = (post) => {
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
-  {countLike: cantLikes};
+  { countLike: cantLikes };
 
-  var updates = {};
+  updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
   updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/countLike'] = cantLikes;
   firebase.database().ref().update(updates, (error) => {
