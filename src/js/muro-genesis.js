@@ -71,71 +71,8 @@ const makePost = () => {
 window.onload = () => {
   let elems = document.querySelectorAll('.dropdown-trigger');
   M.Dropdown.init(elems);
-  getPublicPost();
-  // mostrarAllPost()
+  mostrarAllPost()
 }
-
-const pintarPost = (post, count, currentUser) => {
-  bodyPosts.innerHTML +=
-  `
-  <div class="row" id="${post.idPost}">
-    <div class="col s12 m9">
-      <div class="card">
-        <div class="card-content black-text">
-          <div class="col s12 m6 right">
-            <a class="dropdown-trigger right" href="#" data-target="dropdown${count}">
-              <i class="material-icons left ${currentUser.uid == post.uid ? " dblock " : "dnone "}">more_vert</i>
-            </a>
-            <ul id="dropdown${count}" class="dropdown-content">
-              <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="editPost(this) ">
-                <a>
-                  <i class="material-icons">mode_edit</i>Editar</a>
-              </li>
-              <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
-                <a>
-                  <i class="material-icons">cloud</i>Eliminar</a>
-              </li>
-            </ul>
-          </div>
-          <span class="card-title">${post.username}</span>
-          <p class="${post.idPost}">
-            ${post.description}
-          </p>
-          <textarea class="dnone materialize-textarea ${post.idPost}" row="2">${post.description}</textarea>
-        </div>
-        <div class="card-action">
-          <a class="heart">
-            <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite_border</i>
-          </a>
-          <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
-          <a id="${post.idPost}" onclick="savePost(this)" class="dnone waves-effect waves-light btn">
-            <i class="mdi-maps-rate-review left">Guardar</i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  `;
-}
-
-const getPublicPost = () => {
-  bodyPosts.innerHTML = "";
-  let count = 0;
-  const ref = firebase.database();
-  ref.ref('/post')
-    .on('child_added', (newPost) => {
-      const post = newPost.val();
-      const currentUser = firebase.auth().currentUser;
-      count++;
-      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
-        const username = (snapshot.val().username) || 'Anonymous';
-        post.username = username;
-        pintarPost(post, count, currentUser);
-      });
-    });
-}
-
-
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
   let cont = 0;
@@ -148,7 +85,7 @@ const mostrarAllPost = () => {
       cont++;
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
-        bodyPosts.innerHTML = `
+        bodyPosts.innerHTML =  ` 
         <div class="row" id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
@@ -202,44 +139,44 @@ const deletePost = (post) => {
   let updates = {};
   updates['/post/' + postId] = null;
   updates['/users/' + x.uid + '/posts/' + postId] = null;
-  //Aparece mensaje de confirmación para eliminiacion del mensaje
-  swal({
+    //Aparece mensaje de confirmación para eliminiacion del mensaje
+    swal({
       title: "Está Seguro que desea eliminar esta publicación?",
       text: "Puedes editar esta publicación si quieres cambiar algo.!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        firebase.database().ref().update(updates, (error) => {
-          if (error) {
-            alert("No se pudo eliminar")
-          } else {
-            postBlock.parentNode.removeChild(postBlock);
-            swal("Tu archivo ha sido eliminado!", {
-              icon: "success",
-            });
-          }
-        })
+      .then((willDelete) => {
+        if (willDelete) {
+          firebase.database().ref().update(updates, (error) => {
+            if (error) {
+              alert("No se pudo eliminar")
+            } else {
+              postBlock.parentNode.removeChild(postBlock);
+              swal("Tu archivo ha sido eliminado!", {
+                icon: "success",
+              });
+            }
+          })
 
-      }
-    });
-}
-
+        }
+      });
+  }
+  
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 const editPost = (post) => {
   const x = firebase.auth().currentUser;
   // let idpost = post.idPost;
   let postId = post.dataset.idpost;
-  postP = document.querySelector("p." + postId),
+    postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-  //mostrar text area y oculpar p tag
-  postP.style.display = "none";
-  postTextArea.style.display = "block";
-  saveButton.style.display = "inline-block";
-}
+    //mostrar text area y oculpar p tag
+    postP.style.display = "none";
+    postTextArea.style.display = "block";
+    saveButton.style.display = "inline-block";
+  } 
 
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
 const savePost = (post) => {
@@ -274,9 +211,8 @@ const savePost = (post) => {
 }
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
-  let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1; {
-    countLike: cantLikes
-  };
+  let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
+  { countLike: cantLikes };
 
   updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
