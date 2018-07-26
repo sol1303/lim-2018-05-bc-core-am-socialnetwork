@@ -54,7 +54,7 @@ document.getElementById('defaultOpen').click();
 //FUNCION PARA CREAR POST Y GUARDAR EN DATABASE DE FIREBASE
 const makePost = () => {
   const x = firebase.auth().currentUser;
-  let datePosted = new Date();
+  let datePosted = new Date().getTime();
   let posts = {
     fecha: datePosted,
     description: postUser.value,
