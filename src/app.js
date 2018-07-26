@@ -3,7 +3,7 @@ const sectionHeader = document.getElementById("header-main");
 sectionHeader.innerHTML = headerMain; //obtiene la seccion en que pintara y la une con el codigo del componente
 
 const sectionMuroFalso = document.getElementById("muro-falso");
-sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
+// sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
 
 // botones de NAV
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
@@ -94,6 +94,7 @@ const goToLogInFromUsers = document.getElementById("go-to-log-in-users");
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
 let isProcessing = false;
+let arrPost = [];
 
 const userLocal = {
   uid: null,
@@ -148,7 +149,8 @@ window.onload = () => {
       goToMenu();
     } else {
       M.updateTextFields();
-      sectionMuroFalso.style.display = "block";
+      getPublicPost();
+      // sectionMuroFalso.style.display = "block";
       navBtnLogIn.style.display = "block";
       navBtnSignUp.style.display = "block";
     }
@@ -359,6 +361,43 @@ const openNavModalSignUp = () => {
 
 const closeNavModalSignUp = () => {
   modalSignUp.style.display = "none";
+}
+
+const pintarPost = (post) => {
+  console.log(post);
+  sectionMuroFalso.innerHTML +=
+    `<div class="row" id="${post.idPost}">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title">${post.username}</span>
+          <p class="${post.idPost}">
+            ${post.description}
+          </p>
+        </div>
+        <div class="card-action">
+          <a class="heart">
+            <i class="material-icons ${post.idPost}">favorite_border</i>
+          </a>
+          <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const getPublicPost = () => {
+  const ref = firebase.database();
+  ref.ref('/post')
+    .on('child_added', (newPost) => {
+      const post = newPost.val();
+      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
+        const username = (snapshot.val().username) || 'Anonymous';
+        post.username = username
+        // arrPost.push(post);
+        pintarPost(post);
+      });
+    });
 }
 
 // login

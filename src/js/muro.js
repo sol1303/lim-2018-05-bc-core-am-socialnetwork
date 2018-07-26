@@ -76,10 +76,12 @@ window.onload = () => {
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
   let cont = 0;
+  // debugger
   let ref = firebase.database();
   ref.ref('/post')
     .on('child_added', (newPost) => {
       var post = newPost.val();
+      let x = firebase.auth().currentUser;
       cont++;
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
@@ -90,7 +92,7 @@ const mostrarAllPost = () => {
               <div class="card-content black-text">
                 <div class="col s12 m6 right">
                   <a class="dropdown-trigger right" href="#" data-target="dropdown${cont}">
-                    <i class="material-icons left">more_vert</i>
+                    <i class="material-icons left ${x.uid == post.uid ? "dblock" : "dnone"}">more_vert</i>
                   </a>
                   <ul id="dropdown${cont}" class="dropdown-content">
                     <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="editPost(this) ">
@@ -132,13 +134,11 @@ const mostrarAllPost = () => {
 // FUNCION QUE PERMITE ELIMINAR POST
 const deletePost = (post) => {
   let postId = post.dataset.idpost,
-    userid = post.dataset.iduser,
     postBlock = document.querySelector("div#" + postId);
   const x = firebase.auth().currentUser;
   let updates = {};
   updates['/post/' + postId] = null;
   updates['/users/' + x.uid + '/posts/' + postId] = null;
-  if (x.uid == userid) {
     //Aparece mensaje de confirmación para eliminiacion del mensaje
     swal({
       title: "Está Seguro que desea eliminar esta publicación?",
@@ -162,39 +162,22 @@ const deletePost = (post) => {
 
         }
       });
-  } else {
-    swal(" no seeeeee ", {
-      button: false,
-      timer: 1000,
-    });
   }
-}
+  
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 const editPost = (post) => {
   const x = firebase.auth().currentUser;
   // let idpost = post.idPost;
   let postId = post.dataset.idpost;
-  let userid = post.dataset.iduser,
     postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-  console.log(x.uid);
-  console.log(userid);
-  if (x.uid == userid) {
     //mostrar text area y oculpar p tag
     postP.style.display = "none";
     postTextArea.style.display = "block";
     saveButton.style.display = "inline-block";
-  } else {
-    swal(" no seeeeee ", {
-      button: false,
-      timer: 1000,
-    });
-  }
+  } 
 
-
-
-}
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
 const savePost = (post) => {
   let postId = post.attributes["0"].value,
@@ -242,7 +225,6 @@ const likePost = (favorite) => {
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
   })
-
 }
 btnPublic.addEventListener("click", () => {
   makePost()
