@@ -376,8 +376,7 @@ const getPublicPost = () => {
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         const username = (snapshot.val().username) || 'Anonymous';
         post.username = username
-        // arrPost.push(post);
-        pintarPost(post);
+        if(post.privacity === "public") pintarPost(post);
       });
     });
 }
