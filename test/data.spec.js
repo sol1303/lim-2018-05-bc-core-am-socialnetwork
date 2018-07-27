@@ -113,12 +113,12 @@ describe("mockFirebase", () => {
 
       mocksdk.auth().createUser({
         uid: '123',
-        email: 'test@test.com',
-        password: 'abc123'
+        email: 'ana@gmail.com',
+        password: '123456'
       }).then(function (user) {
         mocksdk.auth().changeAuthState(user);
       });
-      logIn("test@test.com", "abc123");
+      logIn("ana@gmail.com", "123456");
     });
   });
 
@@ -139,6 +139,18 @@ describe("mockFirebase", () => {
       var mockGoogle = new mocksdk.auth.GoogleAuthProvider();
       mocksdk.auth().signInWithPopup(mockGoogle);
       googleAccount();
+    });
+  });
+
+  describe("signUp", () => {
+    it("la función de createUser debe ser global", () => {
+      mocksdk.auth().autoFlush();
+
+      mocksdk.auth().getUserByEmail("ana@gmail.com", "123456")
+      .then(function (user) {
+        mocksdk.auth().changeAuthState(user);
+      });
+      createUser("ana@gmail.com", "123456");
     });
   });
 
