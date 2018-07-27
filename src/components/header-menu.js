@@ -11,10 +11,10 @@ headerMenu = `
 			<a id="header-nav-log-out" class="right">Cerrar sesión</a>
 		</li>
 	</ul>
-	<div class="tab">
-		<button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">Generales</button>
-		<button class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</button>
-		<button class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</button>
+	<div>
+		<button  id="defaultOpen">Generales</button>
+		<button  id="tab-clinics" >Clínicas / Hospitales</button>
+		<button  id="tab-recomendation" >Recomendaciones de Doctores</button>
 	</div>
 </nav>
 <ul id="slide-out" class="sidenav">

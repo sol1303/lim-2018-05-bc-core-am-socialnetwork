@@ -1,31 +1,11 @@
-// post
+// DOM DEL POST
 const postUser = document.getElementById("textarea-post-user");
 const btnPublic = document.getElementById("btn-publicar");
 const bodyPosts = document.getElementById("section_posts");
 
 // COMPONENTE HEADER
 const menuHeader = document.getElementById("menu-header");
-// menuHeader.innerHTML = headerHtml;
 menuHeader.innerHTML = headerMenu; //components/header-menu
-
-//al cargar el menu del componente header se trae los botones btn salir menu grande
-const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
-miniBtnLogout.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-
-//al cargar el menu del componente header se trae los botones btn salir menu desplegable
-const logOut = document.getElementById("header-nav-log-out");
-logOut.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-// COMPONENTE LISTA DE HOSPITALES
-const tabParis = document.getElementById("Paris");
-tabParis.innerHTML = tableClinic;
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,23 +13,68 @@ document.addEventListener('DOMContentLoaded', function () {
   M.Sidenav.init(elems);
 });
 
-// FUNCIÓN PARA APARECER SEGUN TABS
-const openCity = (evt, cityName) => {
-  let i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName('tabcontent');
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = 'none';
-  }
-  tablinks = document.getElementsByClassName('tablinks');
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(' active', '');
-  }
-  document.getElementById(cityName).style.display = 'block';
-  evt.currentTarget.className += ' active';
-}
+//DOM DE TABS
+const tabWall = document.getElementById('defaultOpen');
+const wallPrincipal = document.getElementById('wall-prinicipal');
+const tabClinic = document.getElementById('tab-clinics');
+const wallClinic = document.getElementById('table-clinics');
+const tabRecomendation = document.getElementById('tab-recomendation');
+const wallRecomendation = document.getElementById('recomentadion-doctors');
 
-// Get the element with id='defaultOpen' and click on it
-document.getElementById('defaultOpen').click();
+
+tabWall.addEventListener('click', () => {
+  wallClinic.style.display = 'none';
+  wallRecomendation.style.display = 'none';
+  wallPrincipal.style.display = 'block';
+});
+
+tabClinic.addEventListener('click', () => {
+  wallRecomendation.style.display = 'none';
+  wallPrincipal.style.display = 'none';
+  wallClinic.style.display = 'block';
+});
+
+tabRecomendation.addEventListener('click', () => {
+  wallPrincipal.style.display = 'none';
+  wallClinic.style.display = 'none';
+  wallRecomendation.style.display = 'block';
+})
+
+
+
+// FUNCIÓN PARA APARECER SEGUN TABS
+// const openCity = (evt, cityName) => {
+//   let i, tabcontent, tablinks;
+//   tabcontent = document.getElementsByClassName('tabcontent');
+//   for (i = 0; i < tabcontent.length; i++) {
+//     tabcontent[i].style.display = 'none';
+//   }
+//   tablinks = document.getElementsByClassName('tablinks');
+//   for (i = 0; i < tablinks.length; i++) {
+//     tablinks[i].className = tablinks[i].className.replace(' active', '');
+//   }
+//   document.getElementById(cityName).style.display = 'block';
+//   evt.currentTarget.className += ' active';
+// }
+
+
+
+
+//CERRA SESIÓN DE SIDE MENU
+const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+//CERRA SESIÓN
+const logOut = document.getElementById("header-nav-log-out");
+logOut.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
 
 //FUNCION PARA CREAR POST Y GUARDAR EN DATABASE DE FIREBASE
 const makePost = () => {
@@ -73,6 +98,7 @@ window.onload = () => {
   M.Dropdown.init(elems);
   mostrarAllPost()
 }
+
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
   let cont = 0;
@@ -85,7 +111,7 @@ const mostrarAllPost = () => {
       cont++;
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
-        bodyPosts.innerHTML =  ` 
+        bodyPosts.innerHTML = ` 
         <div class="row" id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
@@ -139,44 +165,44 @@ const deletePost = (post) => {
   let updates = {};
   updates['/post/' + postId] = null;
   updates['/users/' + x.uid + '/posts/' + postId] = null;
-    //Aparece mensaje de confirmación para eliminiacion del mensaje
-    swal({
-      title: "Está Seguro que desea eliminar esta publicación?",
-      text: "Puedes editar esta publicación si quieres cambiar algo.!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          firebase.database().ref().update(updates, (error) => {
-            if (error) {
-              alert("No se pudo eliminar")
-            } else {
-              postBlock.parentNode.removeChild(postBlock);
-              swal("Tu archivo ha sido eliminado!", {
-                icon: "success",
-              });
-            }
-          })
+  //Aparece mensaje de confirmación para eliminiacion del mensaje
+  swal({
+    title: "Está Seguro que desea eliminar esta publicación?",
+    text: "Puedes editar esta publicación si quieres cambiar algo.!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        firebase.database().ref().update(updates, (error) => {
+          if (error) {
+            alert("No se pudo eliminar")
+          } else {
+            postBlock.parentNode.removeChild(postBlock);
+            swal("Tu archivo ha sido eliminado!", {
+              icon: "success",
+            });
+          }
+        })
 
-        }
-      });
-  }
-  
+      }
+    });
+}
+
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 const editPost = (post) => {
   const x = firebase.auth().currentUser;
   // let idpost = post.idPost;
   let postId = post.dataset.idpost;
-    postP = document.querySelector("p." + postId),
+  postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-    //mostrar text area y oculpar p tag
-    postP.style.display = "none";
-    postTextArea.style.display = "block";
-    saveButton.style.display = "inline-block";
-  } 
+  //mostrar text area y oculpar p tag
+  postP.style.display = "none";
+  postTextArea.style.display = "block";
+  saveButton.style.display = "inline-block";
+}
 
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
 const savePost = (post) => {
@@ -209,6 +235,8 @@ const savePost = (post) => {
   })
 
 }
+
+// FUNCION QUE PERMITE DAR LIKE
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
@@ -226,6 +254,8 @@ const likePost = (favorite) => {
     }
   })
 }
+
+//  DOM PARA CREAR POST
 btnPublic.addEventListener("click", () => {
   makePost()
   postUser.value = "";

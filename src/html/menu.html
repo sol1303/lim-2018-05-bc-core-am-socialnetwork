@@ -11,16 +11,13 @@
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="../css/style-wall.css">
   <script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-
 </head>
 
 <body>
-  <header class="center-align" id="menu-header">
-  </header>
+  <header class="center-align" id="menu-header"></header>
   <section>
     <main>
-      <!-- <div id="principal-tab"></div> -->
-      <div id="London" class="tabcontent">
+      <div id="wall-prinicipal">
         <div class="row">
           <div class="col s12">
             <div class="card">
@@ -58,9 +55,36 @@
           <div id="section_posts"></div>
         </div>
         <!-- TABLA CON CLINICAS -->
-        <div id="Paris" class="tabcontent"></div>
+        <div id="table-clinics" style="display: none">
+          <table>
+            <thead>
+              <tr>
+                <th>Clínica</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CLINICA RICARDO PALMA</td>
+                <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+                <td>224-2224</td>
+              </tr>
+              <tr>
+                <td>CLINICA RICARDO PALMA</td>
+                <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+                <td>224-2224</td>
+              </tr>
+              <tr>
+                <td>CLINICA RICARDO PALMA</td>
+                <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+                <td>224-2224</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
         <!-- RECOMENDACIONES DE DOCTORES -->
-        <div id="Tokyo" class="tabcontent">
+        <div id="recomentadion-doctors" style="display: none">
           <h3>Tokyo</h3>
           <p>Tokyo is the capital of Japan.</p>
         </div>
@@ -95,6 +119,6 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- <script src="../js/header.js"></script> -->
   <script src="../components/header-menu.js"></script>
-  <script src="../js/listadeclinicas.js"></script>
+  <!-- <script src="../js/listadeclinicas.js"></script> -->
   <script src="../js/muro.js"></script>
 </body>
