@@ -1,4 +1,5 @@
-// const firebase = require("firebase");
+// para correr los test debe ser descomentarse la linea
+const firebase = require("firebase");
 
 const config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
@@ -23,8 +24,7 @@ window.logIn = (email, password) => {
 window.facebookAccount = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   firebase.auth().signInWithPopup(provider).then(result => {
-    let fireUser = result.user;
-    providerFacebook(fireUser);
+    providerFacebook(result.user);
   }).catch(error => {
     // alert(error.message);
   });
@@ -33,9 +33,10 @@ window.facebookAccount = () => {
 window.googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(result => {
-    let fireUser = result.user;
-    providerGoogle(fireUser);
+    providerGoogle(result.user);
   }).catch(error => {
     // console.log(error.message);
   });
 }
+
+// window.createUser = () => {}
