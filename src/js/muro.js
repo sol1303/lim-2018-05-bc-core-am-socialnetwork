@@ -1,31 +1,20 @@
-// post
-const postUser = document.getElementById("textarea-post-user");
-const btnPublic = document.getElementById("btn-publicar");
-const bodyPosts = document.getElementById("section_posts");
+const headerWall = document.getElementById("menu-header");
+headerWall.innerHTML = headerMenu;
 
-// COMPONENTE HEADER
-const menuHeader = document.getElementById("menu-header");
-// menuHeader.innerHTML = headerHtml;
-menuHeader.innerHTML = headerMenu; //components/header-menu
-
-//al cargar el menu del componente header se trae los botones btn salir menu grande
-const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
-miniBtnLogout.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-
-//al cargar el menu del componente header se trae los botones btn salir menu desplegable
 const logOut = document.getElementById("header-nav-log-out");
-logOut.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-// COMPONENTE LISTA DE HOSPITALES
-const tabParis = document.getElementById("Paris");
-tabParis.innerHTML = tableClinic;
+const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
+const tabHome = document.getElementById("linkHome");
+const tabHospital = document.getElementById("linkHospital");
+const tabProfileUser = document.getElementById("linkProfileUser");
+const tabSearch = document.getElementById("linkSearch");
+const miniTabHome = document.getElementById("mini-nav-modal-home");
+const miniTabHospital = document.getElementById("mini-nav-modal-hospital");
+const miniTabProfileUser = document.getElementById("mini-nav-modal-profile-user");
+const miniTabSearch = document.getElementById("mini-nav-modal-search");
+const sectionHome = document.getElementById("section-home");
+const sectionHospital = document.getElementById("section-hospital");
+const sectionProfileUser = document.getElementById("section-profile-user");
+const sectionSearch = document.getElementById("section-search");
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,23 +22,49 @@ document.addEventListener('DOMContentLoaded', function () {
   M.Sidenav.init(elems);
 });
 
-// FUNCIÓN PARA APARECER SEGUN TABS
-const openCity = (evt, cityName) => {
-  let i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName('tabcontent');
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = 'none';
-  }
-  tablinks = document.getElementsByClassName('tablinks');
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(' active', '');
-  }
-  document.getElementById(cityName).style.display = 'block';
-  evt.currentTarget.className += ' active';
+// post
+const postUser = document.getElementById("textarea-post-user");
+const btnPublic = document.getElementById("btn-publicar");
+const bodyPosts = document.getElementById("section_posts");
+
+const tabHomeDescription = () => {
+  sectionHome.style.display = "block";
+  sectionHospital.style.display = "none";
+  sectionProfileUser.style.display = "none";
+  sectionSearch.style.display = "none";
+}
+const tabHospitalDescription = () => {
+  sectionHospital.style.display = "block";
+  sectionHome.style.display = "none";
+  sectionProfileUser.style.display = "none";
+  sectionSearch.style.display = "none";
+}
+const tabProfileUserDescription = () => {
+  sectionProfileUser.style.display = "block";
+  sectionHospital.style.display = "none";
+  sectionHome.style.display = "none";
+  sectionSearch.style.display = "none";
+}
+const tabSearchDescription = () => {
+  sectionSearch.style.display = "block";
+  sectionHospital.style.display = "none";
+  sectionHome.style.display = "none";
+  sectionProfileUser.style.display = "none";
 }
 
-// Get the element with id='defaultOpen' and click on it
-document.getElementById('defaultOpen').click();
+logOut.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+// funciones firebase
 
 //FUNCION PARA CREAR POST Y GUARDAR EN DATABASE DE FIREBASE
 const makePost = () => {
@@ -71,70 +86,8 @@ const makePost = () => {
 window.onload = () => {
   let elems = document.querySelectorAll('.dropdown-trigger');
   M.Dropdown.init(elems);
-  getPublicPost();
-  // mostrarAllPost()
+  mostrarAllPost();
 }
-
-const pintarPost = (post, count, currentUser) => {
-  bodyPosts.innerHTML +=
-  `
-  <div class="row" id="${post.idPost}">
-    <div class="col s12 m9">
-      <div class="card">
-        <div class="card-content black-text">
-          <div class="col s12 m6 right">
-            <a class="dropdown-trigger right" href="#" data-target="dropdown${count}">
-              <i class="material-icons left ${currentUser.uid == post.uid ? " dblock " : "dnone "}">more_vert</i>
-            </a>
-            <ul id="dropdown${count}" class="dropdown-content">
-              <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="editPost(this) ">
-                <a>
-                  <i class="material-icons">mode_edit</i>Editar</a>
-              </li>
-              <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
-                <a>
-                  <i class="material-icons">cloud</i>Eliminar</a>
-              </li>
-            </ul>
-          </div>
-          <span class="card-title">${post.username}</span>
-          <p class="${post.idPost}">
-            ${post.description}
-          </p>
-          <textarea class="dnone materialize-textarea ${post.idPost}" row="2">${post.description}</textarea>
-        </div>
-        <div class="card-action">
-          <a class="heart">
-            <i class="material-icons ${post.idPost}" onclick="likePost(this)">favorite_border</i>
-          </a>
-          <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
-          <a id="${post.idPost}" onclick="savePost(this)" class="dnone waves-effect waves-light btn">
-            <i class="mdi-maps-rate-review left">Guardar</i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  `;
-}
-
-const getPublicPost = () => {
-  bodyPosts.innerHTML = "";
-  let count = 0;
-  const ref = firebase.database();
-  ref.ref('/post')
-    .on('child_added', (newPost) => {
-      const post = newPost.val();
-      const currentUser = firebase.auth().currentUser;
-      count++;
-      ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
-        const username = (snapshot.val().username) || 'Anonymous';
-        post.username = username;
-        pintarPost(post, count, currentUser);
-      });
-    });
-}
-
 
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
@@ -173,7 +126,6 @@ const mostrarAllPost = () => {
                   ${post.description}
                 </p>
                 <textarea class="dnone materialize-textarea ${post.idPost}" row="2">${post.description}</textarea>
-
               </div>
               <div class="card-action">
                 <a class="heart">
@@ -192,8 +144,9 @@ const mostrarAllPost = () => {
         let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
         M.Dropdown.init(elems);
       });
-    })
+    });
 }
+
 // FUNCION QUE PERMITE ELIMINAR POST
 const deletePost = (post) => {
   let postId = post.dataset.idpost,
@@ -221,8 +174,7 @@ const deletePost = (post) => {
               icon: "success",
             });
           }
-        })
-
+        });
       }
     });
 }
@@ -270,8 +222,8 @@ const savePost = (post) => {
       saveButton.style.display = "none";
     }
   })
-
 }
+
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
   let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1; {
@@ -288,9 +240,20 @@ const likePost = (favorite) => {
       favorite.innerHTML = "favorite";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
-  })
+  });
 }
+
+
+tabHome.addEventListener("click", () => tabHomeDescription());
+tabHospital.addEventListener("click", () => tabHospitalDescription());
+tabProfileUser.addEventListener("click", () => tabProfileUserDescription());
+tabSearch.addEventListener("click", () => tabSearchDescription());
+miniTabHome.addEventListener("click", () => tabHomeDescription());
+miniTabHospital.addEventListener("click", () => tabHospitalDescription());
+miniTabProfileUser.addEventListener("click", () => tabProfileUserDescription());
+miniTabSearch.addEventListener("click", () => tabSearchDescription());
+
 btnPublic.addEventListener("click", () => {
-  makePost()
+  makePost();
   postUser.value = "";
 });

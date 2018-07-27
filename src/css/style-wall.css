@@ -161,6 +161,10 @@ nav {
   width: 100%;
 }
 
+.tablink {
+  width: 25%
+}
+
 /* Style the buttons inside the tab */
 
 .tab button {

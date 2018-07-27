@@ -12,9 +12,10 @@ headerMenu = `
 		</li>
 	</ul>
 	<div class="tab">
-		<button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">Generales</button>
-		<button class="tablinks" onclick="openCity(event, 'Paris')">Clínicas / Hospitales</button>
-		<button class="tablinks" onclick="openCity(event, 'Tokyo')">Recomendaciones de Doctores</button>
+		<button class="tablink" id="linkHome">Inicio</button>
+		<button class="tablink" id="linkHospital">Clínicas - Hospitales</button>
+		<button class="tablink" id="linkSearch">Buscar</button>
+		<button class="tablink" id="linkProfileUser">Perfil</button>
 	</div>
 </nav>
 <ul id="slide-out" class="sidenav">
@@ -28,12 +29,12 @@ headerMenu = `
 			<i class="material-icons">local_hospital</i>Clínicas - Hospitales</a>
 	</li>
 	<li>
-		<a id="mini-nav-modal-recommendation">
-			<i class="material-icons">lightbulb_outline</i>Recomendaciones</a>
-	</li>
-	<li>
 		<a id="mini-nav-modal-search">
 			<i class="material-icons">search</i>Buscar</a>
+	</li>
+	<li>
+		<a id="mini-nav-modal-profile-user">
+			<i class="material-icons">account_circle</i>Perfil</a>
 	</li>
 	<li>
 		<a id="mini-nav-modal-log-out">

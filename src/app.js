@@ -132,13 +132,13 @@ const updateUserByProvider = (uid, name, email, photo) => {
   writeUserDbFirebase(userLocal.uid, userLocal.username, userLocal.email, userLocal.type, userLocal.specialty, userLocal.colegiatura, userLocal.profile_picture)
 }
 
-window.goToMenu = () => {
+const goToMenu = () => {
   if (!isProcessing) {
     window.location.href = 'html/menu.html';
   }
 }
 
-window.onload = () => {
+// window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       // sectionMuroFalso.style.display = "none";
@@ -155,7 +155,7 @@ window.onload = () => {
       navBtnSignUp.style.display = "block";
     }
   });
-}
+// }
 
 // en login cuando la contraseña no sea la correcta mostrara la etiqueta que está mal
 const showWrongPassword = () => {
