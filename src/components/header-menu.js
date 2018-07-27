@@ -11,10 +11,11 @@ headerMenu = `
 			<a id="header-nav-log-out" class="right">Cerrar sesión</a>
 		</li>
 	</ul>
-	<div>
-		<button  id="defaultOpen">Generales</button>
-		<button  id="tab-clinics" >Clínicas / Hospitales</button>
-		<button  id="tab-recomendation" >Recomendaciones de Doctores</button>
+	<div class="tab">
+		<button class="tablink" id="linkHome">Inicio</button>
+		<button class="tablink" id="linkHospital">Clínicas - Hospitales</button>
+		<button class="tablink" id="linkSearch">Buscar</button>
+		<button class="tablink" id="linkProfileUser">Perfil</button>
 	</div>
 </nav>
 <ul id="slide-out" class="sidenav">
@@ -28,12 +29,12 @@ headerMenu = `
 			<i class="material-icons">local_hospital</i>Clínicas - Hospitales</a>
 	</li>
 	<li>
-		<a id="mini-nav-modal-recommendation">
-			<i class="material-icons">lightbulb_outline</i>Recomendaciones</a>
-	</li>
-	<li>
 		<a id="mini-nav-modal-search">
 			<i class="material-icons">search</i>Buscar</a>
+	</li>
+	<li>
+		<a id="mini-nav-modal-profile-user">
+			<i class="material-icons">account_circle</i>Perfil</a>
 	</li>
 	<li>
 		<a id="mini-nav-modal-log-out">

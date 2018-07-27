@@ -25,7 +25,7 @@ window.validateFormSignUpUsers = (name, email, password, confirm_pass) => {
 
   signUpUser.name = name.length > 2;
   signUpUser.email = email !== "" && patronEmail.test(email);
-  signUpUser.password = password.length >= 6
+  signUpUser.password = password.length >= 4;
   signUpUser.confirm_password = password === confirm_pass && confirm_pass.length >= 6;
 
   return signUpUser;
