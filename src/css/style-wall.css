@@ -155,6 +155,22 @@ nav {
 
 /* CSS MURO */
 
+.browser-default{
+  display: inline-block;
+  width: 30%;
+  margin-left: 1%;
+  /* height: auto;
+
+  color: #fff;
+  background-color: #1DB4BF;
+  border: none; */
+}
+
+#post-card{
+  margin: 0%;
+  padding: 0% !important;
+}
+
 /* Style the tab */
 
 .tab {
@@ -184,7 +200,11 @@ nav {
 /* Change background color of buttons on hover */
 
 .tab button:hover {
-  background-color: #FAB768;
+  border-top: 5px solid #FAB768;
+}
+
+.tab button:focus {
+  border-top: 5px solid #FAB768;
 }
 
 /* Style the tab content */

@@ -56,77 +56,126 @@
       </li>
     </ul> -->
   </header>
-
-  <main>
-    <aside id="section-home">
-      <h3>INICIO</h3>
-      <div class="row">
-        <div class="col s12">
-          <div class="card">
-            <div class="card-content black-text">
-              <div class="row tab-content col s12">
-                <div class="col s2">
-                  <img src="../img/profile.png" class="image-post">
+  <div class="container black">
+    <main class="center col s12">
+      <aside id="section-home" class="center">
+        <div class="row">
+          <div id="post-card" class="col s12">
+            <div class="card">
+              <div class="card-content black-text">
+                <div class="row tab-content col s12">
+                  <div class="col s2">
+                    <img src="../img/profile.png" class="image-post">
+                  </div>
+                  <div class="input-field col s10">
+                    <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
+                    <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
+                  </div>
                 </div>
-                <div class="input-field col s10">
-                  <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
-                  <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12 m6 right">
-                  <select class="browser-default">
-                    <option value="" disabled selected>Privacidad</option>
-                    <option value="public">Público</option>
-                    <option value="friends">Amigos</option>
-                  </select>
-                  <a id="btn-publicar" class="waves-effect waves-light btn">
-                    <i class="material-icons left">send</i>Publicar</a>
+                <div class="row">
+                  <div class="col s12 right">
+                    <select class="browser-default right btn">
+                      <option value="" disabled selected>Privacidad</option>
+                      <option value="public">Público</option>
+                      <option value="friends">Amigos</option>
+                    </select>
+                    <a id="btn-publicar" class="waves-effect waves-light btn right">
+                      <i class="material-icons left">send</i>Publicar</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div id="section_posts" class=""></div>
         </div>
-        <div id="section_posts"></div>
-      </div>
-    </aside>
-    <aside id="section-hospital" style="display: none">
-      <h3>HOSPITAL-CLINICAS</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Clínica</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-          <tr>
-            <td>CLINICA RICARDO PALMA</td>
-            <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-            <td>224-2224</td>
-          </tr>
-        </tbody>
-      </table>
-    </aside>
-    <aside id="section-search" style="display: none">
-      <h3>BUSCAR</h3>
-    </aside>
-    <aside id="section-profile-user" style="display: none">
-      <h3>PERFIL</h3>
-    </aside>
-  </main>
+      </aside>
+      <aside id="section-hospital" style="display: none">
+        <h3>HOSPITAL-CLINICAS</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Clínica</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CLINICA RICARDO PALMA</td>
+              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+              <td>224-2224</td>
+            </tr>
+            <tr>
+              <td>CLINICA RICARDO PALMA</td>
+              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+              <td>224-2224</td>
+            </tr>
+            <tr>
+              <td>CLINICA RICARDO PALMA</td>
+              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
+              <td>224-2224</td>
+            </tr>
+          </tbody>
+        </table>
+      </aside>
+      <aside id="section-search" style="display: none">
+        <h3>BUSCAR</h3>
+      </aside>
+      <aside id="section-profile-user" style="display: none">
+        <div class="row">
 
+          <div class="col s12 m4 l3">
+            <img src="../img/profile.png" class="image-post">
+            <h5>Solange Lavarello</h5>
+            <!-- Note that "m4 l3" was added -->
+            <!-- Grey navigation panel
+        
+                      This content will be:
+                  3-columns-wide on large screens,
+                  4-columns-wide on medium screens,
+                  12-columns-wide on small screens  -->
+
+          </div>
+
+          <div class="col s12 m8 l9">
+            <div id="post-card" class="col s12">
+              <div class="card">
+                <div class="card-content black-text">
+                  <div class="row tab-content col s12">
+                    <div class="input-field col s10">
+                      <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
+                      <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12 right">
+                      <select class="browser-default right btn">
+                        <option value="" disabled selected>Privacidad</option>
+                        <option value="public">Público</option>
+                        <option value="friends">Amigos</option>
+                      </select>
+                      <a id="btn-publicar" class="waves-effect waves-light btn right">
+                        <i class="material-icons left">send</i>Publicar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Note that "m8 l9" was added -->
+            <!-- Teal page content
+        
+                      This content will be:
+                  9-columns-wide on large screens,
+                  8-columns-wide on medium screens,
+                  12-columns-wide on small screens  -->
+
+          </div>
+
+        </div>
+
+      </aside>
+    </main>
+  </div>
   <!-- <section> -->
   <!-- <main> -->
   <!-- <div id="London" class="tabcontent"> -->
