@@ -1,1 +1,0 @@
-// permitir escribir texto y editar si el contenido sera publico o amigos y btn de postear
