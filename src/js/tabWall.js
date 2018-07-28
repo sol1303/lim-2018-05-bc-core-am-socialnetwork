@@ -1,7 +1,7 @@
 let muroTabs =
 	`<div class="row">
-<div class="col s12 m9">
-  <div class="card">
+    <div class="col s12 m9">
+      <div class="card">
     <div class="card-content black-text">
       <div class="row tab-content col s12">
         <div class="col s2">

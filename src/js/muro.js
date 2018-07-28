@@ -106,7 +106,7 @@ const mostrarAllPost = () => {
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML = `
-        <div class="row" id="${post.idPost}">
+        <div id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
               <div class="card-content black-text">
@@ -121,7 +121,7 @@ const mostrarAllPost = () => {
                     </li >
                     <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
                       <a>
-                        <i class="material-icons">cloud</i>Eliminar</a>
+                        <i class="material-icons">delete</i>Eliminar</a>
                     </li>
                   </ul>
                 </div>
@@ -161,8 +161,8 @@ const deletePost = (post) => {
   updates['/users/' + x.uid + '/posts/' + postId] = null;
   //Aparece mensaje de confirmación para eliminiacion del mensaje
   swal({
-      title: "Está Seguro que desea eliminar esta publicación?",
-      text: "Puedes editar esta publicación si quieres cambiar algo.!",
+      title: "¿Está seguro que desea eliminar esta publicación?",
+      text: "Puedes editar esta publicación si quieres cambiar algo.",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -174,7 +174,7 @@ const deletePost = (post) => {
             alert("No se pudo eliminar")
           } else {
             postBlock.parentNode.removeChild(postBlock);
-            swal("Tu archivo ha sido eliminado!", {
+            swal("Tu archivo ha sido eliminado.", {
               icon: "success",
             });
           }

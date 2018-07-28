@@ -44,11 +44,6 @@ body section {
   background: #1DB4BF !important;
 }
 
-/* .input-sign-up {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
-} */
-
 .input-sign-up-doctors {
   margin-top: -0.5rem !important;
 }
@@ -63,7 +58,6 @@ body section {
 
 #select-user {
   display: inline-block;
-  /* margin-top: 5% !important; */
 }
 
 .helper-text {
@@ -163,7 +157,8 @@ nav {
   margin-top: -10%;
 }
 
-@media screen and (min-width: 700px) and (max-width: 1400px) {
+
+@media screen and (min-width: 700px) {
   .selection-image {
     width: 50%;
   }
@@ -193,6 +188,14 @@ nav {
     width: 60%;
     margin: 2.5%;
   }
+}
+
+.modal-content-signup {
+  width: 50%;
+}
+
+.selection-image {
+  width: 45%;
 }
 
 @media screen and (min-width: 600px) and (max-width: 700px) {
