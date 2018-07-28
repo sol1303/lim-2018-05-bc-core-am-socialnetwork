@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
 const postUser = document.getElementById("textarea-post-user");
 const btnPublic = document.getElementById("btn-publicar");
 const bodyPosts = document.getElementById("section_posts");
+const selectPrivacity = document.getElementById("select-privacity");
+
+let privacityPost = null;
 
 const tabHomeDescription = () => {
   sectionHome.style.display = "block";
@@ -73,7 +76,8 @@ const makePost = () => {
   let posts = {
     fecha: datePosted,
     description: postUser.value,
-    uid: x.uid
+    uid: x.uid,
+    privacity: privacityPost
   }
   const key = firebase.database().ref().child('users').push().key;
   posts.idPost = key;
@@ -102,7 +106,7 @@ const mostrarAllPost = () => {
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
         bodyPosts.innerHTML = `
-        <div class="row" id="${post.idPost}">
+        <div id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
               <div class="card-content black-text">
@@ -117,7 +121,7 @@ const mostrarAllPost = () => {
                     </li >
                     <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
                       <a>
-                        <i class="material-icons">cloud</i>Eliminar</a>
+                        <i class="material-icons">delete</i>Eliminar</a>
                     </li>
                   </ul>
                 </div>
@@ -253,7 +257,18 @@ miniTabHospital.addEventListener("click", () => tabHospitalDescription());
 miniTabProfileUser.addEventListener("click", () => tabProfileUserDescription());
 miniTabSearch.addEventListener("click", () => tabSearchDescription());
 
+// boton de publicar un post
 btnPublic.addEventListener("click", () => {
-  makePost();
-  postUser.value = "";
+  privacityPost = null;
+  if (postUser.value !== "") {
+    if (selectPrivacity.options[selectPrivacity.selectedIndex].value == "") {
+      privacityPost = "public";
+      makePost();
+      postUser.value = "";
+    } else {
+      privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
+      makePost();
+      postUser.value = "";
+    }
+  } else console.log("no escribiste");
 });

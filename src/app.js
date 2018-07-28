@@ -3,7 +3,6 @@ const sectionHeader = document.getElementById("header-main");
 sectionHeader.innerHTML = headerMain; //obtiene la seccion en que pintara y la une con el codigo del componente
 
 const sectionMuroFalso = document.getElementById("muro-falso");
-// sectionMuroFalso.innerHTML = muroFalso; //obtiene la seccion en que pintara y la une con el codigo del componente
 
 // botones de NAV
 const navBtnLogIn = document.getElementById("nav-modal-log-in");
@@ -106,7 +105,7 @@ const userLocal = {
   profile_picture: null
 }
 
-// método que guarda al usuario en la base de datos - recibe objeto user para almacenar en la db
+// método que guarda al usuario en la base de datos
 const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, imageUrl) => {
   firebase.database().ref('users/' + uid).set({
     username: name,
@@ -117,13 +116,13 @@ const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, ima
     profile_picture: imageUrl
   }).then(response => {
     console.log(response);
-    window.location.href = 'html/menu.html'
+    window.location.href = 'html/menu.html';
   }).catch(error => {
     console.error('error', error);
   });
 }
 
-// para el caso de los proveedores se actualiza el objeto local para que con los datos obtenidos del usuario cuando se va a registrar los mande a la db de firebase
+// para el caso de los proveedores, actualiza el objeto local para mandarlo a la db de firebase
 const updateUserByProvider = (uid, name, email, photo) => {
   userLocal.uid = uid;
   userLocal.username = name;
@@ -132,32 +131,25 @@ const updateUserByProvider = (uid, name, email, photo) => {
   writeUserDbFirebase(userLocal.uid, userLocal.username, userLocal.email, userLocal.type, userLocal.specialty, userLocal.colegiatura, userLocal.profile_picture)
 }
 
+// redireccion al muro
 const goToMenu = () => {
   if (!isProcessing) {
     window.location.href = 'html/menu.html';
   }
 }
 
-// window.onload = () => {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      // sectionMuroFalso.style.display = "none";
-      // modalLogIn.style.display = "none";
-      // modalSignUp.style.display = "none";
-      // navBtnLogIn.style.display = "none";
-      // navBtnSignUp.style.display = "none";
-      goToMenu();
-    } else {
-      M.updateTextFields();
-      getPublicPost();
-      // sectionMuroFalso.style.display = "block";
-      navBtnLogIn.style.display = "block";
-      navBtnSignUp.style.display = "block";
-    }
-  });
-// }
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    goToMenu();
+  } else {
+    M.updateTextFields();
+    getPublicPost();
+    navBtnLogIn.style.display = "block";
+    navBtnSignUp.style.display = "block";
+  }
+});
 
-// en login cuando la contraseña no sea la correcta mostrara la etiqueta que está mal
+// en login cuando el usuario no exista en db o password no se correcto
 const showWrongPassword = () => {
   helperPasswordLogIn.hidden = false;
 }
@@ -171,12 +163,6 @@ const showAlertLogIn = (validate) => {
   else helperPasswordLogIn.hidden = false;
 
   if (validate.email && validate.password) logIn(txtEmailLogIn.value, txtPasswordLogIn.value);
-}
-
-const showMuro = () => {
-  closeNavModalSignUp();
-  sectionSignUpDoctors.style.display = "none";
-  sectionSignUpUsers.style.display = "none";
 }
 
 // al validar el form para doctores especificos(especialidad y colegitura) muestra etiquetas de campo erroneo, cuando son correctos verifica con que medio quiere registrarse(email, gg, fb)
@@ -206,21 +192,19 @@ const showAlertEspecificDoctor = (validate, e) => {
 }
 
 const signUpByDoctors = (name, email, pass, especialidad, colegiatura) => {
-  const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(email, pass).then(() => {
+  const signUpD = createUser(email, pass);
+  isProcessing = true;
+  signUpD.then(() => {
     const x = firebase.auth().currentUser;
-    isProcessing = true;
     if (x) {
       writeUserDbFirebase(x.uid, name, x.email, 'doctor', especialidad, colegiatura, null);
-      showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
-        alert(error);
+        // alert(error);
       });
     }
   });
-  promise.catch(e => alert(e.message));
 }
 
 const signUpUsers = (e) => {
@@ -237,21 +221,19 @@ const signUpUsers = (e) => {
 }
 
 const signUpByUsers = (name, email, pass) => {
-  const auth = firebase.auth();
-  const promise = auth.createUserWithEmailAndPassword(email, pass).then(() => {
+  const signUpP = createUser(email, pass);
+  isProcessing = true;
+  signUpP.then(() => {
     const x = firebase.auth().currentUser;
-    isProcessing = true;
     if (x) {
       writeUserDbFirebase(x.uid, name, x.email, 'paciente', null, null, null);
-      showMuro();
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
-        alert(error);
+        // alert(error);
       });
     }
   });
-  promise.catch(e => alert(e.message));
 }
 
 //validaciones de signup divisiones para pacientes y doctores
@@ -394,8 +376,7 @@ const getPublicPost = () => {
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         const username = (snapshot.val().username) || 'Anonymous';
         post.username = username
-        // arrPost.push(post);
-        pintarPost(post);
+        if(post.privacity === "public") pintarPost(post);
       });
     });
 }

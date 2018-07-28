@@ -31,10 +31,6 @@ header ul li {
   margin-top: 5%;
 }
 
-#mini-nav-modal-log-out {
-  margin-top: 70%;
-}
-
 .btn-log-in-social {
   margin: 5%;
   display: block;
@@ -154,7 +150,9 @@ nav {
 }
 
 /* CSS MURO */
-
+i .material-icons {
+  padding: 0%;
+}
 .browser-default{
   display: inline-block;
   width: 30%;
@@ -164,11 +162,6 @@ nav {
   color: #fff;
   background-color: #1DB4BF;
   border: none; */
-}
-
-#post-card{
-  margin: 0%;
-  padding: 0% !important;
 }
 
 /* Style the tab */
@@ -239,11 +232,22 @@ main {
 .image-post {
   width: 60px;
 }
-
+.mini-tab{
+  display: none;
+}
 @media only screen and (max-width: 1000px) {
   .tab {
     display: none;
   }
+
+  .tab button {
+    padding: 0%;
+  }
+  .mini-tab{
+    display: block;
+    padding: 0% !important;
+  }
+
   #popularTags {
     display: none;
   }
@@ -263,6 +267,10 @@ table tr {
 #slide-out img {
   margin-top: 10%;
   margin-right: 20%;
+  margin-bottom: 10%;
+}
+
+nav {
   margin-bottom: 10%;
 }
 

@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                   <div class="col s12 right">
-                    <select class="browser-default right btn">
+                    <select id="select-privacity" class="browser-default right btn">
                       <option value="" disabled selected>Privacidad</option>
                       <option value="public">Público</option>
                       <option value="friends">Amigos</option>
@@ -125,7 +125,9 @@
         <div class="row">
 
           <div class="col s12 m4 l3">
-            <img src="../img/profile.png" class="image-post">
+            <div class="col s2">
+              <img src="../img/profile.png" class="image-post">
+            </div>
             <h5>Solange Lavarello</h5>
             <!-- Note that "m4 l3" was added -->
             <!-- Grey navigation panel
@@ -149,7 +151,7 @@
                   </div>
                   <div class="row">
                     <div class="col s12 right">
-                      <select class="browser-default right btn">
+                      <select class="browser-default right btn" id="select-privacity">
                         <option value="" disabled selected>Privacidad</option>
                         <option value="public">Público</option>
                         <option value="friends">Amigos</option>

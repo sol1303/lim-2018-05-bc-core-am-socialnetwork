@@ -38,7 +38,7 @@ window.validateEspecificDoctor = (especialidad, colegiatura) => {
   }
 
   especificDoctor.especialidad = especialidad !== "";
-  especificDoctor.colegiatura = colegiatura.length > 5;
+  especificDoctor.colegiatura = colegiatura.length >= 4;
 
   return especificDoctor;
 }
