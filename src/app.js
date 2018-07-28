@@ -370,13 +370,13 @@ const pintarPost = (post) => {
 
 const getPublicPost = () => {
   const ref = firebase.database();
-  ref.ref('/post')
+  ref.ref('/post').orderByChild('fecha')
     .on('child_added', (newPost) => {
       const post = newPost.val();
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         const username = (snapshot.val().username) || 'Anonymous';
-        post.username = username
-        if(post.privacity === "public") pintarPost(post);
+        post.username = username;
+        if (post.privacity === "public") pintarPost(post);
       });
     });
 }
