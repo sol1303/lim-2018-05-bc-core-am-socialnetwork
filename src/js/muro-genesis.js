@@ -1,20 +1,31 @@
-const headerWall = document.getElementById("menu-header");
-headerWall.innerHTML = headerMenu;
+// post
+const postUser = document.getElementById("textarea-post-user");
+const btnPublic = document.getElementById("btn-publicar");
+const bodyPosts = document.getElementById("section_posts");
 
-const logOut = document.getElementById("header-nav-log-out");
+// COMPONENTE HEADER
+const menuHeader = document.getElementById("menu-header");
+// menuHeader.innerHTML = headerHtml;
+menuHeader.innerHTML = headerMenu; //components/header-menu
+
+//al cargar el menu del componente header se trae los botones btn salir menu grande
 const miniBtnLogout = document.getElementById("mini-nav-modal-log-out");
-const tabHome = document.getElementById("linkHome");
-const tabHospital = document.getElementById("linkHospital");
-const tabProfileUser = document.getElementById("linkProfileUser");
-const tabSearch = document.getElementById("linkSearch");
-const miniTabHome = document.getElementById("mini-nav-modal-home");
-const miniTabHospital = document.getElementById("mini-nav-modal-hospital");
-const miniTabProfileUser = document.getElementById("mini-nav-modal-profile-user");
-const miniTabSearch = document.getElementById("mini-nav-modal-search");
-const sectionHome = document.getElementById("section-home");
-const sectionHospital = document.getElementById("section-hospital");
-const sectionProfileUser = document.getElementById("section-profile-user");
-const sectionSearch = document.getElementById("section-search");
+miniBtnLogout.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+
+//al cargar el menu del componente header se trae los botones btn salir menu desplegable
+const logOut = document.getElementById("header-nav-log-out");
+logOut.addEventListener("click", () => {
+  firebase.auth().signOut().then(() => {
+    window.location.href = '../../src/'
+  })
+});
+// COMPONENTE LISTA DE HOSPITALES
+const tabParis = document.getElementById("Paris");
+tabParis.innerHTML = tableClinic;
 
 // FUNCIÓN PARA EL MENÚ DESPLEGABLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -22,52 +33,23 @@ document.addEventListener('DOMContentLoaded', function () {
   M.Sidenav.init(elems);
 });
 
-// post
-const postUser = document.getElementById("textarea-post-user");
-const btnPublic = document.getElementById("btn-publicar");
-const bodyPosts = document.getElementById("section_posts");
-const selectPrivacity = document.getElementById("select-privacity");
-
-let privacityPost = null;
-
-const tabHomeDescription = () => {
-  sectionHome.style.display = "block";
-  sectionHospital.style.display = "none";
-  sectionProfileUser.style.display = "none";
-  sectionSearch.style.display = "none";
-}
-const tabHospitalDescription = () => {
-  sectionHospital.style.display = "block";
-  sectionHome.style.display = "none";
-  sectionProfileUser.style.display = "none";
-  sectionSearch.style.display = "none";
-}
-const tabProfileUserDescription = () => {
-  sectionProfileUser.style.display = "block";
-  sectionHospital.style.display = "none";
-  sectionHome.style.display = "none";
-  sectionSearch.style.display = "none";
-}
-const tabSearchDescription = () => {
-  sectionSearch.style.display = "block";
-  sectionHospital.style.display = "none";
-  sectionHome.style.display = "none";
-  sectionProfileUser.style.display = "none";
+// FUNCIÓN PARA APARECER SEGUN TABS
+const openCity = (evt, cityName) => {
+  let i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName('tabcontent');
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = 'none';
+  }
+  tablinks = document.getElementsByClassName('tablinks');
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(' active', '');
+  }
+  document.getElementById(cityName).style.display = 'block';
+  evt.currentTarget.className += ' active';
 }
 
-logOut.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-
-miniBtnLogout.addEventListener("click", () => {
-  firebase.auth().signOut().then(() => {
-    window.location.href = '../../src/'
-  })
-});
-
-// funciones firebase
+// Get the element with id='defaultOpen' and click on it
+document.getElementById('defaultOpen').click();
 
 //FUNCION PARA CREAR POST Y GUARDAR EN DATABASE DE FIREBASE
 const makePost = () => {
@@ -76,8 +58,7 @@ const makePost = () => {
   let posts = {
     fecha: datePosted,
     description: postUser.value,
-    uid: x.uid,
-    privacity: privacityPost
+    uid: x.uid
   }
   const key = firebase.database().ref().child('users').push().key;
   posts.idPost = key;
@@ -90,9 +71,8 @@ const makePost = () => {
 window.onload = () => {
   let elems = document.querySelectorAll('.dropdown-trigger');
   M.Dropdown.init(elems);
-  mostrarAllPost();
+  mostrarAllPost()
 }
-
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
   let cont = 0;
@@ -105,8 +85,8 @@ const mostrarAllPost = () => {
       cont++;
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         var username = (snapshot.val().username) || 'Anonymous';
-        bodyPosts.innerHTML = `
-        <div id="${post.idPost}">
+        bodyPosts.innerHTML =  ` 
+        <div class="row" id="${post.idPost}">
           <div class="col s12 m9">
             <div class="card">
               <div class="card-content black-text">
@@ -121,7 +101,7 @@ const mostrarAllPost = () => {
                     </li >
                     <li data-idpost="${post.idPost}" data-iduser="${post.uid}" onclick="deletePost(this)">
                       <a>
-                        <i class="material-icons">delete</i>Eliminar</a>
+                        <i class="material-icons">cloud</i>Eliminar</a>
                     </li>
                   </ul>
                 </div>
@@ -130,6 +110,7 @@ const mostrarAllPost = () => {
                   ${post.description}
                 </p>
                 <textarea class="dnone materialize-textarea ${post.idPost}" row="2">${post.description}</textarea>
+
               </div>
               <div class="card-action">
                 <a class="heart">
@@ -148,9 +129,8 @@ const mostrarAllPost = () => {
         let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
         M.Dropdown.init(elems);
       });
-    });
+    })
 }
-
 // FUNCION QUE PERMITE ELIMINAR POST
 const deletePost = (post) => {
   let postId = post.dataset.idpost,
@@ -159,43 +139,44 @@ const deletePost = (post) => {
   let updates = {};
   updates['/post/' + postId] = null;
   updates['/users/' + x.uid + '/posts/' + postId] = null;
-  //Aparece mensaje de confirmación para eliminiacion del mensaje
-  swal({
-      title: "¿Está seguro que desea eliminar esta publicación?",
-      text: "Puedes editar esta publicación si quieres cambiar algo.",
+    //Aparece mensaje de confirmación para eliminiacion del mensaje
+    swal({
+      title: "Está Seguro que desea eliminar esta publicación?",
+      text: "Puedes editar esta publicación si quieres cambiar algo.!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        firebase.database().ref().update(updates, (error) => {
-          if (error) {
-            alert("No se pudo eliminar")
-          } else {
-            postBlock.parentNode.removeChild(postBlock);
-            swal("Tu archivo ha sido eliminado.", {
-              icon: "success",
-            });
-          }
-        });
-      }
-    });
-}
+      .then((willDelete) => {
+        if (willDelete) {
+          firebase.database().ref().update(updates, (error) => {
+            if (error) {
+              alert("No se pudo eliminar")
+            } else {
+              postBlock.parentNode.removeChild(postBlock);
+              swal("Tu archivo ha sido eliminado!", {
+                icon: "success",
+              });
+            }
+          })
 
+        }
+      });
+  }
+  
 // FUNCION QUE PERMITE EDITAR PUBLICACION
 const editPost = (post) => {
   const x = firebase.auth().currentUser;
   // let idpost = post.idPost;
   let postId = post.dataset.idpost;
-  postP = document.querySelector("p." + postId),
+    postP = document.querySelector("p." + postId),
     saveButton = document.querySelector("a#" + postId),
     postTextArea = document.querySelector("textarea." + postId);
-  //mostrar text area y oculpar p tag
-  postP.style.display = "none";
-  postTextArea.style.display = "block";
-  saveButton.style.display = "inline-block";
-}
+    //mostrar text area y oculpar p tag
+    postP.style.display = "none";
+    postTextArea.style.display = "block";
+    saveButton.style.display = "inline-block";
+  } 
 
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
 const savePost = (post) => {
@@ -226,13 +207,12 @@ const savePost = (post) => {
       saveButton.style.display = "none";
     }
   })
-}
 
+}
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
-  let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1; {
-    countLike: cantLikes
-  };
+  let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
+  { countLike: cantLikes };
 
   updates = {};
   updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
@@ -244,31 +224,9 @@ const likePost = (favorite) => {
       favorite.innerHTML = "favorite";
       favorite.parentNode.nextElementSibling.innerText = cantLikes;
     }
-  });
+  })
 }
-
-
-tabHome.addEventListener("click", () => tabHomeDescription());
-tabHospital.addEventListener("click", () => tabHospitalDescription());
-tabProfileUser.addEventListener("click", () => tabProfileUserDescription());
-tabSearch.addEventListener("click", () => tabSearchDescription());
-miniTabHome.addEventListener("click", () => tabHomeDescription());
-miniTabHospital.addEventListener("click", () => tabHospitalDescription());
-miniTabProfileUser.addEventListener("click", () => tabProfileUserDescription());
-miniTabSearch.addEventListener("click", () => tabSearchDescription());
-
-// boton de publicar un post
 btnPublic.addEventListener("click", () => {
-  privacityPost = null;
-  if (postUser.value !== "") {
-    if (selectPrivacity.options[selectPrivacity.selectedIndex].value == "") {
-      privacityPost = "public";
-      makePost();
-      postUser.value = "";
-    } else {
-      privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
-      makePost();
-      postUser.value = "";
-    }
-  } else console.log("no escribiste");
+  makePost()
+  postUser.value = "";
 });

@@ -1,6 +1,5 @@
 body {
   background: #ffffff;
-
 }
 
 header {
@@ -10,7 +9,7 @@ header {
 }
 
 header img {
-  margin-left: 15%;
+  margin-left: -5%;
   width: 70px;
 }
 
@@ -26,7 +25,10 @@ nav a {
 body section {
   font-family: 'Open Sans', sans-serif;
   margin-left: 2%;
-  /* margin-right: 5%; */
+}
+
+header ul li {
+  margin-top: 5%;
 }
 
 .btn-log-in-social {
@@ -139,13 +141,31 @@ nav {
   margin-bottom: 5%;
 }
 
-
 #slide-out {
   color: #000000 !important;
 }
 
+#slide-out div a {
+  display: inline-block;
+}
+
 /* CSS MURO */
+i .material-icons {
+  padding: 0%;
+}
+.browser-default{
+  display: inline-block;
+  width: 30%;
+  margin-left: 1%;
+  /* height: auto;
+
+  color: #fff;
+  background-color: #1DB4BF;
+  border: none; */
+}
+
 /* Style the tab */
+
 .tab {
   overflow: hidden;
   /* border: 1px solid #ccc; */
@@ -153,7 +173,12 @@ nav {
   width: 100%;
 }
 
+.tablink {
+  width: 25%
+}
+
 /* Style the buttons inside the tab */
+
 .tab button {
   background-color: inherit;
   float: left;
@@ -166,11 +191,17 @@ nav {
 }
 
 /* Change background color of buttons on hover */
+
 .tab button:hover {
-  background-color: #FAB768;
+  border-top: 5px solid #FAB768;
+}
+
+.tab button:focus {
+  border-top: 5px solid #FAB768;
 }
 
 /* Style the tab content */
+
 .tabcontent {
   display: none;
   padding: 6px 12px;
@@ -201,22 +232,56 @@ main {
 .image-post {
   width: 60px;
 }
-
+.mini-tab{
+  display: none;
+}
 @media only screen and (max-width: 1000px) {
   .tab {
     display: none;
   }
 
+  .tab button {
+    padding: 0%;
+  }
+  .mini-tab{
+    display: block;
+    padding: 0% !important;
+  }
+
   #popularTags {
     display: none;
   }
-  
   main {
     width: 100%;
   }
 }
 
 table tr {
-font-size: 14px !important;
+  font-size: 14px !important;
 }
 
+.dnone {
+  display: none;
+}
+
+#slide-out img {
+  margin-top: 10%;
+  margin-right: 20%;
+  margin-bottom: 10%;
+}
+
+nav {
+  margin-bottom: 10%;
+}
+
+@media only screen and (max-width: 700px) {
+  .image-post {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .image-post {
+    width: 170%;
+  }
+}
