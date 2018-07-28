@@ -1,1 +1,0 @@
-// tener contenido del post en texto sin editar y saldra likes comentarios la opcion de editar y eliminar
