@@ -1,0 +1,372 @@
+[
+	{
+		"clinica": "RICARDO PALMA",
+		"direccion": "Av. Javier Prado Este No. 1066",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "DELGADO",
+		"direccion": "Av. Angamos Oeste, cuadra 4",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "STELLA MARIS",
+		"direccion": "Av. Paso De Los Andes No. 923",
+		"distrito": "Pueblo Libre"
+	},
+	{
+		"clinica": "PADRE LUIS TEZZA",
+		"direccion": "Av. El Polo No. 570 – Urb. El Polo Hunt- Monterrico",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "GOOD HOPE",
+		"direccion": "Malecon Balta No. 956",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "ANGLO AMERICANA",
+		"direccion": "Av. Alfredo Salazar No. 350",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "INTERNACIONAL (SEDE LIMA)",
+		"direccion": "Jr. Washington No. 1471",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "INTERNACIONAL (SEDE SAN BORJA)",
+		"direccion": "Av. Guardia Civil No. 385",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "JAVIER PRADO",
+		"direccion": "Av. Javier Prado Este No. 499",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "CAYETANO HEREDIA",
+		"direccion": "Av. Honorio Delgado No. 370 – Urb. Ingeniería",
+		"distrito": "S.M.P."
+	},
+	{
+		"clinica": "MIRAFLORES",
+		"direccion": "Cll.Jose Antonio Encinas No. 141 – Urb. Roseda",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "MONTEFIORI",
+		"direccion": "Av. Separadora Industrial No. 380 Int. 1",
+		"distrito": "La Molina"
+	},
+	{
+		"clinica": "MONTESUR",
+		"direccion": "Av. El Polo No. 505 – Urb. Monterrico",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "SAN FELIPE",
+		"direccion": "Av. Gregorio Escobedo No. 650",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "BELLAVISTA – RED AUNA",
+		"direccion": "Jr. Las Gaviotas No. 207- Urb. San Jose",
+		"distrito": "Callao"
+	},
+	{
+		"clinica": "SAN MARCOS",
+		"direccion": "Jr. Huaraz No. 1425",
+		"distrito": "Breña"
+	},
+	{
+		"clinica": "SAN MIGUEL",
+		"direccion": "Jr. Las Gardenias No. 754 Urb. Los Jazmines",
+		"distrito": "San Juan de Lurigancho"
+	},
+	{
+		"clinica": "SAN PABLO – SEDE SURCO",
+		"direccion": "Av. El Polo No. 789 – Urb. El Derby Monterrico",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "SAN GABRIEL",
+		"direccion": "Av. La Marina 2955",
+		"distrito": "San Miguel"
+	},
+	{
+		"clinica": "JESÚS DEL NORTE",
+		"direccion": "AV. CARLOS IZAGUIRRE 153",
+		"distrito": "Independencia"
+	},
+	{
+		"clinica": "SANTA MARÍA DEL SUR",
+		"direccion": "Av. Belisario Suárez 998",
+		"distrito": "San Juan De Miraflores"
+	},
+	{
+		"clinica": "SAN JUAN BAUTISTA",
+		"direccion": "Av. Próceres De La Independencia 1764",
+		"distrito": "San Juan De Lurigancho"
+	},
+	{
+		"clinica": "SAN PABLO – ASIA",
+		"direccion": "Cc Boulevard De Asia, Km 97.5 Carretera Panamericana Sur",
+		"distrito": "Cañete"
+	},
+	{
+		"clinica": "SAN VICENTE",
+		"direccion": "Av. Perú No. 3220 Urb. Peru",
+		"distrito": "S.M.P."
+	},
+	{
+		"clinica": "SANTA ISABEL",
+		"direccion": "Av. Guardia Civil No. 135 – Urb. Corpac",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "DE ESPECIALIDADES MÉDICAS",
+		"direccion": "JR. EDUARDO ORDOÑEZ No. 468",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "INPPARES",
+		"direccion": "Av. Guiseppe Garibaldi N° 125",
+		"distrito": "Jesús María"
+	},
+	{
+		"clinica": "INSTITUTO ONCOLOGICO DE LIMA",
+		"direccion": "Calle 22 N 202",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "INSTITUTO ONCOLOGICO MIRAFLORES",
+		"direccion": "Jr. Independencia No. 1055",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "VIRGEN MILAGROSA",
+		"direccion": "Valdelomar Moser No. 501 – Urb. Aurora",
+		"distrito": "Surquillo"
+	},
+	{
+		"clinica": "SAN BERNARDO",
+		"direccion": "Calle San Jose NO. 161",
+		"distrito": "Pueblo Libre"
+	},
+	{
+		"clinica": "MEDAVAN",
+		"direccion": "Av. Gregorio Escobedo No. 560 Urb. Fundo Oyague",
+		"distrito": "Jesús María"
+	},
+	{
+		"clinica": "SAN CAMILO",
+		"direccion": "Jr. Ancash No. 809 – Urb. Barrios Altos",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "LIMATAMBO",
+		"direccion": "AV. REPUBLICA DE PANAMA 3606",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "REPROMEDIC",
+		"direccion": "Jr. Maximo Abril N° 585",
+		"distrito": "Jesús María"
+	},
+	{
+		"clinica": "GUADALUPE",
+		"direccion": "Av. Huaylas No. 285",
+		"distrito": "Chorrillos"
+	},
+	{
+		"clinica": "MAISON DE SANTE",
+		"direccion": "Jr. Miguel Aljovin No. 208",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "SAN JUAN DE DIOS",
+		"direccion": "Av. Nicolás De Arriola N° 3250",
+		"distrito": "San Luis"
+	},
+	{
+		"clinica": "CENTENARIO PERUANO JAPONESA",
+		"direccion": "Av. Paso De Los Andes N° 675",
+		"distrito": "Pueblo Libre"
+	},
+	{
+		"clinica": "MEDICO JOCKEY SALUD",
+		"direccion": "Av. Javier Prado Este No 4200",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "SANNA",
+		"direccion": "Av. Guardia Civil No. 333-337",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "VESALIO",
+		"direccion": "Cll. Joseph Thompson No. 140 Urb. Santo Tomas",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "INSTITUTO NEURO CARDIOVASCULAR DE LAS AMERICAS (I.N.C.A.)",
+		"direccion": "Av. 28 De Julio 1331 – San Antonio",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "CENTRO MEDICO AVENDAÑO S.A.C.",
+		"direccion": "LEONIDAS AVENDAÑO No. 116",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "LOS ANDES",
+		"direccion": "CALLE ASUNCION N° 177",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "CENTRO ONCOLÓGICO ALIADA",
+		"direccion": "Sede Central: Av. Jose Gálvez Barrenechea 1044",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "ONCOSALUD SEDE SAN BORJA",
+		"direccion": "Av. Guardia Civil 545, 571, 585",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "ONCOSALUD SEDE BENAVIDES",
+		"direccion": "Avenida Benavides 2525",
+		"distrito": "Miraflores "
+	},
+	{
+		"clinica": "CARDIOMEDIC",
+		"direccion": "Jr. Washington No. 1401",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "CENTRO MEDICO SAN JUDAS TADEO",
+		"direccion": "Cll. Manuel Raygada No. 170 Urb. El Campillo",
+		"distrito": "San Miguel"
+	},
+	{
+		"clinica": "OSI-PERU",
+		"direccion": "Calle Gonzales Prada 385. Alt. 50 de Paseo de la República",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "OSI-PERU",
+		"direccion": "Chacarilla: Av. Del Pinar 198. Alt. 4 de Av. Primavera",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "OSI-PERU",
+		"direccion": "Av. José Santos Chocano 1010 Alt. 5 de Carlos Izaguirre",
+		"distrito": "Los Olivos"
+	},
+	{
+		"clinica": "OSI-PERU",
+		"direccion": "Calle Saco Oliveros 295. Of. 303. Alt. 4 de Av. Arequipa",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "DEPORTIVA",
+		"direccion": "Jr. Domingo Elías No. 256",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "BRAZZINI RADIOLOGOS ASOCIADOS S.C.R.L.",
+		"direccion": "Av. Jorge Basadre No. 223",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "RADIONCOLOGÍA SAC – RED AUNA",
+		"direccion": "Av. Paseo de La República 3650",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "MÉDICO MEDEX",
+		"direccion": "Av. República De Panamá 3065 – Int. 2do. Piso",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "CENTRO DIAGNÓSTICO MIRAFLORES",
+		"direccion": "Av. Benavides No. 298",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "INSTITUTO DE IMÁGENES MÉDICAS",
+		"direccion": "Av. Alfonso Ugarte 560 Lima",
+		"distrito": "Lima"
+	},
+	{
+		"clinica": "RESOMASA",
+		"direccion": "Av. Javier Prado Este No. 1178 Urb. Corpac",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "CENTRO PODOLÓGICO RICARDINA GUILLÉN LÓPEZ E.I.R.L.",
+		"direccion": "Ca. Juan Fanning No. 336",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "CENTRO DE DIAGNÓSTICO LA ROSA TORO 990 E.I.R.L.",
+		"direccion": "Jr. Agustín de la Rosa Toro No. 992",
+		"distrito": "San Luis"
+	},
+	{
+		"clinica": "CENTRO MEDICINA ALTERNATIVA Y BIONERGÉTICA S.A.C.",
+		"direccion": "Av. Cuba No. 214",
+		"distrito": "Jesús María"
+	},
+	{
+		"clinica": "INSTITUTO PERUANO DE NEUROCIENCIAS",
+		"direccion": "Jr. Bartolomé Herrera 161.",
+		"distrito": "Lince"
+	},
+	{
+		"clinica": "UROZEN",
+		"direccion": "Av. Aviación 3161 OF 201",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "FUTURO VISION EIRL",
+		"direccion": "AV. SAN BORJA SUR N° 536",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "CIRUPLASTIC",
+		"direccion": "Avenida Primavera, 853 – Chacarilla",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "BISBAL PLASTIC",
+		"direccion": "Avenida Guardia Civil 618 Corpac,",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "CRUZALEGUI",
+		"direccion": "Av. Guardia Civil 420",
+		"distrito": "San Isidro"
+	},
+	{
+		"clinica": "MORILLAS S.A.",
+		"direccion": "Av. El Polo No. 545",
+		"distrito": "Surco"
+	},
+	{
+		"clinica": "INSTITUTO KIRSCHBAUM",
+		"direccion": "Av. Javier Prado Este 2973",
+		"distrito": "San Borja"
+	},
+	{
+		"clinica": "CHAVARRY",
+		"direccion": "Av. La Merced 161",
+		"distrito": "Miraflores"
+	},
+	{
+		"clinica": "DENTAL FLORES",
+		"direccion": "Calle Centauro, 177",
+		"distrito": "Surco"
+	}
+]

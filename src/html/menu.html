@@ -90,36 +90,71 @@
         </div>
       </aside>
       <aside id="section-hospital" style="display: none">
-        <h3>HOSPITAL-CLINICAS</h3>
         <table>
           <thead>
             <tr>
               <th>Clínica</th>
               <th>Dirección</th>
-              <th>Teléfono</th>
+              <th>Distrito</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>CLINICA RICARDO PALMA</td>
-              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-              <td>224-2224</td>
-            </tr>
-            <tr>
-              <td>CLINICA RICARDO PALMA</td>
-              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-              <td>224-2224</td>
-            </tr>
-            <tr>
-              <td>CLINICA RICARDO PALMA</td>
-              <td>Av. Javier Prado Este No. 1066, San Isidro</td>
-              <td>224-2224</td>
-            </tr>
+          <tbody id="table-hospital">
           </tbody>
         </table>
       </aside>
       <aside id="section-search" style="display: none">
-        <h3>BUSCAR</h3>
+        <nav id="search-nav">
+          <div class="nav-wrapper">
+            <form>
+              <div class="input-field s8">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search">
+                  <i class="material-icons">search</i>
+                </label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+        <div class="row">
+          <div class="col s12">
+            <select class="browser-default right btn" id="distrito">
+              <option value="" disabled selected>Distrito</option>
+              <option value="san-isidro">San Isidro</option>
+              <option value="miraflores">Miraflores</option>
+              <option value="pueblo-libre">Pueblo Libre</option>
+              <option value="surco">Surco</option>
+              <option value="lima">Lima</option>
+              <option value="san-borja">San Borja</option>
+              <option value="smp">S.M.P.</option>
+              <option value="molina">La Molina</option>
+              <option value="callao">Callao</option>
+              <option value="breña">Breña</option>
+              <option value="sjl">San Juan de Lurigancho</option>
+              <option value="san-miguel">San Miguel</option>
+              <option value="independencia">Independencia</option>
+              <option value="sjm">San Juan De Miraflores</option>
+              <option value="cañete">Cañete</option>
+              <option value="jesus-maria">Jesús María</option>
+              <option value="surquillo">Surquillo</option>
+              <option value="chorrilos">Chorrillos</option>
+              <option value="san-luis">San Luis</option>
+              <option value="los-olivos">Los Olivos</option>
+              <option value="lince">Lince</option>
+            </select>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Clínica</th>
+              <th>Dirección</th>
+              <th>Distrito</th>
+            </tr>
+          </thead>
+          <tbody id="table-hospital-search">
+          </tbody>
+        </table>
       </aside>
       <aside id="section-profile-user" style="display: none">
         <div class="row">
