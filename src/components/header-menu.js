@@ -18,7 +18,8 @@ headerMenu = `
 		<button class="tablink" id="linkHome">Inicio</button>
 		<button class="tablink" id="linkHospital">Clínicas - Hospitales</button>
 		<button class="tablink" id="linkSearch">Buscar</button>
-		<button class="tablink" id="linkProfileUser">Perfil</button>
+		<button  class="tablink" id="linkProfileUser">Perfil
+		</button>
 	</div>
 	<div class="tab mini-tab">
 		<button class="tablink" id="mini-nav-modal-home"><i class="material-icons">home</i></button>
