@@ -115,8 +115,10 @@ const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, ima
     colegiatura: colegiatura,
     profile_picture: imageUrl
   }).then(response => {
+    swal("Bienvenido a Salutem", {
+      icon: "success",
+    }).then(() => window.location.href = 'html/menu.html');
     console.log(response);
-    window.location.href = 'html/menu.html';
   }).catch(error => {
     console.error('error', error);
   });
