@@ -36,25 +36,25 @@ const selectPrivacity = document.getElementById("select-privacity");
 let bodyPosts;
 let privacityPost = null;
 let ref_ = '';
+
 const tabHomeDescription = () => {
   hideElementsTab([sectionSearch, sectionHospital, sectionProfileUser])
   showElementTab(sectionHome);
-  
 }
 
 const tabProfileUserDescription = () => {
   hideElementsTab([sectionHospital, sectionHome, sectionSearch])
-  showElementTab(sectionProfileUser); 
-} 
-
+  showElementTab(sectionProfileUser);
+}
 
 const showElementTab = (element) => {
   element.style.display = "block";
   element.className += " active";
 }
+
 const hideElementsTab = (arr) => {
   arr.forEach(element => {
-    element.style.display ="none";
+    element.style.display = "none";
     let classes = element.className.replace("active", "");
     element.className = classes;
   });
@@ -261,7 +261,7 @@ const makePost = (postUserTxt) => {
 
 window.onload = () => {
   mostrarAllPost();
-  setTimeout( () =>{
+  setTimeout(() => {
     mostrarAllPostPorfile();
   }, 1500)
 }
@@ -316,26 +316,26 @@ const mostrarAllPost = () => {
           </div>
         </div>
       </div>
-  `+bodyPostInicio.innerHTML;
-    let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
-    M.Dropdown.init(elems);
+  ` + bodyPostInicio.innerHTML;
+      let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
+      M.Dropdown.init(elems);
     });
   });
-  ref.on('child_changed', data=>{
+  ref.on('child_changed', data => {
     let postIdToUpdate = data.val().idPost;
     let uuid = firebase.auth().currentUser.uid;
-    let postP = document.querySelector("#section_posts_profile p."+postIdToUpdate),
-        postTextArea = document.querySelector("#section_posts_profile textarea."+postIdToUpdate),
-        postLikeCounter = document.querySelector("#section_posts_profile div#"+postIdToUpdate +" a.post-likes"),
-        heartLike = document.querySelector("#section_posts_profile i."+postIdToUpdate);
-        
-        postP.innerText = data.val().description;
-        postTextArea.innerHTML = data.val().description;
-        postLikeCounter.innerText = data.val().countLike || 0;
-        data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText  = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
-       
+    let postP = document.querySelector("#section_posts_profile p." + postIdToUpdate),
+      postTextArea = document.querySelector("#section_posts_profile textarea." + postIdToUpdate),
+      postLikeCounter = document.querySelector("#section_posts_profile div#" + postIdToUpdate + " a.post-likes"),
+      heartLike = document.querySelector("#section_posts_profile i." + postIdToUpdate);
+
+    postP.innerText = data.val().description;
+    postTextArea.innerHTML = data.val().description;
+    postLikeCounter.innerText = data.val().countLike || 0;
+    data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
+
   });
-  ref.on('child_removed', (data) =>{
+  ref.on('child_removed', (data) => {
     let postBlock = document.querySelector("#section_posts_profile div#" + data.val().idPost);
     postBlock.parentNode.removeChild(postBlock);
   })
@@ -343,16 +343,16 @@ const mostrarAllPost = () => {
 
 const mostrarAllPostPorfile = () => {
   let x__ = firebase.auth().currentUser;
-  ref_ = '/users/'+x__.uid+'/posts'
+  ref_ = '/users/' + x__.uid + '/posts'
   let cont = 0;
   let ref = firebase.database().ref(ref_);
 
   ref.on('child_added', (newPost) => {
     var post = newPost.val();
     let x = firebase.auth().currentUser,
-    uuid = x.uid;
+      uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
-        
+
       var username = (snapshot.val().username) || 'Anonymous';
       cont++;
       bodyPostProfile.innerHTML = `
@@ -394,28 +394,28 @@ const mostrarAllPostPorfile = () => {
           </div>
         </div>
       </div>
-  `+bodyPostProfile.innerHTML;
-  
+  ` + bodyPostProfile.innerHTML;
+
       let elems_profile = document.querySelectorAll('#section_posts_profile .dropdown-trigger');
       M.Dropdown.init(elems_profile);
 
     });
   });
-  ref.on('child_changed', data=>{
+  ref.on('child_changed', data => {
     let postIdToUpdate = data.val().idPost;
     let uuid = firebase.auth().currentUser.uid;
-    let postP = document.querySelector("#section_posts p."+postIdToUpdate),
-        postTextArea = document.querySelector("#section_posts textarea."+postIdToUpdate),
-        postLikeCounter = document.querySelector("#section_posts div#"+postIdToUpdate +" a.post-likes"),
-        heartLike = document.querySelector("#section_posts i."+postIdToUpdate);
-        
-        postP.innerText = data.val().description;
-        postTextArea.innerHTML = data.val().description;
-        postLikeCounter.innerText = data.val().countLike || 0;
-        data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText  = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
-    
-    });
-  ref.on('child_removed', (data) =>{
+    let postP = document.querySelector("#section_posts p." + postIdToUpdate),
+      postTextArea = document.querySelector("#section_posts textarea." + postIdToUpdate),
+      postLikeCounter = document.querySelector("#section_posts div#" + postIdToUpdate + " a.post-likes"),
+      heartLike = document.querySelector("#section_posts i." + postIdToUpdate);
+
+    postP.innerText = data.val().description;
+    postTextArea.innerHTML = data.val().description;
+    postLikeCounter.innerText = data.val().countLike || 0;
+    data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
+
+  });
+  ref.on('child_removed', (data) => {
     let postBlock = document.querySelector("#section_posts div#" + data.val().idPost);
     postBlock.parentNode.removeChild(postBlock);
   })
@@ -423,7 +423,7 @@ const mostrarAllPostPorfile = () => {
 // FUNCION QUE PERMITE ELIMINAR POST
 const deletePost = (post, sectionid) => {
   let postId = post.dataset.idpost,
-    postBlock = document.querySelector(sectionid+" div#" + postId);
+    postBlock = document.querySelector(sectionid + " div#" + postId);
   const x = firebase.auth().currentUser;
   let updates = {};
   updates['/post/' + postId] = null;
@@ -456,9 +456,9 @@ const editPost = (post, sectionid) => {
   const x = firebase.auth().currentUser;
   // let idpost = post.idPost;
   let postId = post.dataset.idpost;
-  postP = document.querySelector(sectionid +" p." + postId),
-    saveButton = document.querySelector(sectionid+" a#" + postId),
-    postTextArea = document.querySelector(sectionid+" textarea." + postId);
+  postP = document.querySelector(sectionid + " p." + postId),
+    saveButton = document.querySelector(sectionid + " a#" + postId),
+    postTextArea = document.querySelector(sectionid + " textarea." + postId);
   //mostrar text area y oculpar p tag
   postP.style.display = "none";
   postTextArea.style.display = "block";
@@ -468,22 +468,22 @@ const editPost = (post, sectionid) => {
 // FUNCION QUE PERMITE GUARDAR  EN FIREBASE PUBLICACION EDITADA
 const savePost = (post, sectionid) => {
   let postId = post.attributes["0"].value,
-    newPost = document.querySelector(sectionid+" textarea." + postId).value;
+    newPost = document.querySelector(sectionid + " textarea." + postId).value;
   const x = firebase.auth().currentUser;
   let dateUpdated = new Date();
 
   let updates = {};
-  updates['/post/' + postId +'/updated_at'] = dateUpdated;
-  updates['/post/' + postId +'/description'] = newPost;
-  updates['/users/' + x.uid + '/posts/' + postId +'/description'] = newPost;
-  updates['/users/' + x.uid + '/posts/' + postId  +'/updated_at'] = dateUpdated;
+  updates['/post/' + postId + '/updated_at'] = dateUpdated;
+  updates['/post/' + postId + '/description'] = newPost;
+  updates['/users/' + x.uid + '/posts/' + postId + '/description'] = newPost;
+  updates['/users/' + x.uid + '/posts/' + postId + '/updated_at'] = dateUpdated;
   firebase.database().ref().update(updates, (error) => {
     if (error) {
       alert("Ocurrio un error, intentelo mas tarde!");
     } else {
-      let postP = document.querySelector(sectionid+" p." + postId),
-        saveButton = document.querySelector(sectionid+" a#" + postId),
-        posTextArea = document.querySelector(sectionid+" textarea." + postId);
+      let postP = document.querySelector(sectionid + " p." + postId),
+        saveButton = document.querySelector(sectionid + " a#" + postId),
+        posTextArea = document.querySelector(sectionid + " textarea." + postId);
       postP.innerText = newPost;
       posTextArea.innerHTML = newPost;
       postP.style.display = "block";
@@ -495,19 +495,19 @@ const savePost = (post, sectionid) => {
 
 const likePost = (favorite) => {
   const x = firebase.auth().currentUser;
-  firebase.database().ref('/post/' + favorite.classList[1] + '/whoMakeLikes/'+ x.uid).once('value').then((like)=>{
+  firebase.database().ref('/post/' + favorite.classList[1] + '/whoMakeLikes/' + x.uid).once('value').then((like) => {
     var is_liked = (like.val() && like.val().uid) || 'undefined';
-    if(is_liked == 'undefined'){
-      let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1; 
+    if (is_liked == 'undefined') {
+      let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) + 1;
       let whoMakeLikes = {
-        fecha : new Date(),
+        fecha: new Date(),
         uid: x.uid
       }
       updates = {};
       updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
-      updates['/post/' + favorite.classList[1] + '/whoMakeLikes/'+ x.uid] = whoMakeLikes;
+      updates['/post/' + favorite.classList[1] + '/whoMakeLikes/' + x.uid] = whoMakeLikes;
       updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/countLike'] = cantLikes;
-      updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/whoMakeLikes/'+ x.uid] = whoMakeLikes;
+      updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/whoMakeLikes/' + x.uid] = whoMakeLikes;
       firebase.database().ref().update(updates, (error) => {
         if (error) {
           alert("Ocurrio un error, intentelo mas tarde!");
@@ -516,13 +516,13 @@ const likePost = (favorite) => {
           favorite.parentNode.nextElementSibling.innerText = cantLikes;
         }
       });
-    }else{
-      let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) - 1; 
+    } else {
+      let cantLikes = parseInt(favorite.parentNode.nextElementSibling.innerText) - 1;
       updates = {};
       updates['/post/' + favorite.classList[1] + '/countLike'] = cantLikes;
-      updates['/post/' + favorite.classList[1] + '/whoMakeLikes/'+ x.uid] = null;
+      updates['/post/' + favorite.classList[1] + '/whoMakeLikes/' + x.uid] = null;
       updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/countLike'] = cantLikes;
-      updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/whoMakeLikes/'+ x.uid] = null;
+      updates['/users/' + x.uid + '/posts/' + favorite.classList[1] + '/whoMakeLikes/' + x.uid] = null;
       firebase.database().ref().update(updates, (error) => {
         if (error) {
           alert("Ocurrio un error, intentelo mas tarde!");
@@ -570,15 +570,14 @@ btnPublic[0].addEventListener("click", () => {
       privacityPost = "public";
       makePost(postUser[0]);
       postUser[0].value = "";
-      
     } else {
       privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
       makePost(postUser[0]);
       postUser[0].value = "";
-      
     }
   } else console.log("no escribiste");
 });
+
 btnPublic[1].addEventListener("click", () => {
   privacityPost = null;
   if (postUser[1].value !== "") {
