@@ -93,18 +93,16 @@ const makePost = (postUserTxt) => {
 };
 
 window.onload = () => {
-  // let elems = document.querySelectorAll('.dropdown-trigger');
-  // M.Dropdown.init(elems);
   mostrarAllPost();
   setTimeout( () =>{
-    mostrarAllPostPorfile()
-  }, 1000)
+    mostrarAllPostPorfile();
+  }, 1500)
 }
 // FUNCION PARA MOSTRAR POST EN INTERFAZ
 const mostrarAllPost = () => {
   let cont = 0;
   let ref = firebase.database().ref('/post');
-  const printPost = (newPost) => {
+  ref.on('child_added', (newPost) => {
     //bodyPostInicio.innerHTML = '';
     var post = newPost.val();
     let x = firebase.auth().currentUser,
@@ -155,9 +153,7 @@ const mostrarAllPost = () => {
     let elems = document.querySelectorAll('#section_posts .dropdown-trigger');
     M.Dropdown.init(elems);
     });
-  }
-
-  ref.on('child_added', printPost);
+  });
   ref.on('child_changed', data=>{
     let postIdToUpdate = data.val().idPost;
     let uuid = firebase.auth().currentUser.uid;
@@ -170,7 +166,7 @@ const mostrarAllPost = () => {
         postTextArea.innerHTML = data.val().description;
         postLikeCounter.innerText = data.val().countLike || 0;
         data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText  = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
-        debugger;
+       
   });
   ref.on('child_removed', (data) =>{
     let postBlock = document.querySelector("#section_posts_profile div#" + data.val().idPost);
@@ -179,16 +175,17 @@ const mostrarAllPost = () => {
 }
 
 const mostrarAllPostPorfile = () => {
-
   let x__ = firebase.auth().currentUser;
   ref_ = '/users/'+x__.uid+'/posts'
   let cont = 0;
   let ref = firebase.database().ref(ref_);
-  const printPostProfile = (newPost) => {
+
+  ref.on('child_added', (newPost) => {
     var post = newPost.val();
     let x = firebase.auth().currentUser,
     uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
+        
       var username = (snapshot.val().username) || 'Anonymous';
       cont++;
       bodyPostProfile.innerHTML = `
@@ -236,8 +233,7 @@ const mostrarAllPostPorfile = () => {
       M.Dropdown.init(elems_profile);
 
     });
-  }
-  ref.on('child_added', printPostProfile);
+  });
   ref.on('child_changed', data=>{
     let postIdToUpdate = data.val().idPost;
     let uuid = firebase.auth().currentUser.uid;
@@ -250,7 +246,7 @@ const mostrarAllPostPorfile = () => {
         postTextArea.innerHTML = data.val().description;
         postLikeCounter.innerText = data.val().countLike || 0;
         data.val().whoMakeLikes ? data.val().whoMakeLikes[uuid] ? heartLike.style.cssText = "color:red;" : heartLike.style.cssText  = "color:#ffab40;" : heartLike.style.cssText = "color:#ffab40;";
-    debugger;
+    
     });
   ref.on('child_removed', (data) =>{
     let postBlock = document.querySelector("#section_posts div#" + data.val().idPost);
@@ -279,7 +275,6 @@ const deletePost = (post, sectionid) => {
           if (error) {
             alert("No se pudo eliminar")
           } else {
-            postBlock.parentNode.removeChild(postBlock);
             swal("Tu archivo ha sido eliminado.", {
               icon: "success",
             });
