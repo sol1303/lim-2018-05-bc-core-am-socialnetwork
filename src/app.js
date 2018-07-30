@@ -348,7 +348,6 @@ const closeNavModalSignUp = () => {
 }
 
 const pintarPost = (post) => {
-  console.log(post);
   sectionMuroFalso.innerHTML +=
     `<div class="row" id="${post.idPost}">
     <div class="col s12">
@@ -413,6 +412,7 @@ goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
 miniNavBtnSignUp.addEventListener("click", () => {
   closeNavModalLogIn();
   openNavModalSignUp();
+  close();
 });
 
 // signup doctors
@@ -459,4 +459,9 @@ sectionMuroFalso.addEventListener("click", () => openNavModalLogIn());
 document.addEventListener('DOMContentLoaded', () => {
   var elems = document.querySelectorAll('.sidenav');
   M.Sidenav.init(elems);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.slider');
+  M.Slider.init(elems);
 });

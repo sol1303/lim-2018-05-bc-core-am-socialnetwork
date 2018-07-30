@@ -1,5 +1,5 @@
 body {
-  background: #ffffff;
+  background: #e9fafc;
 }
 
 header {
@@ -19,7 +19,7 @@ header p {
 
 nav a {
   font-family: 'Dosis', sans-serif;
-  margin-right: 15% !;
+  /* margin-right: 15%; */
 }
 
 body section {
@@ -171,6 +171,7 @@ i .material-icons {
   /* border: 1px solid #ccc; */
   background-color: #ffffff;
   width: 100%;
+  margin-top: -5%;
 }
 
 .tablink {
@@ -212,7 +213,7 @@ i .material-icons {
 main {
   margin-top: 5%;
   float: left;
-  width: 70%;
+  width: 100%;
 }
 
 .heart {
@@ -238,7 +239,9 @@ main {
 }
 .mini-tab{
   display: none;
+  margin-top: -5%
 }
+
 @media only screen and (max-width: 1000px) {
   .tab {
     display: none;
@@ -279,6 +282,10 @@ nav {
 }
 
 @media only screen and (max-width: 700px) {
+  #section-profile-user {
+    margin-top: 10%;
+  }
+
   .image-post {
     width: 100%;
   }
@@ -288,6 +295,11 @@ nav {
 }
 
 @media only screen and (max-width: 600px) {
+
+  #section-profile-user {
+    margin-top: 10%;
+  }
+  
   .image-post {
     width: 170%;
   }

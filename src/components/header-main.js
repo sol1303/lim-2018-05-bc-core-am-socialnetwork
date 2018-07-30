@@ -6,7 +6,7 @@ headerMain = `
 		<i class="material-icons ">menu</i>
 	</a>
 	<img id="desktop-img" class="center" src="img/logo.png" alt="Logo">
-	<ul class="right hide-on-med-and-down">
+	<ul class="right">
 		<li>
 			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
 		</li>

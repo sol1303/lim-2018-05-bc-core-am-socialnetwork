@@ -42,6 +42,8 @@ const tabHomeDescription = () => {
   showElementTab(sectionHome);
 }
 
+let userNameProfile = document.getElementById('user-name-profile');
+
 const tabProfileUserDescription = () => {
   hideElementsTab([sectionHospital, sectionHome, sectionSearch])
   showElementTab(sectionProfileUser);
@@ -271,7 +273,7 @@ const mostrarAllPost = () => {
   let ref = firebase.database().ref('/post');
   ref.on('child_added', (newPost) => {
     //bodyPostInicio.innerHTML = '';
-    var post = newPost.val();
+    let post = newPost.val();
     let x = firebase.auth().currentUser,
       uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
@@ -279,7 +281,7 @@ const mostrarAllPost = () => {
       var username = (snapshot.val().username) || 'Anonymous';
       bodyPostInicio.innerHTML = `
       <div id="${post.idPost}">
-        <div class="col s12 m9">
+        <div class="col s12">
           <div class="card">
             <div class="card-content black-text">
               <div class="col s12 m6 right">
@@ -308,7 +310,6 @@ const mostrarAllPost = () => {
                 <i class="material-icons ${post.idPost}" onclick="likePost(this)" style="${post.whoMakeLikes ? post.whoMakeLikes[uuid] ? 'color:red' : 'color:#ffab40' : null}">favorite_border</i>
               </a>
               <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
-              <a>Comentario</a>
               <a id="${post.idPost}" onclick="savePost(this, '#section_posts')" class="dnone waves-effect waves-light btn">
                 <i class="mdi-maps-rate-review left">Guardar</i>
               </a>
@@ -347,17 +348,19 @@ const mostrarAllPostPorfile = () => {
   let cont = 0;
   let ref = firebase.database().ref(ref_);
 
+
+
   ref.on('child_added', (newPost) => {
-    var post = newPost.val();
+    let post = newPost.val();
     let x = firebase.auth().currentUser,
       uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
 
-      var username = (snapshot.val().username) || 'Anonymous';
+      let username = (snapshot.val().username) || 'Anonymous';
       cont++;
       bodyPostProfile.innerHTML = `
       <div id="${post.idPost}">
-        <div class="col s12 m9">
+        <div class="col s12 m12">
           <div class="card">
             <div class="card-content black-text">
               <div class="col s12 m6 right">
