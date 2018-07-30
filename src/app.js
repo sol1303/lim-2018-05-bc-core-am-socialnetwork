@@ -102,7 +102,7 @@ const userLocal = {
   type: 'paciente',
   specialty: null,
   colegiatura: null,
-  profile_picture: null
+  profile_picture: '../src/img/users.png'
 }
 
 // método que guarda al usuario en la base de datos
@@ -115,8 +115,10 @@ const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, ima
     colegiatura: colegiatura,
     profile_picture: imageUrl
   }).then(response => {
+    swal("Bienvenido a Salutem", {
+      icon: "success",
+    }).then(() => window.location.href = 'html/menu.html');
     console.log(response);
-    window.location.href = 'html/menu.html';
   }).catch(error => {
     console.error('error', error);
   });
@@ -197,7 +199,7 @@ const signUpByDoctors = (name, email, pass, especialidad, colegiatura) => {
   signUpD.then(() => {
     const x = firebase.auth().currentUser;
     if (x) {
-      writeUserDbFirebase(x.uid, name, x.email, 'doctor', especialidad, colegiatura, null);
+      writeUserDbFirebase(x.uid, name, x.email, 'doctor', especialidad, colegiatura, '../src/img/doctors.png');
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
@@ -226,7 +228,7 @@ const signUpByUsers = (name, email, pass) => {
   signUpP.then(() => {
     const x = firebase.auth().currentUser;
     if (x) {
-      writeUserDbFirebase(x.uid, name, x.email, 'paciente', null, null, null);
+      writeUserDbFirebase(x.uid, name, x.email, 'paciente', null, null, '../src/img/users.png');
       x.sendEmailVerification().then(() => {
         console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
@@ -370,13 +372,13 @@ const pintarPost = (post) => {
 
 const getPublicPost = () => {
   const ref = firebase.database();
-  ref.ref('/post')
+  ref.ref('/post').orderByChild('fecha')
     .on('child_added', (newPost) => {
       const post = newPost.val();
       ref.ref('/users/' + post.uid).once('value').then((snapshot) => {
         const username = (snapshot.val().username) || 'Anonymous';
-        post.username = username
-        if(post.privacity === "public") pintarPost(post);
+        post.username = username;
+        if (post.privacity === "public") pintarPost(post);
       });
     });
 }
