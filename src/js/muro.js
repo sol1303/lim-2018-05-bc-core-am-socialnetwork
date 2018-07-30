@@ -42,6 +42,8 @@ const tabHomeDescription = () => {
   showElementTab(sectionHome);
 }
 
+let userNameProfile = document.getElementById('user-name-profile');
+
 const tabProfileUserDescription = () => {
   hideElementsTab([sectionHospital, sectionHome, sectionSearch])
   showElementTab(sectionProfileUser);
@@ -271,7 +273,7 @@ const mostrarAllPost = () => {
   let ref = firebase.database().ref('/post');
   ref.on('child_added', (newPost) => {
     //bodyPostInicio.innerHTML = '';
-    var post = newPost.val();
+    let post = newPost.val();
     let x = firebase.auth().currentUser,
       uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
@@ -347,17 +349,19 @@ const mostrarAllPostPorfile = () => {
   let cont = 0;
   let ref = firebase.database().ref(ref_);
 
+
+
   ref.on('child_added', (newPost) => {
-    var post = newPost.val();
+    let post = newPost.val();
     let x = firebase.auth().currentUser,
       uuid = x.uid;
     firebase.database().ref('/users/' + post.uid).once('value').then((snapshot) => {
 
-      var username = (snapshot.val().username) || 'Anonymous';
+      let username = (snapshot.val().username) || 'Anonymous';
       cont++;
       bodyPostProfile.innerHTML = `
       <div id="${post.idPost}">
-        <div class="col s12 m9">
+        <div class="col s12 m12">
           <div class="card">
             <div class="card-content black-text">
               <div class="col s12 m6 right">
