@@ -296,11 +296,39 @@ const showLogIn = () => {
 }
 
 const providerGoogle = (fireUser) => {
-  updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
+  const rootRef = firebase.database().ref();
+  const list = rootRef.child('users');
+  list.once("value", (p) => {
+    const userGoogle = Object.values(p.val());
+    userGoogle.map(user => {
+      if (user.email === fireUser.email) {
+        console.log("si estas");
+        window.location.href = 'html/menu.html';
+      }
+      else {
+        console.log("no estas en la db");
+        updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
+      }
+    });
+  });
 }
 
 const providerFacebook = (fireUser) => {
-  updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
+  const rootRef = firebase.database().ref();
+  const list = rootRef.child('users');
+  list.once("value", (p) => {
+    const userGoogle = Object.values(p.val());
+    userGoogle.map(user => {
+      if (user.email === fireUser.email) {
+        console.log("si estas");
+        window.location.href = 'html/menu.html';
+      }
+      else {
+        console.log("no estas en la db");
+        updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
+      }
+    });
+  });
 }
 
 const showOptionsUserSelect = (e) => {
