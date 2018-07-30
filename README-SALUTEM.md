@@ -20,6 +20,6 @@ Procedimos hacer el prototipo de baja finalidad
 [ENTREVISTA](https://drive.google.com/open?id=13nku6vnJsS4QxRvEn3VSWSGEQsGmb8Y_)
 
 ![LOGO](lim-2018-05-bc-core-am-socialnetwork/src/img/logo-turquesa.png)
-![Texto alternativo](/ruta/a/la/imagen.jpg)
-![Texto alternativo](/ruta/a/la/imagen.jpg)
+![Texto alternativo](../src/img/logo-turquesa.png)
+![Texto alternativo](/img/logo-turquesa.png)
 
