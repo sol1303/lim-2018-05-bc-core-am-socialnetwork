@@ -1,8 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Salutem</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/ico" href="../img/favicon.ico" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
@@ -10,65 +13,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="../css/style-wall.css">
-  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 </head>
 
 <body>
-  <header class="center-align" id="menu-header">
-    <!-- <nav>
-      <img class="center" src="../img/logo.png" alt="Logo">
-      <a data-target="slide-out" class="sidenav-trigger menu-initial left">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <a id="header-nav-log-out" class="right">Cerrar sesión</a>
-        </li>
-      </ul>
-      <div class="tab">
-        <button class="tablink" id="linkHome">Inicio</button>
-        <button class="tablink" id="linkHospital">Clínicas - Hospitales</button>
-        <button class="tablink" id="linkSearch">Buscar</button>
-        <button class="tablink" id="linkProfileUser">Perfil</button>
-      </div>
-    </nav>
-    <ul id="slide-out" class="sidenav">
-      <img class="center" src="../img/logo-turquesa.png" alt="Logo">
-      <li>
-        <a id="mini-nav-modal-home">
-          <i class="material-icons">home</i>Inicio</a>
-      </li>
-      <li>
-        <a id="mini-nav-modal-hospital">
-          <i class="material-icons">local_hospital</i>Clínicas - Hospitales</a>
-      </li>
-      <li>
-        <a id="mini-nav-modal-search">
-          <i class="material-icons">search</i>Buscar</a>
-      </li>
-      <li>
-        <a id="mini-nav-modal-profile-user">
-          <i class="material-icons">lightbulb_outline</i>Perfil</a>
-      </li>
-      <li>
-        <a id="mini-nav-modal-log-out">
-          <i class="material-icons">exit_to_app</i>Salir</a>
-      </li>
-    </ul> -->
-  </header>
+  <header class="center-align" id="menu-header"></header>
   <div class="container black">
     <main class="center col s12">
       <aside id="section-home" class="center">
         <div class="row">
-          <div id="post-card" class="col s12">
+          <div class="col s12">
             <div class="card">
               <div class="card-content black-text">
                 <div class="row tab-content col s12">
                   <div class="col s2">
-                    <img src="../img/profile.png" class="image-post">
+                    <img src="../img/profile.png" class="image-post" alt="foto de perfil">
                   </div>
                   <div class="input-field col s10">
-                    <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
+                    <textarea id="textarea-post-user" cols="2" class="materialize-textarea"></textarea>
                     <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
                   </div>
                 </div>
@@ -158,29 +120,25 @@
       </aside>
       <aside id="section-profile-user" style="display: none">
         <div class="row">
-
           <div class="col s12 m4 l3">
             <div class="col s2">
-              <img src="../img/profile.png" class="image-post">
+              <img src="../img/profile.png" class="image-post" alt="foto de perfil">
             </div>
             <h5>Solange Lavarello</h5>
             <!-- Note that "m4 l3" was added -->
             <!-- Grey navigation panel
-        
-                      This content will be:
-                  3-columns-wide on large screens,
-                  4-columns-wide on medium screens,
-                  12-columns-wide on small screens  -->
-
+                This content will be:
+            3-columns-wide on large screens,
+            4-columns-wide on medium screens,
+            12-columns-wide on small screens  -->
           </div>
-
           <div class="col s12 m8 l9">
-            <div id="post-card" class="col s12">
+            <div class="col s12">
               <div class="card">
                 <div class="card-content black-text">
                   <div class="row tab-content col s12">
                     <div class="input-field col s10">
-                      <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
+                      <textarea id="textarea-post-user" cols="2" class="materialize-textarea"></textarea>
                       <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
                     </div>
                   </div>
@@ -198,96 +156,25 @@
                 </div>
               </div>
             </div>
+            <div id="section_posts_profile" class=""></div>
             <!-- Note that "m8 l9" was added -->
             <!-- Teal page content
-        
-                      This content will be:
-                  9-columns-wide on large screens,
-                  8-columns-wide on medium screens,
-                  12-columns-wide on small screens  -->
-
+                This content will be:
+            9-columns-wide on large screens,
+            8-columns-wide on medium screens,
+            12-columns-wide on small screens  -->
           </div>
-
         </div>
-
       </aside>
     </main>
   </div>
-  <!-- <section> -->
-  <!-- <main> -->
-  <!-- <div id="London" class="tabcontent"> -->
-  <!-- <div class="row">
-          <div class="col s12">
-            <div class="card">
-              <div class="card-content black-text">
-                <div class="row tab-content col s12">
-                  <div class="col s2">
-                    <img src="../img/profile.png" class="image-post">
-                  </div>
-                  <div class="input-field col s10">
-                    <textarea id="textarea-post-user" row="2" class="materialize-textarea"></textarea>
-                    <label for="textarea-post-user" class="">¿Qué tienes en mente?</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m6 right">
-                    <a class="dropdown-trigger btn" data-target="dropdown">
-                      <i class="material-icons left">public</i>Público</a>
-                    <ul id="dropdown" class="dropdown-content type_post">
-                      <li>
-                        <a>
-                          <i class="material-icons">public</i>Público</a>
-                      </li>
-                      <li>
-                        <a>
-                          <i class="material-icons">face</i>Amigos</a>
-                      </li>
-                    </ul>
-                    <a id="btn-publicar" class="waves-effect waves-light btn">
-                      <i class="material-icons left">send</i>Postear</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="section_posts"></div>
-        </div> -->
-  <!-- TABLA CON CLINICAS -->
-  <!-- <div id="Paris" class="tabcontent"></div> -->
-  <!-- RECOMENDACIONES DE DOCTORES -->
-  <!-- <div id="Tokyo" class="tabcontent"> -->
-  <!-- <h3>Tokyo</h3>
-          <p>Tokyo is the capital of Japan.</p> -->
-  <!-- </div> -->
-  <!-- </main> -->
-  <!-- TAGS -->
-  <!-- <div id="popularTags">
-      <h6>Búsquedas Populares</h6>
-      <div class="chip">
-        Odontólogos
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Hospitales
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Recetas Médicas
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Niños
-        <i class="close material-icons">close</i>
-      </div>
-      <div class="chip">
-        Gestantes
-        <i class="close material-icons">close</i>
-      </div>
-    </div> -->
-  <!-- </section> -->
+
   <script src="../firebase/firebase.js"></script>
   <script src="../js/materialize.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../components/header-menu.js"></script>
   <script src="../js/muro.js"></script>
 </body>
+
+</html>
+
