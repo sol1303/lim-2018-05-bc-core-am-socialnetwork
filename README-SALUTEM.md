@@ -19,7 +19,7 @@ Procedimos hacer el prototipo de baja finalidad
 [TEST CON HTML](https://drive.google.com/open?id=15lWFOpfXDhCLqY37r1ZZuzz0J2-5dEey)
 [ENTREVISTA](https://drive.google.com/open?id=13nku6vnJsS4QxRvEn3VSWSGEQsGmb8Y_)
 
-![LOGO](src/img/logo-turquesa.jpeg)
+![LOGO](lim-2018-05-bc-core-am-socialnetwork/src/img/logo-turquesa.png)
 ![Texto alternativo](/ruta/a/la/imagen.jpg)
 ![Texto alternativo](/ruta/a/la/imagen.jpg)
 
