@@ -2,11 +2,11 @@
 
 headerMain = `
 <nav>
-	<a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only">
+	<a href="#" data-target="slide-out" class="sidenav-trigger">
 		<i class="material-icons ">menu</i>
 	</a>
 	<img id="desktop-img" class="center" src="img/logo.png" alt="Logo">
-	<ul class="right show-on-large hide-on-med-and-up">
+	<ul class="right">
 		<li>
 			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
 		</li>

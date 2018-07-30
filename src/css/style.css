@@ -1,6 +1,6 @@
 body {
-  background: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  background: #e9fafc;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
 
@@ -19,8 +19,16 @@ header p {
   margin: 0;
 }
 
+h3 {
+  font-family: 'Dosis', sans-serif;
+}
+
 nav a {
   margin-right: 15% !;
+}
+
+a {
+  color: #1DB4BF
 }
 
 body section {
@@ -76,9 +84,9 @@ body section {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 3;
   /* Sit on top */
-  padding-top: 100px;
+  padding-top: 50px;
   /* Location of the box */
   left: 0;
   top: 0;
@@ -102,7 +110,7 @@ body section {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 70%;
 }
 
 .btn-social {
@@ -195,10 +203,8 @@ nav {
   width: 45%;
 }
 
-@media only screen and (min-width: 600px) and (max-width: 700px), (max-width: 980px) {
 
-
-@media only screen and  {
+@media only screen and  (min-width: 600px) and (max-width: 700px) {
   .selection-image {
     width: 35%;
   }

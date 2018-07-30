@@ -281,7 +281,7 @@ const mostrarAllPost = () => {
       var username = (snapshot.val().username) || 'Anonymous';
       bodyPostInicio.innerHTML = `
       <div id="${post.idPost}">
-        <div class="col s12 m9">
+        <div class="col s12">
           <div class="card">
             <div class="card-content black-text">
               <div class="col s12 m6 right">
@@ -310,7 +310,6 @@ const mostrarAllPost = () => {
                 <i class="material-icons ${post.idPost}" onclick="likePost(this)" style="${post.whoMakeLikes ? post.whoMakeLikes[uuid] ? 'color:red' : 'color:#ffab40' : null}">favorite_border</i>
               </a>
               <a class="post-likes">${post.countLike ? post.countLike : 0}</a>
-              <a>Comentario</a>
               <a id="${post.idPost}" onclick="savePost(this, '#section_posts')" class="dnone waves-effect waves-light btn">
                 <i class="mdi-maps-rate-review left">Guardar</i>
               </a>

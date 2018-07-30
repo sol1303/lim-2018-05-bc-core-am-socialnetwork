@@ -412,6 +412,7 @@ goToSignUpUsers.addEventListener("click", (e) => showOptionsUserSelect(e));
 miniNavBtnSignUp.addEventListener("click", () => {
   closeNavModalLogIn();
   openNavModalSignUp();
+  close();
 });
 
 // signup doctors
