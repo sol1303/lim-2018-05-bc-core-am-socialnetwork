@@ -296,38 +296,44 @@ const showLogIn = () => {
 }
 
 const providerGoogle = (fireUser) => {
+  let existe = false;
   const rootRef = firebase.database().ref();
   const list = rootRef.child('users');
   list.once("value", (p) => {
     const userGoogle = Object.values(p.val());
     userGoogle.map(user => {
       if (user.email === fireUser.email) {
+        existe = true;
         console.log("si estas");
-        window.location.href = 'html/menu.html';
       }
       else {
         console.log("no estas en la db");
-        updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
       }
     });
+  }).then(() => {
+    if (existe === true) window.location.href = 'html/menu.html';
+    else updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   });
 }
 
 const providerFacebook = (fireUser) => {
+  let existe = false;
   const rootRef = firebase.database().ref();
   const list = rootRef.child('users');
   list.once("value", (p) => {
-    const userGoogle = Object.values(p.val());
-    userGoogle.map(user => {
+    const userFacebook = Object.values(p.val());
+    userFacebook.map(user => {
       if (user.email === fireUser.email) {
+        existe = true;
         console.log("si estas");
-        window.location.href = 'html/menu.html';
       }
       else {
         console.log("no estas en la db");
-        updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
       }
     });
+  }).then(() => {
+    if (existe === true) window.location.href = 'html/menu.html';
+    else updateUserByProvider(fireUser.uid, fireUser.displayName, fireUser.email, fireUser.photoURL);
   });
 }
 
