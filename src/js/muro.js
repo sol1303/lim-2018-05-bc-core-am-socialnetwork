@@ -33,6 +33,7 @@ const btnPublic = document.querySelectorAll("#btn-publicar");
 const bodyPostInicio = document.getElementById("section_posts");
 const bodyPostProfile = document.getElementById("section_posts_profile");
 const selectPrivacity = document.getElementById("select-privacity");
+const selectPrivacityProfile = document.getElementById("select-privacity-profile");
 let bodyPosts;
 let privacityPost = null;
 let ref_ = '';
@@ -567,12 +568,12 @@ SelectDistrito.addEventListener("change", () => switchDistrito(SelectDistrito.op
 btnPublic[0].addEventListener("click", () => {
   privacityPost = null;
   if (postUser[0].value !== "") {
-    if (selectPrivacity.options[selectPrivacity.selectedIndex].value == "") {
+    if (selectPrivacity[0].options[selectPrivacity.selectedIndex].value == "") {
       privacityPost = "public";
       makePost(postUser[0]);
       postUser[0].value = "";
     } else {
-      privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
+      privacityPost = selectPrivacity[0].options[selectPrivacity.selectedIndex].value;
       makePost(postUser[0]);
       postUser[0].value = "";
     }
@@ -582,12 +583,12 @@ btnPublic[0].addEventListener("click", () => {
 btnPublic[1].addEventListener("click", () => {
   privacityPost = null;
   if (postUser[1].value !== "") {
-    if (selectPrivacity.options[selectPrivacity.selectedIndex].value == "") {
+    if (selectPrivacityProfile.options[selectPrivacityProfile.selectedIndex].value == "") {
       privacityPost = "public";
       makePost(postUser[1]);
       postUser[1].value = "";
     } else {
-      privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
+      privacityPost = selectPrivacityProfile.options[selectPrivacityProfile.selectedIndex].value;
       makePost(postUser[1]);
       postUser[1].value = "";
     }
