@@ -9,6 +9,19 @@ Bajo esa premisa nos pusimos en marcha a construir las preguntas para las entrev
 Antes de empezar con las entrevistas enviamos unas encuestas a diferentes tipo de usuarios (diferentes edades, zonas, nivel socioeconómico, sexo e intereses) con las primeras encuestas vimos que lo que más querían los usuarios encontrar era comunicarse con doctores de diferentes especialidades, tips o recomendaciones de especialistas y 
 experiencias de otros pacientes con doctores o clínicas/hospitales.
 
+## BENCHMARK
+
+|  | REDES SOCIALES |
+| ------ | ------ |
+| INICIO / PRIMERA VISTA | Medium |
+| LOG IN | Medium |
+| SIGN UP | Medium |
+| MURO | Facebook |
+| POST | Facebook |
+| LIKE | Instagram |
+| PRIVACIDAD | Facebook |
+| POSTS EN PEFIL | Facebook |
+
 [ENCUESTAS](https://drive.google.com/drive/folders/1CH1vW9XvFXd2wcXQswo_s4-DY8Qs9cmf?usp=sharing)
 
 Como se muestra en las encuestas el 90% de los encuestados estarían interesados en una red exclusiva sobre salud, también nuestro segundo interés era saber por que medio las personas buscaban sugerencias de doctores, hospitales y/o clínicas y encontramos que la mayoría pedía recomendaciones sobre a que doctor acudir era a través de su familia.
@@ -68,6 +81,7 @@ Iniciamos con la implementación de la interfaz.
 #### Cuáles son los objetivos de estos usuarios en relación con el producto.
 * Tener recomendaciones sobre el sector salud más allá de sus familiares que algunas veces no tendrán nigún tipo de recomendación.
 #### Cuáles son las principales funcionalidades del producto y cuál es su prioridad.
+#### Cómo te asegurarás que estos usuarios usen este producto.
 * Le damos al usuario la facilidad de registrarse con email, facebook o google y tener a primera vista distintas publicaciones de otros usuario, también una lista de clínicas a nivel de Lima metropolitana y un buscador para simplicarle la búsqueda.
 
 Como herramientas de organización utilizamos principalmente Trello y como apoyo el product backlog ambas con el modo de historia de usuario.
