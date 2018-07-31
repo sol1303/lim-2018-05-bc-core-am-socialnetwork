@@ -23,10 +23,6 @@ h3 {
   font-family: 'Dosis', sans-serif;
 }
 
-nav a {
-  margin-right: 15% !;
-}
-
 a {
   color: #1DB4BF
 }
@@ -171,6 +167,7 @@ nav {
   .selection-image {
     width: 50%;
   }
+  
   #sign-up-selection-doctors {
     float: left;
     -webkit-box-sizing: border-box;
@@ -203,7 +200,6 @@ nav {
   width: 45%;
 }
 
-
 @media only screen and  (min-width: 600px) and (max-width: 700px) {
   .selection-image {
     width: 35%;
@@ -225,4 +221,8 @@ nav {
     width: 60%;
     margin: 1%;
   }
+}
+
+#nav-modal-log-in {
+  display: none;
 }

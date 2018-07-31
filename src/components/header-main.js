@@ -8,10 +8,10 @@ headerMain = `
 	<img id="desktop-img" class="center" src="img/logo.png" alt="Logo">
 	<ul class="right">
 		<li>
-			<a id="nav-modal-log-in" class="right">Inicia Sesión</a>
+			<a id="nav-modal-log-in" class="right hide-on-med-and-down">Inicia Sesión</a>
 		</li>
 		<li>
-			<a id="nav-modal-sign-up" class="right">Regístrate</a>
+			<a id="nav-modal-sign-up" class="right hide-on-med-and-down">Regístrate</a>
 		</li>
 	</ul>
 </nav>
