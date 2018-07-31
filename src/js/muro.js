@@ -42,8 +42,6 @@ const tabHomeDescription = () => {
   showElementTab(sectionHome);
 }
 
-let userNameProfile = document.getElementById('user-name-profile');
-
 const tabProfileUserDescription = () => {
   hideElementsTab([sectionHospital, sectionHome, sectionSearch])
   showElementTab(sectionProfileUser);
