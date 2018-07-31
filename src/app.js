@@ -118,9 +118,7 @@ const writeUserDbFirebase = (uid, name, email, type, specialty, colegiatura, ima
     swal("Bienvenido a Salutem", {
       icon: "success",
     }).then(() => window.location.href = 'html/menu.html');
-    console.log(response);
   }).catch(error => {
-    console.error('error', error);
   });
 }
 
@@ -201,7 +199,6 @@ const signUpByDoctors = (name, email, pass, especialidad, colegiatura) => {
     if (x) {
       writeUserDbFirebase(x.uid, name, x.email, 'doctor', especialidad, colegiatura, '../src/img/doctors.png');
       x.sendEmailVerification().then(() => {
-        console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
         // alert(error);
       });
@@ -230,7 +227,6 @@ const signUpByUsers = (name, email, pass) => {
     if (x) {
       writeUserDbFirebase(x.uid, name, x.email, 'paciente', null, null, '../src/img/users.png');
       x.sendEmailVerification().then(() => {
-        console.log("se envió correo de verificación de cuenta al correo");
       }).catch(error => {
         // alert(error);
       });
@@ -304,10 +300,6 @@ const providerGoogle = (fireUser) => {
     userGoogle.map(user => {
       if (user.email === fireUser.email) {
         existe = true;
-        console.log("si estas");
-      }
-      else {
-        console.log("no estas en la db");
       }
     });
   }).then(() => {
@@ -325,10 +317,6 @@ const providerFacebook = (fireUser) => {
     userFacebook.map(user => {
       if (user.email === fireUser.email) {
         existe = true;
-        console.log("si estas");
-      }
-      else {
-        console.log("no estas en la db");
       }
     });
   }).then(() => {
