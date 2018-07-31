@@ -42,8 +42,6 @@ const tabHomeDescription = () => {
   showElementTab(sectionHome);
 }
 
-let userNameProfile = document.getElementById('user-name-profile');
-
 const tabProfileUserDescription = () => {
   hideElementsTab([sectionHospital, sectionHome, sectionSearch])
   showElementTab(sectionProfileUser);
@@ -578,7 +576,7 @@ btnPublic[0].addEventListener("click", () => {
       makePost(postUser[0]);
       postUser[0].value = "";
     }
-  } else console.log("no escribiste");
+  }
 });
 
 btnPublic[1].addEventListener("click", () => {
@@ -593,5 +591,5 @@ btnPublic[1].addEventListener("click", () => {
       makePost(postUser[1]);
       postUser[1].value = "";
     }
-  } else console.log("no escribiste");
+  }
 });
