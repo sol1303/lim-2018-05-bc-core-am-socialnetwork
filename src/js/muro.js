@@ -568,12 +568,12 @@ SelectDistrito.addEventListener("change", () => switchDistrito(SelectDistrito.op
 btnPublic[0].addEventListener("click", () => {
   privacityPost = null;
   if (postUser[0].value !== "") {
-    if (selectPrivacity[0].options[selectPrivacity.selectedIndex].value == "") {
+    if (selectPrivacity.options[selectPrivacity.selectedIndex].value == "") {
       privacityPost = "public";
       makePost(postUser[0]);
       postUser[0].value = "";
     } else {
-      privacityPost = selectPrivacity[0].options[selectPrivacity.selectedIndex].value;
+      privacityPost = selectPrivacity.options[selectPrivacity.selectedIndex].value;
       makePost(postUser[0]);
       postUser[0].value = "";
     }
